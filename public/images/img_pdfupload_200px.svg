@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+    <defs>
+        <style>
+            .cls-3{fill:none;stroke:#fff;stroke-width:4px}
+        </style>
+    </defs>
+    <g id="img_pdfupload_200px" transform="translate(-859 -529)">
+        <path id="Path_1727" d="m199.369 545.436-48.857-48.126H89.369v146h110z" transform="translate(814.631 58.69)" style="fill:#555568"/>
+        <g id="그룹_18721" data-name="그룹 18721" transform="translate(944 624)">
+            <path id="선_1" data-name="선 1" class="cls-3" transform="translate(0 14.015)" d="M0 0h30"/>
+            <path id="선_2" data-name="선 2" class="cls-3" transform="translate(15)" d="M0 0v30"/>
+        </g>
+    </g>
+</svg>

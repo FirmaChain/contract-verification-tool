@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120">
+    <defs>
+        <linearGradient id="a" x1=".5" y1="1.217" x2=".5" y2=".069" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#44444f" stop-opacity="0"/>
+            <stop offset="1" stop-color="#b5b5be"/>
+        </linearGradient>
+        <linearGradient id="b" x1=".5" y1=".23" x2=".5" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#fff"/>
+            <stop offset="1" stop-color="#fff" stop-opacity="0"/>
+        </linearGradient>
+    </defs>
+    <path d="m157.369 526.976-30.2-29.666h-37.8v90h68z" transform="translate(-63.369 -482.31)" style="fill:url(#a)"/>
+    <path data-name="합치기 1" d="M9.5 42V20.015H0L19 0l19 20.015h-9.5V42z" transform="translate(41 43)" style="fill:url(#b)"/>
+</svg>

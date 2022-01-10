@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="140" height="140" viewBox="0 0 140 140">
+    <defs>
+        <linearGradient id="linear-gradient" x1="1" y1=".59" x2="0" y2=".597" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#4d0101"/>
+            <stop offset="1" stop-color="#951616"/>
+        </linearGradient>
+        <style>
+            .cls-3{fill:none;stroke:#fff;stroke-width:5px}
+        </style>
+    </defs>
+    <g id="img_pdfinvisible_140px" transform="translate(-931 -409)">
+        <path id="Path_1727" d="m183.369 536.865-41.75-39.555h-52.25v120h94z" transform="translate(864.631 -78.311)" style="fill:url(#linear-gradient)"/>
+        <g id="그룹_18717" data-name="그룹 18717" transform="translate(987 472)">
+            <path id="패스_1799" data-name="패스 1799" class="cls-3" d="m941.057 605.156 28 28" transform="translate(-941.057 -605.156)"/>
+            <path id="패스_1800" data-name="패스 1800" class="cls-3" d="m969.057 605.156-28 28" transform="translate(-941.057 -605.156)"/>
+        </g>
+    </g>
+</svg>
