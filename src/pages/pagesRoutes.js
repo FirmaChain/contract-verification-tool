@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Body from "components/layout/body";
 import MainPage from "./mainPage";
+import Footer from "organisms/footer";
 import UploadPage from "./uploadPage";
 import './routes.css'
 import Common from "organisms/common";
@@ -23,6 +24,7 @@ const PagesRoutes = () => {
                     <Route path="/verification" element={PageVerification} />
                 </Routes>
             </Common>
+            <Footer />
         </Body>
     )
 }
