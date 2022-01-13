@@ -1,6 +1,7 @@
 import React from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import Body from "components/layout/body";
+import Header from "organisms/header";
 import MainPage from "./mainPage";
 import Footer from "organisms/footer";
 import UploadPage from "./uploadPage";
@@ -17,6 +18,7 @@ const PagesRoutes = () => {
 
     return (
         <Body>
+            <Header />
             <Common>
                 <Routes location={location}>
                     <Route path="/" element={PageMain} />
