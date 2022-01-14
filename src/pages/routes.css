@@ -1,0 +1,16 @@
+.frame-enter {
+    position: absolute;
+    transform:  translateX(200%);
+}
+.frame-enter-active {
+    transform:  translateX(0);
+    transition: all .5s ease-in;
+}
+.frame-exit {
+    transform:  translateX(0);
+}
+.frame-exit-active {
+    transform:  translateX(-200%);
+    transition: all .5s ease-in;
+}
+

@@ -1,5 +1,6 @@
 import React from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
+import { TransitionGroup, CSSTransition, } from "react-transition-group";
 import Body from "components/layout/body";
 import Header from "organisms/header";
 import MainPage from "./mainPage";
@@ -20,11 +21,15 @@ const PagesRoutes = () => {
         <Body>
             <Header />
             <Common>
-                <Routes location={location}>
-                    <Route path="/" element={PageMain} />
-                    <Route path="/upload" element={PageUpload} />
-                    <Route path="/verification" element={PageVerification} />
-                </Routes>
+                <TransitionGroup>
+                    <CSSTransition key={location.pathname} timeout={500} classNames="frame">
+                        <Routes location={location}>
+                            <Route path="/" element={PageMain} />
+                            <Route path="/upload" element={PageUpload} />
+                            <Route path="/verification" element={PageVerification} />
+                        </Routes>
+                    </CSSTransition>
+                </TransitionGroup>
             </Common>
             <Footer />
         </Body>
