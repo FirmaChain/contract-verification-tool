@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
+import { Box } from 'components/styles'
 import { UploadContainer } from './styles'
 import { FilesActions, ProcessActions } from 'redux/actions'
 import UploadBox from './uploadBox';
@@ -124,16 +125,18 @@ export default function Upload() {
     }, [initDragEvents, resetDragEvents]);
 
     return (
-        <UploadContainer enableToUpload={verifyStep === 0} ref={dragRef} onClick={handleClick}>
-            <input 
-                ref={hiddenFileInput} 
-                type='file' 
-                accept={'.pdf'} 
-                onChange={onChangeFiles} 
-                style={{display: 'none'}}/>
-            {verifyStep === -1 && <ErrorBox desc={errorMsg}/>}
-            {verifyStep === 0 && <UploadBox />}
-            {verifyStep === 1 && <LoadingBox />}
-        </UploadContainer>
+        <Box>
+            <UploadContainer enableToUpload={verifyStep === 0} ref={dragRef} onClick={handleClick}>
+                <input 
+                    ref={hiddenFileInput} 
+                    type='file' 
+                    accept={'.pdf'} 
+                    onChange={onChangeFiles} 
+                    style={{display: 'none'}}/>
+                {verifyStep === -1 && <ErrorBox desc={errorMsg}/>}
+                {verifyStep === 0 && <UploadBox />}
+                {verifyStep === 1 && <LoadingBox />}
+            </UploadContainer>
+        </Box>
     )
 }
