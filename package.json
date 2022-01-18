@@ -28,10 +28,9 @@
     "web-vitals": "^2.1.2"
   },
   "scripts": {
-    "start": "react-app-env --env-file=configs/.env.local start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "dev": "react-app-env --env-file=configs/.env.local start",
+    "testnet": "react-app-env --env-file=configs/.env.testnet build",
+    "mainnet": "react-app-env --env-file=configs/.env.mainnet build"
   },
   "eslintConfig": {
     "extends": [
