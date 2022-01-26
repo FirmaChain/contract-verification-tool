@@ -6,6 +6,7 @@ import UploadBox from './uploadBox';
 import ErrorBox from './errorBox';
 import LoadingBox from './loadingBox';
 import { useSelector } from 'react-redux';
+import { isDesktop } from 'react-device-detect';
 
 export default function Upload() {
     useEffect(() => {
@@ -126,7 +127,9 @@ export default function Upload() {
 
     return (
         <Box>
-            <UploadContainer enableToUpload={verifyStep === 0} ref={dragRef} onClick={handleClick}>
+            <UploadContainer 
+                isDesktop={isDesktop}
+                enableToUpload={verifyStep === 0} ref={dragRef} onClick={handleClick}>
                 <input 
                     ref={hiddenFileInput} 
                     type='file' 

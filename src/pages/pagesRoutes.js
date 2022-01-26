@@ -9,6 +9,8 @@ import UploadPage from "./uploadPage";
 import './routes.css'
 import Common from "organisms/common";
 import VerificationPage from "./verificationPage";
+import { isDesktop } from "react-device-detect";
+import { Box } from "components/styles";
 
 const PagesRoutes = () => {
     const PageMain = <MainPage />;
@@ -21,7 +23,7 @@ const PagesRoutes = () => {
         <Body>
             <Header />
             <Common>
-                <TransitionGroup>
+                <TransitionGroup style={{width: "100%", height: "100%"}}>
                     <CSSTransition key={location.pathname} timeout={500} classNames="frame">
                         <Routes location={location}>
                             <Route path="/" element={PageMain} />

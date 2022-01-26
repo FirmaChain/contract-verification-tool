@@ -1,13 +1,18 @@
 import styled from "styled-components";
 
 export const UploadContainer = styled.div`  
-    width: 904px;
+    ${props => props.isDesktop?`
+        width: 904px;
+        margin: 60px 0 0;
+    `:`    
+        width: 100%;
+        margin: 30px 0 0;
+    `}
     height: 500px;
     opacity: 0.95;
     border-radius: 8px;
     box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.1);
     background-color: #2a2a3b;
-    margin: 60px 0 0;
 
     display: flex;
     align-items: center;
@@ -17,8 +22,12 @@ export const UploadContainer = styled.div`
 `
 
 export const Title = styled.div`
+    ${props => props.isDesktop? `
+        font-size: 32px;
+    `:`
+        font-size: 20px;
+    `}
     font-family: Chakra Petch;
-    font-size: 32px;
     font-weight: 600;
     font-stretch: normal;
     font-style: normal;
@@ -30,8 +39,12 @@ export const Title = styled.div`
 `
 
 export const Desc = styled.div`
+    ${props => props.isDesktop? `    
+        font-size: 18px;
+    `:`
+        font-size: 14px;
+    `}
     font-family: Lato;
-    font-size: 18px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
@@ -43,8 +56,13 @@ export const Desc = styled.div`
 `
 
 export const ErrorDesc = styled.div`
+    ${props => props.isDesktop? `    
+        font-size: 26px;
+    `:`
+        font-size: 18px;
+        word-break: keep-all;
+    `}
     font-family: Lato;
-    font-size: 26px;
     font-weight: bold;
     font-stretch: normal;
     font-style: normal;

@@ -1,9 +1,16 @@
 import styled from "styled-components";
 
 export const Box = styled.div`
+    ${props => props.isDesktop?`
+        padding: 0 196px;
+    `:`
+        padding: 0 20px;
+        > div,a {
+            font-size: 11px;
+        }
+    `}
     width: 100%;
     height: 100%;
-    padding: 0 196px;
     opacity: 0.8;
     background-color: #272731;
     display: flex;

@@ -11,6 +11,9 @@ export const BodyContainer = styled.div`
     background-image: url('${IMG_BACKGROUND}');
     background-size: 100%;
     overflow: overlay;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 `
 
 export const LogoTitle = styled.img`
@@ -20,6 +23,7 @@ export const LogoTitle = styled.img`
 `
 
 export const Container = styled.div`
+    width: 100%;
     height: ${props => props.height};
     display: flex;
     justify-content: ${props =>  props.justifycontent || 'center'};
@@ -28,6 +32,7 @@ export const Container = styled.div`
 `
 
 export const Box = styled.div`
+    width: 100%;
     height: ${props => props.height};
     display: flex;
     justify-content: ${props =>  props.justifycontent || 'center'};
@@ -37,21 +42,32 @@ export const Box = styled.div`
 `
 
 export const TitleText = styled.div`
-    height: 63px;
+    ${props => props.isDesktop? `
+        font-size: 46px;
+        height: 63px;
+        line-height: normal;
+    ` : `
+        word-break: keep-all;
+        font-size: 30px;
+        line-height: 1;
+    `}
     font-family: Chakra Petch;
-    font-size: 46px;
     font-weight: 600;
     font-stretch: normal;
     font-style: normal;
-    line-height: normal;
     letter-spacing: normal;
     text-align: center;
     color: #fff;
 `
 
 export const DescText = styled.div`
+    ${props => props.isDesktop? `
+        font-size: 22px;
+    `:`
+        word-break: keep-all;
+        font-size: 16px;
+    `}
     font-family: Lato;
-    font-size: 22px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;

@@ -1,5 +1,6 @@
 import moment from 'moment'
 import React from 'react'
+import { isDesktop } from 'react-device-detect'
 import Description from './description'
 import LinkDescription from './linkDescription'
 import { ContractInfoBox } from './styles'
@@ -11,7 +12,7 @@ export default function OriginalContract({data}) {
     }
 
     return (
-        <ContractInfoBox>
+        <ContractInfoBox isDesktop={isDesktop}>
             <LinkDescription title={"CREATOR"} hash={data.creator} />
             <Description title={"FILE HASH"} desc={data.fileHash} />
             <Description title={"META DATA"} desc={data.metaDataJsonString} />

@@ -43,3 +43,50 @@ export const OpenIcon = styled.div`
     background-image: url('${ICON_OPEN_IN_NEW}');
     background-size: 24px;
 `
+
+export const WrapperM = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    background-color: #1b1b23;
+    transition: all .3s ease-in-out;
+    ${props => props.open?`
+        opacity: 1;
+    `:`
+        opacity: 0.8;
+    `};
+`
+
+export const MenuButton = styled.img`
+    width: 30px;
+    height: 30px;
+    object-fit: contain;
+`
+
+export const MenuContainer = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    position: absolute;
+    top: 74px;
+    gap: 20px;
+    margin-left: -20px;
+
+    opacity: 1;
+    background-color: #1b1b23;
+    transition: all .3s ease-in-out;
+
+    ${props => props.open?`
+        max-height: 1000px;
+        padding-bottom: 20px;
+    `:`
+        max-height: 0;
+        > div {
+            overflow: hidden;
+        }
+    `}
+`

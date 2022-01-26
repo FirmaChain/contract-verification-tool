@@ -5,13 +5,26 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    gap: 50px;
+    ${props => props.isDesktop?`
+        gap: 50px;
+        > div {
+            width: 904px;
+            padding: 60px 60px 70px;
+            margin: 60px 0 0;
+        }
+    `:`
+        max-width: 300px;
+        gap: 30px;
+        > div {
+            width: 100%;
+            padding: 20px;
+            margin: 30px 0 0;
+        }
+    `}
 `
 
-export const Box = styled.div`
-    width: 904px;
+export const ResultBox = styled.div`
     opacity: 0.95;
-    padding: 60px 60px 70px;
 
     display: flex;
     align-items: center;
@@ -21,20 +34,28 @@ export const Box = styled.div`
     border-radius: 8px;
     box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.1);
     background-color: #2a2a3b;
-    margin: 60px 0 0;
 `
 
 export const ResultImg = styled.img`
-    width: 140px;
-    height: 140px;
+    ${props => props.isDesktop?`
+        width: 140px;
+        height: 140px;
+        margin-bottom: 30px;
+    `:`
+        width: 80px;
+        height: 80px;
+        margin-bottom: 15px;
+    `}
     object-fit: contain;
-
-    margin-bottom: 30px;
 `
 
 export const Title = styled.div`
+    ${props => props.isDesktop?`
+        font-size: 32px;
+    `:`
+        font-size: 25px;
+    `}
     font-family: Chakra Petch;
-    font-size: 32px;
     font-weight: 600;
     font-stretch: normal;
     font-style: normal;
@@ -66,9 +87,20 @@ export const FileInfoText = styled.div`
 `
 
 export const ContractInfoBox = styled.div`
-    width: 787px;
+    ${props => props.isDesktop?`
+        width: 787px;
+        padding: 40px;
+    `:`
+        width: 90%;
+        padding: 20px;
+
+        > div {
+            flex-direction: column;
+            gap: 0px;
+            padding-bottom: 20px;
+        }
+    `}
     height: auto;
-    padding: 40px;
     border-radius: 8px;
     background-color: #1b1b23;
     margin-top: 50px;
@@ -100,6 +132,11 @@ export const ContractInfoTitle = styled.div`
 `
 
 export const ContractInfoDesc = styled.div`
+    ${props => props.isDesktop?`
+        line-height: 2.25;
+    `:`
+        line-height: 1.2;
+    `}
     flex: 1;
     width: 100%;
     font-family: Lato;
@@ -107,7 +144,6 @@ export const ContractInfoDesc = styled.div`
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
-    line-height: 2.25;
     letter-spacing: -0.16px;
     text-align: left;
     color: #fff;
@@ -181,6 +217,9 @@ export const FileHashBox = styled.div`
 `
 
 export const FileHash = styled.div`
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     font-family: Lato;
     font-size: 16px;
     font-weight: normal;

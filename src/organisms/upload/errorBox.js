@@ -3,6 +3,7 @@ import RectButton from 'components/button/rectButton'
 import { ICON_ERROR_YELLOW } from 'constants/images'
 import { ErrorDesc, ErrorImg } from './styles'
 import { ProcessActions } from 'redux/actions'
+import { isDesktop } from 'react-device-detect'
 
 export default function ErrorBox({desc}) {
 
@@ -13,7 +14,7 @@ export default function ErrorBox({desc}) {
     return (
         <>
         <ErrorImg src={ICON_ERROR_YELLOW} alt={desc} />
-        <ErrorDesc>{desc}</ErrorDesc>
+        <ErrorDesc isDesktop={isDesktop}>{desc}</ErrorDesc>
         <RectButton small title="RETRY" onClickEvent={() => handleVerifyStep()}/>
         </>
     )

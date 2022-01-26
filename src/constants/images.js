@@ -1,8 +1,8 @@
 export const IMG_BACKGROUND = "images/img-pdf-background.png";
-
 // gnb
 export const ICON_OPEN_IN_NEW = "/images/ic-openinnew-24-px.png";
 export const ICON_OPEN_IN_HOVER = "/images/ic-openinnew-hover-24-px.png";
+export const ICON_MENU_MOBILE = "/images/ic_mobile_menu.png";
 
 // main
 export const IMG_LOGO = "/images/firma_chain_title.svg";
