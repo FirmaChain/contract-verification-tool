@@ -15,7 +15,7 @@ export default function Common({children}) {
                 direction={"column"}>
                 <TitleText isDesktop={isDesktop}>{MAIN_TITLE}</TitleText>
                 <Box
-                    height={isDesktop?"560px":"525px"}>
+                    height={isDesktop?"560px":"430px"}>
                     {children}
                 </Box>
             </Box>

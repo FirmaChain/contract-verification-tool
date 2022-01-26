@@ -24,13 +24,13 @@ export const CardContainer = styled.div`
         }
     `:`
         flex-direction: column;
-        gap: 20px;
-        padding: 30px 0 50px;
+        gap: 10px;
+        padding: 20px 0 50px;
 
         > div {
             flex-direction: row;
             justify-content: space-evenly;
-            padding: 20px;
+            padding: 10px 20px 10px;
             width: 200px;
             gap: 10px;
             > img {

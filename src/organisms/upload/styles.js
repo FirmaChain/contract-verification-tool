@@ -4,11 +4,13 @@ export const UploadContainer = styled.div`
     ${props => props.isDesktop?`
         width: 904px;
         margin: 60px 0 0;
+        height: 500px;
     `:`    
         width: 100%;
         margin: 30px 0 0;
+        padding: 35px 0;
+        height: 100%;
     `}
-    height: 500px;
     opacity: 0.95;
     border-radius: 8px;
     box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.1);

@@ -48,7 +48,7 @@ export const TitleText = styled.div`
         line-height: normal;
     ` : `
         word-break: keep-all;
-        font-size: 30px;
+        font-size: 25px;
         line-height: 1;
     `}
     font-family: Chakra Petch;
@@ -65,7 +65,7 @@ export const DescText = styled.div`
         font-size: 22px;
     `:`
         word-break: keep-all;
-        font-size: 16px;
+        font-size: 14px;
     `}
     font-family: Lato;
     font-weight: normal;
