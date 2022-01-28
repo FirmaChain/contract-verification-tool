@@ -30,34 +30,33 @@ export default function Upload() {
     const onChangeFiles = (e) => {
         if(verifyStep !== 0) return;
         FilesActions.setFile(null);
-
         
+        let uploadedFile;
         if(e.type === "drop"){
-            file = e.dataTransfer.files[0];
+            uploadedFile = e.dataTransfer.files[0];
         } else {
-            file = e.target.files[0];
+            uploadedFile = e.target.files[0];
         }
 
-        if(file.type !== 'application/pdf'){
+        if(uploadedFile.type !== 'application/pdf'){
             setErrorMsg("This is a file type that is not supported.");
             ProcessActions.setVerifyStep(-1);
             return;
         }
 
-        if(file.size / 1024 / 1024 > 20){
+        if(uploadedFile.size / 1024 / 1024 > 20){
             setErrorMsg("Upload is not possible if the file size is more than 20MB.");
             ProcessActions.setVerifyStep(-1);
             return;
         }
         
         let reader = new FileReader();
-        reader.readAsArrayBuffer(file);
+        reader.readAsArrayBuffer(uploadedFile);
         reader.onload = function() {
             const buffer = new Uint8Array(reader.result);
-
             const result = {
-                name: file.name,
-                size: file.size,
+                name: uploadedFile.name,
+                size: uploadedFile.size,
                 buffer : buffer,
             }
 
@@ -141,7 +140,6 @@ export default function Upload() {
                     style={{display: 'none'}}/>
                 {verifyStep === -1 && <ErrorBox desc={errorMsg}/>}
                 {verifyStep === 0 && <UploadBox />}
-                {console.log(verifyStep)}
                 {verifyStep === 1 && <LoadingBox />}
             </UploadContainer>
         </Box>

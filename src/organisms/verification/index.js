@@ -60,7 +60,7 @@ export default function Verification() {
     return (
         <Box>
             <Container isDesktop={isDesktop} style={isError?{}:{padding: isDesktop? "0 0 180px" : "0 0 100px"}}>
-                <ResultBox style={{height: "auto"}}>
+                <ResultBox style={{height: "auto", margin: isDesktop?"0 0 50px":""}}>
                     <ResultImg isDesktop={isDesktop} src={resultImage} alt={resultTitle}/>
                     {contractInfo &&
                     <>

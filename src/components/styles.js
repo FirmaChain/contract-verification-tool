@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 export const BodyContainer = styled.div`
     width: 100%;
-    height: auto;
+    height: 100%;
     min-height: 100%;
     position: relative;
     background-color: #1b1b23;

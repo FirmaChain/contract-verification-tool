@@ -6,8 +6,8 @@ export const Container = styled.div`
     justify-content: center;
     flex-direction: column;
     ${props => props.isDesktop?`
-        gap: 50px;
-        > div {
+        gap: 20px;
+        > div:nth-child(1) {
             width: 904px;
             padding: 60px 60px 70px;
             margin: 60px 0 0;
@@ -15,7 +15,7 @@ export const Container = styled.div`
     `:`
         max-width: 300px;
         gap: 30px;
-        > div {
+        > div:nth-child(1) {
             width: 100%;
             padding: 20px;
             margin: 30px 0 0;

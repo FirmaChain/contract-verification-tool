@@ -8,14 +8,17 @@ export default function Common({children}) {
         <Container
             height={"100%"}
             alignitems={"flex-start"}
-            padding={isDesktop?"0":"0 20px 0"}>
+            padding={isDesktop?"0":"0 20px"}
+            style={{minHeight:"800px"}}>
             <Box
-                height={"100%"}
+                height={"auto"}
                 justifycontent={"flex-start"}
-                direction={"column"}>
+                direction={"column"}
+                style={{margin:isDesktop?"140px 0 0":"150px 0"}}>
                 <TitleText isDesktop={isDesktop}>{MAIN_TITLE}</TitleText>
                 <Box
-                    height={isDesktop?"560px":"430px"}>
+                    style={{minHeight:isDesktop?"630px":"430px"}}
+                    height={"auto"}>
                     {children}
                 </Box>
             </Box>

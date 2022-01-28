@@ -20,6 +20,7 @@ const Header = () => {
     ];
 
     const handlePage = (url) => {
+        setOpen(false);
         if(url.includes('http')) return window.open(url);
         if(location.pathname !== "/") return navigate("/");
     }
