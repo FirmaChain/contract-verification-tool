@@ -9,16 +9,19 @@ import { useSelector } from 'react-redux';
 import { isDesktop } from 'react-device-detect';
 
 export default function Upload() {
-    useEffect(() => {
-        ProcessActions.setVerifyStep(0);
-    }, [])
-
     const dragRef = useRef(null);
     const hiddenFileInput = useRef(null);
 
-    const { verifyStep } = useSelector(state => state.process);
+    const { file } = useSelector(state => state.files);
+    const { demo, verifyStep } = useSelector(state => state.process);
 
     const [errorMsg, setErrorMsg] = useState("");
+
+    useEffect(() => {
+        if(!demo){
+            ProcessActions.setVerifyStep(0);
+        }
+    }, [])
 
     const handleClick = (e) => {
         if(verifyStep === 0) hiddenFileInput.current.click();
@@ -28,7 +31,7 @@ export default function Upload() {
         if(verifyStep !== 0) return;
         FilesActions.setFile(null);
 
-        let file;
+        
         if(e.type === "drop"){
             file = e.dataTransfer.files[0];
         } else {
@@ -46,7 +49,7 @@ export default function Upload() {
             ProcessActions.setVerifyStep(-1);
             return;
         }
-
+        
         let reader = new FileReader();
         reader.readAsArrayBuffer(file);
         reader.onload = function() {
@@ -138,6 +141,7 @@ export default function Upload() {
                     style={{display: 'none'}}/>
                 {verifyStep === -1 && <ErrorBox desc={errorMsg}/>}
                 {verifyStep === 0 && <UploadBox />}
+                {console.log(verifyStep)}
                 {verifyStep === 1 && <LoadingBox />}
             </UploadContainer>
         </Box>

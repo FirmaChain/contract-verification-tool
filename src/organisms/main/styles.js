@@ -1,5 +1,17 @@
 import styled from "styled-components";
 
+export const ButtonBox = styled.div`
+    ${props => props.isDesktop?`
+        flex-direction: row;
+    `:`
+        flex-direction: column;
+    `}
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+`
+
 export const CardContainer = styled.div`
     width: 100%;
     display: flex;

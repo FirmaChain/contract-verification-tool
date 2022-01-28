@@ -2,6 +2,7 @@ import { ICON_COPY } from 'constants/images'
 import { EXPLORER_URL } from 'constants/texts';
 import copy from 'copy-to-clipboard';
 import React, { useEffect, useState } from 'react'
+import { isDesktop } from 'react-device-detect';
 import { ContractInfoContentWrapper, ContractInfoLink, ContractInfoTitle, CopyIcon, CopyMessage, Links, LinkWrapper } from './styles'
 
 export default function LinkDescription({title, hash}) {
@@ -9,7 +10,7 @@ export default function LinkDescription({title, hash}) {
     const hashList = Array.isArray(hash)? hash : [hash];
 
     const handleUrl = (value) => {
-        window.open(EXPLORER_URL + "/" +value);
+        window.open(EXPLORER_URL + "/accounts/" +value);
     }
 
     const Copy = () => {
@@ -45,7 +46,7 @@ export default function LinkDescription({title, hash}) {
                 {hashList.map((hash, index) => {
                     return (
                         <LinkWrapper key={index}>
-                            <ContractInfoLink onClick={()=>handleUrl(hash)}>{hash}</ContractInfoLink>
+                            <ContractInfoLink isDesktop={isDesktop} onClick={()=>handleUrl(hash)}>{hash}</ContractInfoLink>
                             <Copy />
                         </LinkWrapper>
                     )

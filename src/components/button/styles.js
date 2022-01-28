@@ -23,3 +23,27 @@ export const ButtonContainer = styled.div`
         background-color: #6b43f2;
     }
 `
+
+export const DemoButtonContainer = styled.div`
+    width: 280px;
+    height: 64px;
+    border-radius: 8px;
+    background-color: #3252d3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    font-family: Lato;
+    font-size: 20px;
+    font-weight: 400;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: -0.2px;
+    text-align: left;
+    color: #fff;
+
+    &:hover {
+        background-color: #0062ff;
+    }
+`

@@ -23,6 +23,18 @@ export const Container = styled.div`
     `}
 `
 
+export const ButtonBox = styled.div`
+    ${props => props.isDesktop?`
+        flex-direction: row;
+    `:`
+        flex-direction: column;
+    `}
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+`
+
 export const ResultBox = styled.div`
     opacity: 0.95;
 
@@ -132,11 +144,6 @@ export const ContractInfoTitle = styled.div`
 `
 
 export const ContractInfoDesc = styled.div`
-    ${props => props.isDesktop?`
-        line-height: 2.25;
-    `:`
-        line-height: 1.2;
-    `}
     flex: 1;
     width: 100%;
     font-family: Lato;
@@ -148,6 +155,12 @@ export const ContractInfoDesc = styled.div`
     text-align: left;
     color: #fff;
     word-break: break-all;
+
+    ${props => props.isDesktop?`
+        line-height: 2.25;
+    `:`
+        line-height: 1.2;
+    `}
 `
 
 export const Links = styled.div`
@@ -170,6 +183,12 @@ export const ContractInfoLink = styled(ContractInfoDesc)`
     color: #24c4ff;
     cursor: pointer;
     float: left;
+
+    ${props => props.isDesktop?`
+        line-height: 2.25;
+    `:`
+        line-height: 1.2;
+    `}
 `
 
 export const CopyIcon = styled.img`
