@@ -17,8 +17,7 @@ export default function Common({children}) {
                 style={{margin:isDesktop?"140px 0 0":"150px 0"}}>
                 <TitleText isDesktop={isDesktop}>{MAIN_TITLE}</TitleText>
                 <Box
-                    style={{minHeight:isDesktop?"630px":"430px"}}
-                    height={"auto"}>
+                    height={"100%"}>
                     {children}
                 </Box>
             </Box>
