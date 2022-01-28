@@ -9,6 +9,7 @@ import UploadPage from "./uploadPage";
 import './routes.css'
 import Common from "organisms/common";
 import VerificationPage from "./verificationPage";
+import { isDesktop } from "react-device-detect";
 
 const PagesRoutes = () => {
     const PageMain = <MainPage />;
@@ -31,7 +32,7 @@ const PagesRoutes = () => {
                     </CSSTransition>
                 </TransitionGroup>
             </Common>
-            <Footer />
+            {isDesktop && <Footer />}
         </Body>
     )
 }

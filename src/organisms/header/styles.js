@@ -53,11 +53,7 @@ export const WrapperM = styled.div`
     padding: 0 20px;
     background-color: #1b1b23;
     transition: all .3s ease-in-out;
-    ${props => props.open?`
-        opacity: 1;
-    `:`
-        opacity: 0.8;
-    `};
+    opacity: 1;
 `
 
 export const MenuButton = styled.img`
