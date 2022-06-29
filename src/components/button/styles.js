@@ -4,7 +4,7 @@ export const ButtonContainer = styled.div`
     width: 280px;
     height: 64px;
     border-radius: 8px;
-    background-color: #5331c7;
+    background-color: ${props => props.backgroundColor || '#5331c7'};
     display: flex;
     align-items: center;
     justify-content: center;
@@ -20,7 +20,7 @@ export const ButtonContainer = styled.div`
     color: #fff;
 
     &:hover {
-        background-color: #6b43f2;
+        background-color: ${props => props.backgroundColorHover || '#6b43f2'};
     }
 `
 

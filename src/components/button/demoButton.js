@@ -1,5 +1,5 @@
 import React from 'react'
-import { DemoButtonContainer as DemoButtonContainer } from './styles'
+import { DemoButtonContainer } from './styles'
 
 export default function DemoButton({title, small = false, onClickEvent}) {
     const onClick = async() => {

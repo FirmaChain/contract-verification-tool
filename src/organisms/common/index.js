@@ -1,7 +1,7 @@
-import { Box, Container, TitleText } from 'components/styles'
-import { MAIN_TITLE } from 'constants/texts'
 import React from 'react'
 import { isDesktop } from 'react-device-detect'
+import { MAIN_TITLE } from 'constants/texts'
+import { Box, Container, TitleText } from 'components/styles'
 
 export default function Common({children}) {
     return (
@@ -14,7 +14,7 @@ export default function Common({children}) {
                 height={"auto"}
                 justifycontent={"flex-start"}
                 direction={"column"}
-                style={{margin:isDesktop?"180px 0 0":"160px 0"}}>
+                style={{margin:"180px 0 0"}}>
                 <TitleText isDesktop={isDesktop}>{MAIN_TITLE}</TitleText>
                 <Box
                     height={"100%"}>
