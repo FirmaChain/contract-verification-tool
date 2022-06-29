@@ -196,7 +196,6 @@ export const CopyIcon = styled.img`
     height: 16px;
     object-fit: contain;
     cursor: pointer;
-    float: left;
     margin: 0 4px;
 `
 

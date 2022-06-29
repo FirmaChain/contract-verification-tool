@@ -1,20 +1,20 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import { IMG_INVISIBLE_CONTRACT, IMG_ORIGINAL_CONTRACT } from 'constants/images'
-import { ResultBox, Container, FileHash, FileHashBox, FIleInfoBox, FileInfoText, ResultImg, Title, ButtonBox } from './styles'
+import { isDesktop } from 'react-device-detect';
+import { useNavigate } from 'react-router';
 import { useSelector } from 'react-redux'
-import { getVirifyResult } from 'utils/verificationContract';
+import { ModalActions } from 'redux/actions';
+import { getIpfsURL } from 'utils/firma';
 import { convertFileSize } from 'utils/common';
 import { Box, StyledLink } from 'components/styles';
-import RectButton from 'components/button/rectButton';
-import { useNavigate } from 'react-router';
+import { IMG_INVISIBLE_CONTRACT, IMG_ORIGINAL_CONTRACT } from 'constants/images'
+import { ResultBox, Container, FileHash, FileHashBox, FIleInfoBox, FileInfoText, ResultImg, Title, ButtonBox } from './styles'
 import OriginalContract from './originalContract';
-import { isDesktop } from 'react-device-detect';
-import DemoButton from 'components/button/demoButton';
-import PDF from 'constants/sample_contract.pdf';
+import RectButton from 'components/button/rectButton';
+import { useSnackbar } from 'notistack';
 
 export default function Verification() {
-    const { file } = useSelector(state => state.files);
-    const { demo } = useSelector(state => state.process);
+    const {files, wallet} = useSelector(state => state);
+    const { enqueueSnackbar } = useSnackbar();
     const navigate = useNavigate();
 
     const [contractInfo, setContractInfo] = useState(null);
@@ -34,28 +34,35 @@ export default function Verification() {
         return IMG_ORIGINAL_CONTRACT;
     }, [isError]);
 
-    const openDemoPDF = () => {
-        window.open(PDF, "_blank");
+    const openCertificatePDF = async() => {
+        if(wallet.privateKey){
+            let url = '';
+            const metaJson = JSON.parse(contractInfo.metaDataJsonString);
+
+            for(var i=0; i<metaJson.encryptIpfsHash.length; i++){
+                url = await getIpfsURL(wallet.privateKey, metaJson.encryptIpfsHash[i]);
+                if(url !== '') return window.open(url, "_blank");;
+            }
+
+            if(url === ''){
+                enqueueSnackbar("Invalid private key", {
+                    variant: 'error',
+                    autoHideDuration: 3000,
+                });
+            }
+        } else {
+            ModalActions.handleModalWallet(true);
+        }
     }
 
     useEffect(() => {
-        const handleVerification = async() => {
-            if(file === null){
-                navigate("/");
-                return;
-            } else {
-                if(file != null) {
-                    await getVirifyResult(file.buffer).then(res => {
-                        setContractInfo(res);
-                    }).catch(error => {
-                        console.log(error);
-                    });
-                }
-            }
+        if(files.file === null){
+            navigate("/");
+            return;
+        } else {
+            setContractInfo(files.file);
         }
-
-        handleVerification();
-    }, [file]);
+    }, [files]);
 
     return (
         <Box>
@@ -72,16 +79,16 @@ export default function Verification() {
                         </FileHashBox>
                     }
                     <FIleInfoBox>
-                        <FileInfoText fontsize={isDesktop?"20px":"16px"}>{file.name}</FileInfoText>
-                        <FileInfoText fontsize={isDesktop?"16px":"12px"}>{convertFileSize(file.size)}KB</FileInfoText>
+                        <FileInfoText fontsize={isDesktop?"20px":"16px"}>{files.file.name}</FileInfoText>
+                        <FileInfoText fontsize={isDesktop?"16px":"12px"}>{convertFileSize(files.file.size)}KB</FileInfoText>
                     </FIleInfoBox>
                     {isError === false && <OriginalContract data={contractInfo} />}
                     </>
                     }
                 </ResultBox>
                 <ButtonBox isDesktop={isDesktop}>
-                    {demo &&
-                        <DemoButton small title="OPEN CONTRACT" onClickEvent={openDemoPDF} />
+                    {isError === false &&
+                        <RectButton backgroundColor={'#3252d3'} backgroundColorHover={'#0062ff'} small title="OPEN CERTIFICATE" onClickEvent={openCertificatePDF} /> 
                     }
                     <StyledLink to="/">
                         <RectButton small title="HOME"/>

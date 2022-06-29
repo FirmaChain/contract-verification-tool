@@ -7,6 +7,7 @@
     "@emotion/styled": "^11.6.0",
     "@firmachain/firma-js": "^0.2.30",
     "@mui/base": "^5.0.0-alpha.63",
+    "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.2.7",
     "@mui/styled-engine-sc": "^5.1.0",
     "@testing-library/jest-dom": "^5.16.1",
@@ -14,6 +15,7 @@
     "@testing-library/user-event": "^13.5.0",
     "copy-to-clipboard": "^3.3.1",
     "moment": "^2.29.1",
+    "notistack": "^2.0.5",
     "react": "^17.0.2",
     "react-app-env": "^1.2.3",
     "react-device-detect": "^2.1.2",
@@ -24,6 +26,7 @@
     "react-scripts": "^4.0.3",
     "react-transition-group": "^4.4.2",
     "redux-devtools-extension": "^2.13.9",
+    "redux-persist": "^6.0.0",
     "redux-thunk": "^2.4.1",
     "styled-components": "^5.3.3",
     "web-vitals": "^2.1.2"

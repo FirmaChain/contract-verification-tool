@@ -1,18 +1,18 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
+import { isDesktop } from 'react-device-detect';
+import { useSelector } from 'react-redux';
+import { FilesActions, ProcessActions } from 'redux/actions'
 import { Box } from 'components/styles'
 import { UploadContainer } from './styles'
-import { FilesActions, ProcessActions } from 'redux/actions'
 import UploadBox from './uploadBox';
 import ErrorBox from './errorBox';
 import LoadingBox from './loadingBox';
-import { useSelector } from 'react-redux';
-import { isDesktop } from 'react-device-detect';
+import { getVirifyResult } from 'utils/firma';
 
 export default function Upload() {
     const dragRef = useRef(null);
     const hiddenFileInput = useRef(null);
 
-    const { file } = useSelector(state => state.files);
     const { demo, verifyStep } = useSelector(state => state.process);
 
     const [errorMsg, setErrorMsg] = useState("");
@@ -59,16 +59,29 @@ export default function Upload() {
                 size: uploadedFile.size,
                 buffer : buffer,
             }
-
-            FilesActions.setFile(result);
+            verifyContract(result);
             ProcessActions.setVerifyStep(1);
         }
         reader.onerror = function() {
             console.log(reader.error);
             setErrorMsg("Upload failed. Please upload it again.");
         }
+
         ProcessActions.setVerifyStep(1);
         hiddenFileInput.current.value = '';
+    }
+
+    const verifyContract = async(file) => {
+        try {
+            const result = await getVirifyResult(file.buffer);
+            FilesActions.setFile({
+                name: file.name,
+                size: file.size,
+                ...result
+            });
+        } catch (error) {
+            throw error;
+        }
     }
 
     const handleDragIn = useCallback((e) => {

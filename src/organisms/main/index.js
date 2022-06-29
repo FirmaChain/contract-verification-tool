@@ -9,6 +9,7 @@ import DemoButton from 'components/button/demoButton';
 import Cards from './cards';
 import PDF from 'constants/sample_contract.pdf';
 import { useNavigate } from 'react-router';
+import { getVirifyResult } from 'utils/firma';
 
 export default function Main() {
     const navigate = useNavigate();
@@ -34,10 +35,23 @@ export default function Main() {
                 size: file.size,
                 buffer : buffer,
             }
-            FilesActions.setFile(result);
+            verifyContract(result);
             ProcessActions.setDemo(true);
             ProcessActions.setVerifyStep(1);
             navigate('/upload');
+        }
+    }
+
+    const verifyContract = async(file) => {
+        try {
+            const result = await getVirifyResult(file.buffer);
+            FilesActions.setFile({
+                name: file.name,
+                size: file.size,
+                ...result
+            });
+        } catch (error) {
+            throw error;
         }
     }
     

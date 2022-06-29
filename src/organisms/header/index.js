@@ -1,14 +1,19 @@
+import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
+import { isDesktop } from "react-device-detect";
+import { useSelector } from "react-redux";
+import { WalletModal } from "organisms/modal";
 import { Box, Container, LogoTitle } from "components/styles";
 import { ICON_MENU_MOBILE, IMG_LOGO } from "constants/images";
-import { MenuButton, MenuContainer, MenuItemBox, MenuText, OpenIcon, Wrapper, WrapperM } from "./styles";
 import { DONUE_URL, EXPLORER_URL, STATION_URL } from "constants/texts";
-import { isDesktop } from "react-device-detect";
-import { useState } from "react";
+import { MenuButton, MenuContainer, MenuText, OpenIcon, Wrapper, WrapperM } from "./styles";
+import ConnectedBar from "./connectedBar";
 
 const Header = () => {
     const location = useLocation();
     const navigate = useNavigate();
+
+    const { wallet } = useSelector(state => state.modal);
 
     const [open, setOpen] = useState(false);
 
@@ -27,32 +32,36 @@ const Header = () => {
 
     return (
         <Container
-            height={"74px"}
-            justifycontent={"space-between"}
-            style={{width: "100%", position: "fixed", top: 0, zIndex: 9999}}>
+            height={"auto"}
+            justifycontent={"center"}
+            style={{width: "100%", minHeight: "74px", position: "fixed", top: 0, zIndex: 998, opacity: 0.9, backgroundColor: '#1b1b23'}}>
                 {isDesktop?
-                <Wrapper>
-                    <LogoTitle src={IMG_LOGO} alt="Firmachain" onClick={() => handlePage("/")}/>
-                    <Box
-                        justifycontent={"flex-end"}
-                        gap={"44px"}>
-                        {menus.map((item, index) => {
-                            return (
-                                <MenuText key={index} onClick={()=>handlePage(item.url)}>
-                                    {item.title}
-                                    {item?.newpage && <OpenIcon />}
-                                </MenuText> 
-                            )
-                        })}
-                    </Box>
-                </Wrapper>
+                <Box height={"100%"} style={{padding: "0 196px"}}>
+                    <Wrapper style={{padding: "15px 0"}}>
+                        <LogoTitle src={IMG_LOGO} alt="Firmachain" onClick={() => handlePage("/")}/>
+                        <Box
+                            justifycontent={"flex-start"}
+                            gap={"44px"}
+                            style={{padding: "0 0 0 40px"}}>
+                            {menus.map((item, index) => {
+                                return (
+                                    <MenuText key={index} onClick={()=>handlePage(item.url)}>
+                                        {item.title}
+                                        {item?.newpage && <OpenIcon />}
+                                    </MenuText> 
+                                )
+                            })}
+                        </Box>
+                    </Wrapper>
+                    <ConnectedBar />
+                </Box>
                 :
                 <WrapperM open={open}>
                     <LogoTitle src={IMG_LOGO} alt="Firmachain" onClick={() => handlePage("/")}/>
                     <MenuButton src={ICON_MENU_MOBILE} alt="Mobile Menu" onClick={() => setOpen(!open)}/>
 
-
                     <MenuContainer open={open}>
+                        <ConnectedBar />
                         {menus.map((item, index) => {
                             return (
                                 <MenuText key={index} onClick={()=>handlePage(item.url)}>
@@ -64,6 +73,7 @@ const Header = () => {
                     </MenuContainer>
                 </WrapperM>
                 }
+                {wallet && <WalletModal />}
         </Container>
     )
 

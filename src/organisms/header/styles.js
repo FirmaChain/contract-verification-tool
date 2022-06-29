@@ -1,4 +1,4 @@
-import { ICON_OPEN_IN_HOVER, ICON_OPEN_IN_NEW } from "constants/images";
+import { ICON_OPEN_IN_HOVER, ICON_OPEN_IN_NEW, ICON_SETTING } from "constants/images";
 import styled from "styled-components";
 
 export const Wrapper = styled.div`
@@ -7,10 +7,27 @@ export const Wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0 196px;
-    
-    opacity: 0.8;
-    background-color: #1b1b23;
+`
+
+export const AddressText = styled.div`
+    height: 24px;
+    line-height: 22px;
+    font-family: Lato;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: -0.16px;
+    text-align: center;
+    color: #20b0e5;
+    background-color: #21212f;
+    border-radius: 4px;
+    padding: 5px 10px;
+    cursor: pointer;
+
+    &:hover {
+        color: #1989b2;
+    }
 `
 
 export const MenuText = styled.div`
@@ -35,6 +52,24 @@ export const MenuText = styled.div`
             background-image: url('${ICON_OPEN_IN_HOVER}');
         }
     }
+`
+
+export const DescText = styled.div`
+    min-width: 70px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-family: Lato;
+    font-size: 16px;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: -0.16px;
+    text-align: center;
+    padding: 5px 0;
+    color: #b5b5be;
 `
 
 export const OpenIcon = styled.div`
@@ -86,3 +121,26 @@ export const MenuContainer = styled.div`
         }
     `}
 `
+
+export const SettingButton = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  color: white;
+  opacity: 0.7;
+  &:hover {
+    opacity: 1;
+  }
+`;
+
+export const SettingIcon = styled.div`
+  width: 26px;
+  height: 26px;
+  background-image: url('${ICON_SETTING}');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  margin-left: 20px;
+  margin-top: -2px;
+`;
