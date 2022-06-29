@@ -1,0 +1,4 @@
+module.exports = {
+    firmaConfig : "",
+    hashKey: "",
+}
