@@ -1,17 +1,15 @@
 import { FilesActions } from "redux/actions";
+const { FirmaSDK, FirmaUtil, FirmaConfig } = require("@firmachain/firma-js");
+const {hashKey, env} = require('../config');
 
-const { FirmaSDK, FirmaUtil } = require("@firmachain/firma-js");
-
-const {firmaConfig, hashKey} = require('../config');
-
-const SDK = new FirmaSDK(firmaConfig);
+const SDK = new FirmaSDK(env === "production"?FirmaConfig.MainNetConfig:FirmaConfig.TestNetConfig);
 
 export async function getVirifyResult(file) {
     let contractFileHash = ""
     try {
         contractFileHash = FirmaUtil.getFileHashFromBuffer(file);
 
-        const contract = await SDK.Contract.getContractFile(hashKey + contractFileHash);
+        const contract = await SDK.Contract.getContractFile(contractFileHash);
 
         FilesActions.setOriginalContract(true);
         return contract;
