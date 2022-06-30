@@ -1,5 +1,4 @@
-const FILE = 'FILE';
-const ORIGINAL_CONTRACT = 'ORIGINAL_CONTRACT';
+import { FILE, META_JSON, ORIGINAL_CONTRACT } from "redux/types"
 
 export const setFile = (file) => {
     return (dispatch) => {
@@ -15,6 +14,15 @@ export const setOriginalContract = (result) => {
         dispatch({
             type: ORIGINAL_CONTRACT,
             payload: result,
+        })
+    }
+}
+
+export const setMetaJson = (meta) => {
+    return (dispatch) => {
+        dispatch({
+            type: META_JSON,
+            payload: meta,
         })
     }
 }

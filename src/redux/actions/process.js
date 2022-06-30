@@ -1,12 +1,10 @@
-const DEMO = "DEMO";
-const VERIFY_STEP = 'VERIFY_STEP';
-const SHOW_VERIFICATION = 'SHOW_VERIFICATION';
+import { DEMO, SHOW_VERIFICATION, VERIFY_STEP } from "redux/types"
 
-export const setDemo = (boolean) => {
+export const setDemo = (demo) => {
     return (dispatch) => {
         dispatch({
             type: DEMO,
-            payload: boolean
+            payload: demo
         })
     }
 }

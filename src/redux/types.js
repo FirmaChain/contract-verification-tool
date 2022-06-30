@@ -8,3 +8,10 @@ export const HANDLE_MODAL_DATA = 'HANDLE_MODAL_DATA';
 export const HANDLE_MODAL_WALLET = 'HANDLE_MODAL_WALLET';
 export const HANDLE_MODAL_QUEUETX = 'HANDLE_MODAL_QUEUETX';
 
+export const FILE = 'FILE';
+export const ORIGINAL_CONTRACT = 'ORIGINAL_CONTRACT';
+export const META_JSON = 'META_JSON';
+
+export const DEMO = "DEMO";
+export const VERIFY_STEP = 'VERIFY_STEP';
+export const SHOW_VERIFICATION = 'SHOW_VERIFICATION';
