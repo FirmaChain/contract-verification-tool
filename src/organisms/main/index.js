@@ -8,26 +8,35 @@ import RectButton from 'components/button/rectButton';
 import DemoButton from 'components/button/demoButton';
 import Cards from './cards';
 import PDF from 'constants/sample_contract.pdf';
+import PDF_TEST from 'constants/sample_contract_testnet.pdf';
 import { useNavigate } from 'react-router';
 import { getVirifyResult } from 'utils/firma';
+import { env } from 'config';
 
 export default function Main() {
     const navigate = useNavigate();
     
     useEffect(() => {
-        ProcessActions.setDemo(false);
+        FilesActions.setFile(null);
+        FilesActions.setMetaJson(null);
+        ProcessActions.setVerifyStep(0);
+        ProcessActions.setDemo({
+            status: false,
+            privateKey: "",
+        });
     }, []);
 
     const handleDemo = async() => {
-        const response = await fetch(PDF);
+        const response = await fetch(env === "production"?PDF:PDF_TEST);
         const data = await response.blob();
         const meta = {
             type: "application/pdf"
         }
-        const file = new File([data], "sample_contract.pdf", meta);
+        const fileName = "sample_contract.pdf";
+        const file = new File([data], fileName, meta);
         let reader = new FileReader();
         reader.readAsArrayBuffer(file);
-        reader.onload = function() {
+        reader.onload = async function() {
             const buffer = new Uint8Array(reader.result);
 
             const result = {
@@ -35,8 +44,11 @@ export default function Main() {
                 size: file.size,
                 buffer : buffer,
             }
-            verifyContract(result);
-            ProcessActions.setDemo(true);
+            await verifyContract(result);
+            ProcessActions.setDemo({
+                status: true,
+                privateKey: "",
+            });
             ProcessActions.setVerifyStep(1);
             navigate('/upload');
         }

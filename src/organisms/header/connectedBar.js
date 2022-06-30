@@ -2,13 +2,14 @@ import { GeneralButton } from "organisms/modal/styles";
 import React from "react";
 import { isDesktop } from "react-device-detect";
 import { useSelector } from "react-redux";
-import { ModalActions } from "redux/actions";
+import { FilesActions, ModalActions } from "redux/actions";
 import { AddressText, DescText, MenuText, Wrapper } from "./styles";
 
 const ConnectedBar = () => {
     const {wallet} = useSelector(state => state);
 
     const handleWalletModal = () => {
+        FilesActions.setMetaJson(null);
         ModalActions.handleModalWallet(true);
     };
     return (

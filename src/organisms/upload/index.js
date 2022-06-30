@@ -4,31 +4,37 @@ import { useSelector } from 'react-redux';
 import { FilesActions, ProcessActions } from 'redux/actions'
 import { Box } from 'components/styles'
 import { UploadContainer } from './styles'
+import { getVirifyResult } from 'utils/firma';
 import UploadBox from './uploadBox';
 import ErrorBox from './errorBox';
 import LoadingBox from './loadingBox';
-import { getVirifyResult } from 'utils/firma';
 
 export default function Upload() {
     const dragRef = useRef(null);
     const hiddenFileInput = useRef(null);
 
-    const { demo, verifyStep } = useSelector(state => state.process);
+    const {process, files} = useSelector(state => state);
+
+    // const { demo, verifyStep } = useSelector(state => state.process);
 
     const [errorMsg, setErrorMsg] = useState("");
 
     useEffect(() => {
-        if(!demo){
+        if(!process.demo){
             ProcessActions.setVerifyStep(0);
+        } else {
+            if(files.metaJson) {
+                ProcessActions.setVerifyStep(0);
+            }
         }
     }, [])
 
     const handleClick = (e) => {
-        if(verifyStep === 0) hiddenFileInput.current.click();
+        if(process.verifyStep === 0) hiddenFileInput.current.click();
     };
 
     const onChangeFiles = (e) => {
-        if(verifyStep !== 0) return;
+        if(process.verifyStep !== 0) return;
         FilesActions.setFile(null);
         
         let uploadedFile;
@@ -52,14 +58,14 @@ export default function Upload() {
         
         let reader = new FileReader();
         reader.readAsArrayBuffer(uploadedFile);
-        reader.onload = function() {
+        reader.onload = async function() {
             const buffer = new Uint8Array(reader.result);
             const result = {
                 name: uploadedFile.name,
                 size: uploadedFile.size,
                 buffer : buffer,
             }
-            verifyContract(result);
+            await verifyContract(result);
             ProcessActions.setVerifyStep(1);
         }
         reader.onerror = function() {
@@ -128,12 +134,12 @@ export default function Upload() {
     }, [handleDragIn, handleDragOut, handleDragOver, handleDrop]);
 
     useEffect(() => {
-        if(verifyStep === 0) {
+        if(process.verifyStep === 0) {
             setErrorMsg("");
             ProcessActions.setVerifyStep(0);
             FilesActions.setFile(null);
         }
-    }, [verifyStep])
+    }, [process.verifyStep])
     
     useEffect(() => {
         initDragEvents();
@@ -144,16 +150,16 @@ export default function Upload() {
         <Box>
             <UploadContainer 
                 isDesktop={isDesktop}
-                enableToUpload={verifyStep === 0} ref={dragRef} onClick={handleClick}>
+                enableToUpload={process.verifyStep === 0} ref={dragRef} onClick={handleClick}>
                 <input 
                     ref={hiddenFileInput} 
                     type='file' 
                     accept={'.pdf'} 
                     onChange={onChangeFiles} 
                     style={{display: 'none'}}/>
-                {verifyStep === -1 && <ErrorBox desc={errorMsg}/>}
-                {verifyStep === 0 && <UploadBox />}
-                {verifyStep === 1 && <LoadingBox />}
+                {process.verifyStep === -1 && <ErrorBox desc={errorMsg}/>}
+                {process.verifyStep === 0 && <UploadBox />}
+                {process.verifyStep === 1 && <LoadingBox />}
             </UploadContainer>
         </Box>
     )
