@@ -7,7 +7,7 @@ const SDK = new FirmaSDK(env === "production"?FirmaConfig.MainNetConfig:FirmaCon
 export async function getVirifyResult(file) {
     let contractFileHash = ""
     try {
-        contractFileHash = FirmaUtil.getFileHashFromBuffer(file);
+        contractFileHash = hashKey + FirmaUtil.getFileHashFromBuffer(file);
 
         const contract = await SDK.Contract.getContractFile(contractFileHash);
 

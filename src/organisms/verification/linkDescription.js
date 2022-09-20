@@ -5,12 +5,14 @@ import React, { useEffect, useState } from 'react'
 import { isDesktop } from 'react-device-detect';
 import { ContractInfoContentWrapper, ContractInfoLink, ContractInfoTitle, CopyIcon, CopyMessage, Links, LinkWrapper } from './styles'
 
-export default function LinkDescription({title, hash}) {
+export default function LinkDescription({title, hash, clickable = false}) {
 
     const hashList = Array.isArray(hash)? hash : [hash];
 
     const handleUrl = (value) => {
-        window.open(EXPLORER_URL + "/accounts/" +value);
+        if(clickable){
+            window.open(EXPLORER_URL + "/transactions/" +value);
+        }
     }
 
     const Copy = () => {
@@ -45,8 +47,8 @@ export default function LinkDescription({title, hash}) {
             <Links>
                 {hashList.map((hash, index) => {
                     return (
-                        <LinkWrapper key={index}>
-                            <ContractInfoLink isDesktop={isDesktop} onClick={()=>handleUrl(hash)}>{hash}</ContractInfoLink>
+                        <LinkWrapper key={index} isEmptyHash={hash === ''}>
+                            <ContractInfoLink isDesktop={isDesktop} clickable={clickable} onClick={()=>handleUrl(hash)}>{hash}</ContractInfoLink>
                             <Copy />
                         </LinkWrapper>
                     )

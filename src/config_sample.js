@@ -1,5 +1,6 @@
 module.exports = {
     env: "",
     hashKey: "",
-    testPrivateKey: "",
+    demoContract: "",
+    verificationPrivateKey: "",
 }

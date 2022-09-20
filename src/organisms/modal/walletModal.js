@@ -23,7 +23,7 @@ import {
   GeneralButton,
   DisableButton,
 } from './styles';
-import { testPrivateKey } from 'config';
+import { verificationPrivateKey } from 'config';
 
 const WalletModal = () => {
   const {wallet, modal, process, files} = useSelector(state => state);
@@ -105,10 +105,10 @@ const WalletModal = () => {
   
   useEffect(() => {
     if(isDemo){
-      setRecoverPrivateKey(testPrivateKey);
+      setRecoverPrivateKey(verificationPrivateKey);
       ProcessActions.setDemo({
         status: true,
-        privateKey: testPrivateKey,
+        privateKey: verificationPrivateKey,
       })
     }
   }, [isDemo])

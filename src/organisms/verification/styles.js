@@ -172,18 +172,27 @@ export const Links = styled.div`
 `
 
 export const LinkWrapper = styled.div`
-    display: flex;
     align-items: center;
     justify-content: flex-start;
     flex: 1;
     position: relative;
+
+    ${props => props.isEmptyHash?`
+        display: none;
+    `:`
+        display: flex;
+    `}
 `
 
 export const ContractInfoLink = styled(ContractInfoDesc)`
-    color: #24c4ff;
-    cursor: pointer;
     float: left;
 
+    ${props => props.clickable?`
+        color: #24c4ff;
+        cursor: pointer;
+    `:`
+        color: #fff;
+    `}
     ${props => props.isDesktop?`
         line-height: 2.25;
     `:`

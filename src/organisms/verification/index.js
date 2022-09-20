@@ -1,18 +1,17 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import { env } from 'config';
 import { isDesktop } from 'react-device-detect';
 import { useSnackbar } from 'notistack';
 import { useNavigate } from 'react-router';
 import { useSelector } from 'react-redux'
-import { FilesActions, ModalActions, ProcessActions } from 'redux/actions';
+import { FilesActions, ModalActions } from 'redux/actions';
 import { convertFileSize, openCertificatePDF } from 'utils/common';
 import { Box, StyledLink } from 'components/styles';
 import { IMG_INVISIBLE_CONTRACT, IMG_ORIGINAL_CONTRACT } from 'constants/images'
 import { ResultBox, Container, FileHash, FileHashBox, FIleInfoBox, FileInfoText, ResultImg, Title, ButtonBox } from './styles'
 import OriginalContract from './originalContract';
 import RectButton from 'components/button/rectButton';
-import PDF from 'constants/sample_contract.pdf';
-import PDF_TEST from 'constants/sample_contract_testnet.pdf';
+
+const {demoContract} = require('../../config');
 
 export default function Verification() {
     const {files, wallet, process} = useSelector(state => state);
@@ -60,7 +59,7 @@ export default function Verification() {
     }
 
     const handleContractPDF = () => {
-        return window.open(env === "production"?PDF:PDF_TEST, "_blank");
+        return window.open(demoContract);
     }
 
     useEffect(() => {
@@ -98,9 +97,9 @@ export default function Verification() {
                     {(process.demo.status) &&
                         <RectButton backgroundColor={'#3252d3'} backgroundColorHover={'#0062ff'} small title="OPEN CONTRACT" onClickEvent={handleContractPDF} /> 
                     }
-                    {(process.demo.status || isError === false) &&
+                    {/* {(process.demo.status || isError === false) &&
                         <RectButton backgroundColor={'#3252d3'} backgroundColorHover={'#0062ff'} small title="OPEN CERTIFICATE" onClickEvent={handleCertificatePDF} /> 
-                    }
+                    } */}
                     <StyledLink to="/">
                         <RectButton small title="HOME"/>
                     </StyledLink>

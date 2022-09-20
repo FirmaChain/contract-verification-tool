@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Box, DescText, StyledLink } from 'components/styles';
 import { FilesActions, ProcessActions } from 'redux/actions';
 import { MAIN_DESC } from 'constants/texts';
@@ -7,15 +7,14 @@ import { ButtonBox } from './styles';
 import RectButton from 'components/button/rectButton';
 import DemoButton from 'components/button/demoButton';
 import Cards from './cards';
-import PDF from 'constants/sample_contract.pdf';
-import PDF_TEST from 'constants/sample_contract_testnet.pdf';
 import { useNavigate } from 'react-router';
 import { getVirifyResult } from 'utils/firma';
-import { env } from 'config';
+
+const {demoContract} = require('../../config');
 
 export default function Main() {
     const navigate = useNavigate();
-    
+
     useEffect(() => {
         FilesActions.setFile(null);
         FilesActions.setMetaJson(null);
@@ -27,7 +26,7 @@ export default function Main() {
     }, []);
 
     const handleDemo = async() => {
-        const response = await fetch(env === "production"?PDF:PDF_TEST);
+        const response = await fetch(demoContract);
         const data = await response.blob();
         const meta = {
             type: "application/pdf"
