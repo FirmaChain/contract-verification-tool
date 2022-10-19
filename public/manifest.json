@@ -1,6 +1,6 @@
 {
-  "short_name": "FirmaChain Notarization Service",
-  "name": "FirmaChain Notarization Service",
+  "short_name": "FirmaChain Verification Service",
+  "name": "FirmaChain Verification Service",
   "icons": [
     {
       "src": "favicon.ico",
