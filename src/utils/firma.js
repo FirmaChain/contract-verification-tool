@@ -4,10 +4,12 @@ const {hashKey, env} = require('../config');
 
 const SDK = new FirmaSDK(env === "production"?FirmaConfig.MainNetConfig:FirmaConfig.TestNetConfig);
 
-export async function getVirifyResult(file) {
-    let contractFileHash = ""
+export async function getVirifyResult(file = null, hash = "") {
+    let contractFileHash = hash
     try {
-        contractFileHash = hashKey + FirmaUtil.getFileHashFromBuffer(file);
+        if(file !== null){
+            contractFileHash = hashKey + FirmaUtil.getFileHashFromBuffer(file);
+        }
 
         const contract = await SDK.Contract.getContractFile(contractFileHash);
 

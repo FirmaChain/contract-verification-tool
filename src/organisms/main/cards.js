@@ -7,7 +7,7 @@ export default function Cards() {
     const [focused, setFocused] = useState(-1);
 
     const cards = [
-        {title: "1. UPLOAD", img: IMG_UPLOAD},
+        {title: "1. SELECT FILE", img: IMG_UPLOAD},
         {title: "2. CHECKING", img: IMG_SCAN},
         {title: "3. VERIFYING", img: IMG_VERIFYING}
     ]

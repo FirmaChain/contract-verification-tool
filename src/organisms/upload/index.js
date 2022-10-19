@@ -70,7 +70,7 @@ export default function Upload() {
         }
         reader.onerror = function() {
             console.log(reader.error);
-            setErrorMsg("Upload failed. Please upload it again.");
+            setErrorMsg("Upload failed. Please select it again.");
         }
 
         ProcessActions.setVerifyStep(1);

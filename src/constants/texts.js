@@ -7,5 +7,5 @@ export const MAIN_TITLE = "DOCUMENT MANIPULATION VERIFICATION";
 export const MAIN_DESC = "Verify firmachain by matching the hash value of the contract on mainnet with files";
 
 export const UPLOAD_TITLE = "DRAG AND DROP FILE HERE";
-export const UPLOAD_DESC = "Please upload the contract PDF file to check.";
+export const UPLOAD_DESC = "Please select the contract PDF file to check.";
 export const LOADING_TITLE = "CHECKING...";

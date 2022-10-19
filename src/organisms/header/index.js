@@ -40,7 +40,7 @@ const Header = () => {
                     <Wrapper style={{padding: "15px 0"}}>
                         <LogoTitle src={IMG_LOGO} alt="Firmachain" onClick={() => handlePage("/")}/>
                         <Box
-                            justifycontent={"flex-start"}
+                            justifycontent={"flex-end"}
                             gap={"44px"}
                             style={{padding: "0 0 0 40px"}}>
                             {menus.map((item, index) => {
@@ -53,7 +53,7 @@ const Header = () => {
                             })}
                         </Box>
                     </Wrapper>
-                    <ConnectedBar />
+                    {/* <ConnectedBar /> */}
                 </Box>
                 :
                 <WrapperM open={open}>
@@ -61,7 +61,7 @@ const Header = () => {
                     <MenuButton src={ICON_MENU_MOBILE} alt="Mobile Menu" onClick={() => setOpen(!open)}/>
 
                     <MenuContainer open={open}>
-                        <ConnectedBar />
+                        {/* <ConnectedBar /> */}
                         {menus.map((item, index) => {
                             return (
                                 <MenuText key={index} onClick={()=>handlePage(item.url)}>

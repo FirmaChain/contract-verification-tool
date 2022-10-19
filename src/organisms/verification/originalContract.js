@@ -36,7 +36,6 @@ export default function OriginalContract({data}) {
             }})
             .then((response) => {
                 if(response.data.code === 1){
-                    console.log(response.data.payload);
                     let result = response.data.payload;
                     if(result.length > 0){
                         setTransactionHash(result[0]);

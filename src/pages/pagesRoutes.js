@@ -27,6 +27,7 @@ const PagesRoutes = () => {
                         <Routes location={location}>
                             <Route path="/" element={PageMain} />
                             <Route path="/upload" element={PageUpload} />
+                            <Route path="/verification/:id" element={PageVerification} />
                             <Route path="/verification" element={PageVerification} />
                         </Routes>
                     </CSSTransition>
