@@ -34,7 +34,7 @@ const Modal = ({ onClose, closable, visible, prev, width, padding, maskClosable 
       <ModalWrapper tabIndex={-1} visible={visible} onClick={onMaskClick}>
         <ModalInner tabIndex={0} width={width} padding={padding}>
           {prev && <PrevButton onClick={prev} />}
-          {closable && <CloseButton onClick={close} />}
+          {closable && <CloseButton onClick={close}/>}
           {children}
         </ModalInner>
       </ModalWrapper>

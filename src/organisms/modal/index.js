@@ -1,2 +1,5 @@
 import WalletModal from './walletModal';
-export { WalletModal };
+import WalletConnectModal from './walletConnectModal';
+import EditHashKeyModal from './editHashKeyModal';
+
+export { WalletModal, WalletConnectModal, EditHashKeyModal };

@@ -1,17 +1,23 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
 import { TransitionGroup, CSSTransition, } from "react-transition-group";
+import { isDesktop } from "react-device-detect";
+import { useSelector } from "react-redux";
+import { TEST_NET } from "redux/types";
 import Body from "components/layout/body";
 import Header from "organisms/header";
 import MainPage from "./mainPage";
 import Footer from "organisms/footer";
 import UploadPage from "./uploadPage";
-import './routes.css'
 import Common from "organisms/common";
 import VerificationPage from "./verificationPage";
-import { isDesktop } from "react-device-detect";
+import SideBar from "organisms/sidebar";
+import DimProgress from "components/progress/dimProgress";
+import './routes.css'
 
 const PagesRoutes = () => {
+    const { chainNetwork } = useSelector(state => state.wallet);
+    const { loadingProgress } = useSelector(state => state.modal);
     const PageMain = <MainPage />;
     const PageUpload = <UploadPage />;
     const PageVerification = <VerificationPage />;
@@ -32,8 +38,10 @@ const PagesRoutes = () => {
                         </Routes>
                     </CSSTransition>
                 </TransitionGroup>
+                {chainNetwork === TEST_NET && <SideBar />}
             </Common>
-            {isDesktop && <Footer />}
+            { loadingProgress.loading && <DimProgress /> }
+            { isDesktop && <Footer /> }
         </Body>
     )
 }

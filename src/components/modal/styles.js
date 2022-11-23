@@ -1,3 +1,4 @@
+import { ICON_CLOSE_MODAL } from 'constants/images';
 import styled from 'styled-components';
 
 export const ModalWrapper = styled.div`
@@ -8,7 +9,7 @@ export const ModalWrapper = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1000;
+  z-index: 3000;
   overflow: auto;
   outline: 0;
   height: auto;
@@ -24,14 +25,14 @@ export const ModalOverlay = styled.div`
   bottom: 0;
   right: 0;
   background-color: rgba(0, 0, 0, 0.7);
-  z-index: 999;
+  z-index: 2500;
 `;
 
 export const ModalInner = styled.div`
   box-sizing: border-box;
   position: relative;
   box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.5);
-  background-color: #21212f;
+  background-color: #1e2126;
   border-radius: 4px;
   width: ${(props) => (props.width ? props.width : '300px')};
   max-width: ${(props) => (props.width ? props.width : '300px')};
@@ -65,5 +66,7 @@ export const CloseButton = styled.div`
   display: inline-block;
   cursor: pointer;
   margin: 20px;
+  background-image: url('${ICON_CLOSE_MODAL}');
   background-size: contain;
+  background-repeat: no-repeat;
 `;

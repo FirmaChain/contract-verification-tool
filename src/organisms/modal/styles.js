@@ -21,7 +21,7 @@ export const ModalContainer = styled.div`
 `;
 
 export const ModalTitle = styled.div`
-  font-family: Chakra Petch;
+  font-family: Metropolis;
   font-weight: 600;
   width: 100%;
   margin-top: 10px;
@@ -167,9 +167,9 @@ export const WalletTabList = styled.div`
   }`};
 `;
 
-export const WalletTabItem = styled.div`
+export const TabItem = styled.div`
   width: 100%;
-  display: none;
+  display: flex;
   flex-direction: column;
   align-items: center;
 `;
@@ -196,7 +196,7 @@ export const Label = styled.div`
   margin: 2px 0 10px ;
 `;
 
-export const Input = styled.div``;
+export const Input = styled.div``
 
 export const TextBox = styled.div`
   font-family: Lato;
@@ -271,4 +271,80 @@ export const DisableButton = styled.div`
   cursor: pointer;
   padding: 5px;
   font-size: 1rem;
+`;
+
+
+export const ButtonBox = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 20px 0 20px;
+`;
+
+export const ConnectTypeButtonBox = styled.div`
+  width: 155px;
+  height: 108px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  border-radius: 5px;
+  border: 0.5px solid #0875f5;
+  cursor: pointer;
+  gap: 5px;
+
+  &:hover {
+      background-color: #0875f5;
+  } 
+`
+
+export const ConnectType = styled.div`
+  font-family: Lato;
+  font-size: 16px;
+  line-height: 18px;
+  text-align: center;
+  white-space: pre-line;
+  color: #ffffff;
+`
+
+export const InputBox = styled.div`
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    flex-direction: row;
+    gap: 20px;
+    padding: 20px 0;
+`
+
+export const InputTitle = styled.div`
+    font-family: Lato;
+    font-weight: 600;
+    font-size: 18px;
+    color: #dddddd;
+`
+
+export const TextWrapper = styled.div`
+    flex: 1;
+    height: auto;
+    position: relative;
+    cursor: pointer;
+    font-size: 1.6rem;
+`;
+
+export const TextInputBox = styled.input`
+    width: 100%;
+    font-family: Lato;
+    background: transparent;
+    width: calc(100% - 20px);
+    font-size: .8rem;
+    font-weight: 400;
+    background-color: rgba(52, 54, 62, 0.75);
+    border: 1px solid rgba(52, 54, 62, 0.75);
+    border-radius: 4px;
+    padding: 10px;
+    line-height: 20px;
+    color: #ccc;
 `;
