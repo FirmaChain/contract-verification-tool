@@ -20,14 +20,13 @@ export default function Progress(props) {
         <svg xmlns="http://www.w3.org/2000/svg" version="1.1" height="0" width="0" >
             <defs>
                 <linearGradient id="Gradient1">
-                    <stop offset="0%" stopColor="#009dff"/>
-                    <stop offset="25%" stopColor="#554ed6"/>
+                    <stop offset="26%" stopColor="#414bbc"/>
+                    <stop offset="35%" stopColor="#009dff"/>
                     <stop offset="50%" stopColor="#00f5ff"/>
                 </linearGradient>
                 <linearGradient id="Gradient2">
-                    <stop offset="0%" stopColor="#009dff"/>
-                    <stop offset="25%" stopColor="#554ed6"/>
-                    <stop offset="50%" stopColor="#a642de"/>
+                    <stop offset="35%" stopColor="#414bbc"/>
+                    <stop offset="50%" stopColor="#6042de"/>
                 </linearGradient>
                 <pattern id="Pattern" x="0" y="0" width="160" height="160" patternUnits="userSpaceOnUse">
                     <g transform="rotate(0, 300, 300)">

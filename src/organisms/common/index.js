@@ -14,7 +14,7 @@ export default function Common({children}) {
                 height={"auto"}
                 justifycontent={"flex-start"}
                 direction={"column"}
-                style={{margin:"180px 0 0"}}>
+                style={{margin:"162px 0 0"}}>
                 <TitleText isDesktop={isDesktop}>{MAIN_TITLE}</TitleText>
                 <Box
                     height={"100%"}>

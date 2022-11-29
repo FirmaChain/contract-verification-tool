@@ -8,7 +8,7 @@ export default function DemoButton({title, small = false, onClickEvent}) {
 
     return (
         <DemoButtonContainer
-            style={small?{width: "240px", height: "54px"}:{}}
+            style={small?{width: "240px", height: "54px", fontSize: "16px"}:{}}
             onClick={() => onClick()}>
             {title}
         </DemoButtonContainer>

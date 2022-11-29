@@ -9,7 +9,7 @@ export default function RectButton({title, onClickEvent, small = false}) {
 
     return (
         <ButtonContainer
-            style={small?{width: "240px", height: "54px"}:{}}
+            style={small?{width: "240px", height: "54px", fontSize: "16px"}:{}}
             onClick={() => onClick()}>
             {title}
         </ButtonContainer>

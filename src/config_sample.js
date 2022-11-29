@@ -1,6 +1,7 @@
 module.exports = {
     env: "",
-    hashKey: "",
+    demoPrefix: "",
+    preFix: "",
     demoContract: "",
     verificationPrivateKey: "",
 }

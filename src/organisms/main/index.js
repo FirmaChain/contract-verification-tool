@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Box, DescText, StyledLink } from 'components/styles';
 import { FilesActions, ProcessActions } from 'redux/actions';
 import { MAIN_DESC } from 'constants/texts';
@@ -10,7 +10,7 @@ import Cards from './cards';
 import { useNavigate } from 'react-router';
 import { getVirifyResult } from 'utils/firma';
 
-const {demoContract} = require('../../config');
+const { demoContract, demoPrefix } = require('../../config');
 
 export default function Main() {
     const navigate = useNavigate();
@@ -55,7 +55,7 @@ export default function Main() {
 
     const verifyContract = async(file) => {
         try {
-            const result = await getVirifyResult(file.buffer);
+            const result = await getVirifyResult(file.buffer, "", demoPrefix);
             FilesActions.setFile({
                 name: file.name,
                 size: file.size,
@@ -72,9 +72,9 @@ export default function Main() {
             <DescText isDesktop={isDesktop} style={{padding: "16px 0 0"}}>{MAIN_DESC}</DescText>
             <Cards />
             <ButtonBox isDesktop={isDesktop}>
-                <DemoButton title="DEMO" onClickEvent={handleDemo}/>
+                <DemoButton title="DEMO" small={isDesktop === false} onClickEvent={handleDemo} />
                 <StyledLink to="/upload">
-                    <RectButton title="VERIFICATION"/>
+                    <RectButton title="VERIFICATION" small={isDesktop === false} />
                 </StyledLink>
             </ButtonBox>
         </Box>

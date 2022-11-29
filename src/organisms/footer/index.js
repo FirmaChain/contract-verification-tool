@@ -7,7 +7,12 @@ export default function Footer() {
     return (
         <Container
             height={"50px"}
-            style={{width: "100%", position: "fixed", bottom: 0}}>
+            style={{
+                width: "100%", 
+                position: "fixed", 
+                bottom: 0, 
+                backgroundColor: '#272731dd'
+            }}>
             <Box isDesktop={isDesktop}>
                 <Text>Copyrightⓒ 2022 FirmaChain Pte. Ltd.</Text>
                 <Contact href="mailto:contact@firmachain.org">contact@firmachain.org</Contact>

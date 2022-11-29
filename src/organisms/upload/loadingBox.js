@@ -1,14 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import { LOADING_TITLE } from 'constants/texts';
 import { useSelector } from 'react-redux';
-import { DoneIcon, Filename, Filesize, LoadingTitle, Percentage, ProgressBox } from './styles';
-import Progress from 'components/progress/progress';
 import { ICON_DONE } from 'constants/images';
 import { useNavigate } from 'react-router';
 import { convertFileSize } from 'utils/common';
+import { DoneIcon, Filename, Filesize, LoadingTitle, Percentage, ProgressBox } from './styles';
+import Progress from 'components/progress/progress';
+import { isDesktop } from 'react-device-detect';
 
 export default function LoadingBox() {
-    const { file } = useSelector(state => state.files);
+    const { file, fileHash } = useSelector(state => state.files);
 
     const navigate = useNavigate();
 
@@ -27,7 +28,7 @@ export default function LoadingBox() {
             clearInterval(timer);
             setProgress(0);
         }
-    }, [file]);
+    }, [file, fileHash]);
 
     useEffect(() => {
         let timer;
@@ -36,7 +37,7 @@ export default function LoadingBox() {
             timer = setInterval(() => {
                 count += 500;
                 if(count >= 1000){
-                    navigate("/verification");
+                    navigate(`/verification/${fileHash}`);
                     clearInterval(timer);
                 }
             }, 500);
@@ -45,7 +46,7 @@ export default function LoadingBox() {
 
     useEffect(() => {
         let timer;
-        if(file && progress >= 100) {
+        if((file !== null || fileHash !== "") && progress >= 100) {
             timer = setInterval(() => {
                 setLoading(false);
                 clearInterval(timer);
@@ -54,18 +55,22 @@ export default function LoadingBox() {
     }, [progress])
 
     return (
-        <>
-        <LoadingTitle>{LOADING_TITLE}</LoadingTitle>
-        <ProgressBox>
-            <Progress value={progress}/>
-            {progress >= 100 && loading === false?
-            <DoneIcon src={ICON_DONE} alt="Upload Complete" />          
-            :
-            <Percentage>{progress}%</Percentage>
+        <Fragment>
+            <LoadingTitle isDesktop={isDesktop}>{LOADING_TITLE}</LoadingTitle>
+            <ProgressBox>
+                <Progress value={progress}/>
+                {progress >= 100 && loading === false?
+                <DoneIcon src={ICON_DONE} alt="Upload Complete" />          
+                :
+                <Percentage>{progress}%</Percentage>
+                }
+            </ProgressBox>
+            {file !== null &&
+                <Fragment>
+                    <Filename isDesktop={isDesktop}>{file.name}</Filename>
+                    <Filesize isDesktop={isDesktop}>{convertFileSize(file.size)}KB</Filesize>
+                </Fragment>
             }
-        </ProgressBox>
-        <Filename>{file?.name}</Filename>
-        <Filesize>{convertFileSize(file?.size)}KB</Filesize>
-        </>
+        </Fragment>
     )
 }

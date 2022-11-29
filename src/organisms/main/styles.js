@@ -19,19 +19,19 @@ export const CardContainer = styled.div`
     justify-content: center;
     ${props => props.isDesktop?`
         flex-direction: row;
-        gap: 70px;
-        padding: 100px 0 80px;
+        gap: 64px;
+        padding: 90px 0;
         
         > div {
             width: 280px;
             height: 271px;
-            gap: 36px;
+            gap: 32px;
             > img {
                 width: 120px;
                 height: 120px;
             }
             > div {
-                font-size: 21px;
+                font-size: 20px;
             }
         }
     `:`
@@ -62,7 +62,7 @@ export const CardContainer = styled.div`
 export const CardBox = styled.div`
     border-radius: 4px;
     box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.1);
-    background-color: #21212f;
+    background-color: #1e2126;
 
     display: flex;
     align-items: center;
@@ -80,13 +80,13 @@ export const CardImg = styled.img`
 `
 
 export const CardDesc = styled.div`
-    height: 25px;
     font-family: Lato;
     font-weight: bold;
     font-stretch: normal;
     font-style: normal;
     line-height: normal;
     letter-spacing: -0.21px;
+    white-space: pre-line;
     text-align: center;
-    color: #ababc1;
+    color: #b3b3b3;
 `

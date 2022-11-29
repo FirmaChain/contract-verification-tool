@@ -43,7 +43,7 @@ export default function LinkDescription({title, hash, clickable = false}) {
 
     return (
         <ContractInfoContentWrapper>
-            <ContractInfoTitle>{title}</ContractInfoTitle>
+            <ContractInfoTitle isDesktop={isDesktop}>{title}</ContractInfoTitle>
             <Links>
                 {hashList.map((hash, index) => {
                     return (

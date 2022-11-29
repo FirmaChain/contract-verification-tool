@@ -45,18 +45,18 @@ export const ResultBox = styled.div`
 
     border-radius: 8px;
     box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.1);
-    background-color: #2a2a3b;
+    background-color: #24272e;
 `
 
 export const ResultImg = styled.img`
     ${props => props.isDesktop?`
-        width: 140px;
-        height: 140px;
-        margin-bottom: 30px;
+        width: 120px;
+        height: 120px;
+        margin-bottom: 10px;
     `:`
         width: 80px;
         height: 80px;
-        margin-bottom: 15px;
+        margin-bottom: 10px;
     `}
     object-fit: contain;
 `
@@ -64,10 +64,12 @@ export const ResultImg = styled.img`
 export const Title = styled.div`
     ${props => props.isDesktop?`
         font-size: 32px;
+        margin-bottom: 20px;
     `:`
-        font-size: 25px;
+        font-size: 22px;
+        margin-bottom: 10px;
     `}
-    font-family: Chakra Petch;
+    font-family: Metropolis;
     font-weight: 600;
     font-stretch: normal;
     font-style: normal;
@@ -75,7 +77,25 @@ export const Title = styled.div`
     letter-spacing: normal;
     text-align: center;
     color: #fff;
-    margin-bottom: 20px;
+`
+
+export const NotVerifiedText = styled.div`
+    ${props => props.isDesktop?`
+        font-size: 16px;
+        margin-bottom: 20px;
+    `:`
+        font-size: 12px;
+        margin-bottom: 10px;
+    `}
+    font-family: Lato;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    line-height: normal;
+    letter-spacing: -0.16px;
+    text-align: center;
+    color: #ffc542;
+    margin-top: -4px;
 `
 
 export const FIleInfoBox = styled.div`
@@ -98,24 +118,28 @@ export const FileInfoText = styled.div`
     color: #ababc1;
 `
 
+export const ContractInfoContainer = styled.div`
+    width: 100%;
+`
+
 export const ContractInfoBox = styled.div`
     ${props => props.isDesktop?`
         width: 787px;
         padding: 40px;
+        margin-top: 50px;
     `:`
-        width: 90%;
-        padding: 20px;
+        padding: 10px;
+        margin-top: 25px;
 
         > div {
             flex-direction: column;
+            padding-bottom: 10px;
             gap: 0px;
-            padding-bottom: 20px;
         }
     `}
     height: auto;
     border-radius: 8px;
     background-color: #1b1b23;
-    margin-top: 50px;
     overflow: overlay;
     
     display: flex;
@@ -133,7 +157,6 @@ export const ContractInfoContentWrapper = styled.div`
 export const ContractInfoTitle = styled.div`
     width: 100px;
     font-family: Lato;
-    font-size: 16px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;
@@ -141,6 +164,12 @@ export const ContractInfoTitle = styled.div`
     letter-spacing: -0.16px;
     text-align: left;
     color: #b5b5be;
+
+    ${props => props.isDesktop?`
+        font-size: 16px;
+    `:`
+        font-size: 12px;
+    `}
 `
 
 export const ContractInfoDesc = styled.div`
@@ -157,8 +186,10 @@ export const ContractInfoDesc = styled.div`
     word-break: break-all;
 
     ${props => props.isDesktop?`
+        font-size: 16px;
         line-height: 2.25;
     `:`
+        font-size: 12px;
         line-height: 1.2;
     `}
 `
@@ -185,6 +216,11 @@ export const LinkWrapper = styled.div`
 `
 
 export const ContractInfoLink = styled(ContractInfoDesc)`
+    font-family: Lato;
+    font-weight: normal;
+    font-stretch: normal;
+    font-style: normal;
+    letter-spacing: -0.16px;
     float: left;
 
     ${props => props.clickable?`
@@ -194,8 +230,10 @@ export const ContractInfoLink = styled(ContractInfoDesc)`
         color: #fff;
     `}
     ${props => props.isDesktop?`
+        font-size: 16px;
         line-height: 2.25;
     `:`
+        font-size: 12px;
         line-height: 1.2;
     `}
 `
@@ -233,6 +271,15 @@ export const CopyMessage = styled.div`
 `
 
 export const FileHashBox = styled.div`
+    ${props => props.isDesktop?`
+        > div {
+            font-size: 16px;
+        }
+    `:`
+        > div {
+            font-size: 12px;
+        }
+    `}
     height: 35px;
     padding: 0 20px;
     border-radius: 4px;
@@ -248,7 +295,6 @@ export const FileHash = styled.div`
     white-space: nowrap;
     text-overflow: ellipsis;
     font-family: Lato;
-    font-size: 16px;
     font-weight: normal;
     font-stretch: normal;
     font-style: normal;

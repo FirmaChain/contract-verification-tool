@@ -1,11 +1,11 @@
 import React, { useEffect, useMemo, useState } from 'react'
-import moment from 'moment'
 import { isDesktop } from 'react-device-detect'
-import { ContractInfoBox } from './styles'
+import { ContractInfoBox, ContractInfoContainer } from './styles'
+import { CHAIN_SERVER } from 'constants/texts'
+import moment from 'moment'
+import axios from 'axios'
 import Description from './description'
 import LinkDescription from './linkDescription'
-import axios from 'axios'
-import { CHAIN_SERVER } from 'constants/texts'
 
 export default function OriginalContract({data}) {
 
@@ -50,13 +50,15 @@ export default function OriginalContract({data}) {
     
 
     return (
-        <ContractInfoBox isDesktop={isDesktop}>
-            <LinkDescription title={"CREATOR"} hash={data.creator} />
-            <LinkDescription title={"TX HASH"} hash={transactionHash} clickable={true} />
-            <Description title={"FILE HASH"} desc={fileHash} />
-            <Description title={"META DATA"} desc={data.metaDataJsonString} />
-            <LinkDescription title={"OWNER LIST"} hash={data.ownerList} />
-            <Description title={"TIME STAMP"} desc={handleTimestamp(data.timeStamp)} />
-        </ContractInfoBox>
+        <ContractInfoContainer>
+            <ContractInfoBox isDesktop={isDesktop}>
+                <LinkDescription title={"CREATOR"} hash={data.creator} />
+                {transactionHash !== "" && <LinkDescription title={"TX HASH"} hash={transactionHash} clickable={true} />}
+                <Description title={"FILE HASH"} desc={fileHash} />
+                <Description title={"META DATA"} desc={data.metaDataJsonString} />
+                <LinkDescription title={"OWNER LIST"} hash={data.ownerList} />
+                <Description title={"TIME STAMP"} desc={handleTimestamp(data.timeStamp)} />
+            </ContractInfoBox>
+        </ContractInfoContainer>
     )
 }
