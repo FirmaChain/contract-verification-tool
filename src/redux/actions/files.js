@@ -1,10 +1,19 @@
-import { FILE, META_JSON, ORIGINAL_CONTRACT } from "redux/types"
+import { FILE, FILE_HASH, META_JSON, ORIGINAL_CONTRACT } from "redux/types"
 
 export const setFile = (file) => {
     return (dispatch) => {
         dispatch({
             type: FILE,
             payload: file
+        })
+    }
+}
+
+export const setFileHash = (hash) => {
+    return (dispatch) => {
+        dispatch({
+            type: FILE_HASH,
+            payload: hash
         })
     }
 }

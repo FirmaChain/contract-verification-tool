@@ -1,7 +1,8 @@
-import { FILE, META_JSON, ORIGINAL_CONTRACT } from "redux/types"
+import { FILE, FILE_HASH, META_JSON, ORIGINAL_CONTRACT } from "redux/types"
 
 const initState ={
     file: null,
+    fileHash: '',
     originalContract: false,
     metaJson: null,
 }
@@ -12,6 +13,11 @@ const reducer = (state = initState, action) => {
         return{
             ...state, 
             file: action.payload,
+        }
+        case FILE_HASH : 
+        return{
+            ...state, 
+            fileHash: action.payload,
         }
         case ORIGINAL_CONTRACT : 
         return{
