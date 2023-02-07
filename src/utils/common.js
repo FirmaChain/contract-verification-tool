@@ -1,5 +1,10 @@
 import { getIpfsURL } from "./firma";
 
+export const wait = (timeout) => {
+  return new Promise((resolve) => setTimeout(resolve, timeout));
+};
+
+
 export const convertFileSize = (size) => {
     return Number(size / 1024).toFixed(2);
 }

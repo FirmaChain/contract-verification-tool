@@ -1,5 +1,5 @@
 import { Fragment, useCallback, useEffect, useMemo, useState } from "react";
-import { Drawer, Stack } from "@mui/material";
+import { Drawer } from "@mui/material";
 import { useSelector } from "react-redux";
 import { 
     SidebarContainer,
@@ -12,7 +12,7 @@ import {
     InputWrapRight,
     ResultContainer,
     RawLog } from "./styles";
-import { getGlobalHashPrefix, verifyAddContractLog, verifyCreateContractFile, verifyGetContractFile, verifyGetContractListFromHash, verifyGetContractLog, verifyGetFileHashFromBuffer, verifyIsContractOwner } from "utils/firma";
+import { verifyAddContractLog, verifyCreateContractFile, verifyGetContractFile, verifyGetContractListFromHash, verifyGetContractLog, verifyGetFileHashFromBuffer, verifyIsContractOwner } from "utils/firma";
 import { useSnackbar } from "notistack";
 import { ModalActions } from "redux/actions";
 import { isDesktop } from "react-device-detect";
@@ -21,6 +21,7 @@ import InputFile from "components/input/inputFile";
 import InputTextarea from "components/input/inputTextarea";
 import BalanceInfo from "./balanceInfo";
 import FileHashInfo from "./fileHashInfo";
+import { wait } from "utils/common";
 
 const SideBar = () => {
     const { enqueueSnackbar } = useSnackbar();
@@ -193,6 +194,7 @@ const SideBar = () => {
             case 1:
                 handleRefreshBalance(true);
                 setIsActiveBalance(true);
+                setIsActiveInputText(false);
                 return;
             case 0:
             case 2:
@@ -211,25 +213,29 @@ const SideBar = () => {
             if (fileExist) {
                 ModalActions.handleLoadingProgress({
                     loading: true,
-                    message: ''
+                    message: `${queryList[queryType].name} is in progress.`
                 });
                 await queryList[queryType].action();
                 handleRefreshBalance(true);
+                wait(500).then(() => {
+                    ModalActions.handleLoadingProgress({
+                        loading: false,
+                        message: ''
+                    });
+                })
+            }
+        } catch (error) {
+            console.log(error);
+            wait(500).then(() => {
                 ModalActions.handleLoadingProgress({
                     loading: false,
                     message: ''
                 });
-            }
-        } catch (error) {
-            console.log(error);
-            ModalActions.handleLoadingProgress({
-                loading: false,
-                message: ''
-            });
-            enqueueSnackbar(String(error), {
-                variant: 'error',
-                autoHideDuration: 3000,
-            });
+                enqueueSnackbar(String(error), {
+                    variant: 'error',
+                    autoHideDuration: 3000,
+                });
+            })
         }
     }, [fileExist, queryList]);
 
