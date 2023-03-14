@@ -12,7 +12,6 @@ import {
   InputBox,
   InputTitle,
   TextWrapper,
-  TextInputBox,
   TextAreaBox,
 } from './styles';
 import { getGlobalHashPrefix, setGlobalHashPrefix } from 'utils/firma';
@@ -26,7 +25,6 @@ const EditHashKeyModal = () => {
     const [hashKey, setHashKey] = useState(key);
 
     const handleEditHashKey = (e) => {
-        console.log(e);
         setHashKey(e.target.value);
     }
 

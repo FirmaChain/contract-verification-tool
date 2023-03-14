@@ -3,10 +3,9 @@ import { FilesActions, ProcessActions } from 'redux/actions';
 import { isDesktop } from 'react-device-detect';
 import { ICON_TOOLTIP, IMG_PDF_UPLOAD } from 'constants/images';
 import { HASH_TOOLTIP, PREFIX_TOOLTIP, UPLOAD_DESC, UPLOAD_TITLE } from 'constants/texts';
-import { ActiveTabBackground, Desc, GeneralButton, HashUploadContainer, InputWrapper, PdfImg, TabBox, TabItem, TabWrapper, TextInput, Title, UploadContainer, UploadFileWrapper, UploadContentBox, TooltipWrap, IconTooltip, TooltipText, VerifyButtonBox, PrefixInputBox } from './styles';
+import { ActiveTabBackground, Desc, GeneralButton, HashUploadContainer, PdfImg, TabBox, TabItem, TabWrapper, TextInput, Title, UploadContainer, UploadFileWrapper, UploadContentBox, TooltipWrap, IconTooltip, TooltipText, VerifyButtonBox, PrefixInputBox } from './styles';
 import { getGlobalHashPrefix, getVirifyResult } from 'utils/firma';
 import { useSelector } from 'react-redux';
-import InputText from 'components/input/inputText';
 import { Divider, IconButton } from '@mui/material';
 import { Check, ModeEdit } from '@mui/icons-material';
 
@@ -24,6 +23,7 @@ export default function UploadBox({handleErrorMsg}) {
     const [selectedTab, setSelectedTab] = useState(0);
 
     const handleSelectTab = (index) => {
+        handleEditable(false);
         setSelectedTab(index);
         setFileHash('');
         setPrefix(defaultPrefix);
@@ -46,11 +46,13 @@ export default function UploadBox({handleErrorMsg}) {
     }, [fileHash])
 
     const handleClick = (e) => {
+        handleEditable(false);
         if(process.verifyStep === 0) hiddenFileInput.current.click();
     };
 
-    const onChangeFiles = (e) => {
+    const onChangeFiles = useCallback((e) => {
         if(process.verifyStep !== 0) return;
+        handleEditable(false);
         FilesActions.setFile(null);
         
         let uploadedFile;
@@ -92,7 +94,7 @@ export default function UploadBox({handleErrorMsg}) {
         if(hiddenFileInput.current !== null){
             hiddenFileInput.current.value = '';
         }
-    }
+    }, [process.verifyStep])
 
     const verifyContract = async(file) => {
         try {

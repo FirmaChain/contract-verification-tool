@@ -20,7 +20,11 @@ const ConnectInfoBar = () => {
     const [chainId, setChainId] = useState('');
 
     const handleWalletAddress = useCallback(() => {
-        setAddress(wallet.address);
+        if(wallet === undefined) {
+            setAddress('');
+        } else {
+            setAddress(wallet.address);
+        }
     }, [wallet]);
 
     const handleChainId = useCallback(() => {

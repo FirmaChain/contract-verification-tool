@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useMemo } from "react";
 import { ICON_LOGIN, ICON_SETTING } from "constants/images";
 import { isDesktop } from "react-device-detect";
 import { useSelector } from "react-redux";
@@ -9,6 +9,11 @@ import { Fragment } from "react";
 
 const ConnectWallet = () => {
     const { wallet, chainNetwork } = useSelector(state => state.wallet);
+
+    const WalletExist = useMemo(() => {
+        if(wallet === undefined) return false;
+        return wallet.address !== "";
+    }, [wallet])
 
     const handleWalletConnectModal = () => {
         if(chainNetwork === MAIN_NET) return;
@@ -32,12 +37,7 @@ const ConnectWallet = () => {
                 zIndex: chainNetwork === MAIN_NET? -999 : 0,
                 justifyContent: "center", 
                 gap: isDesktop?"2px":"3px"}}>
-            {wallet.address === ''?
-            <Fragment>
-                <MenuText onClick={() => handleWalletConnectModal()}>LOGIN</MenuText>
-                <Icon src={ICON_LOGIN} alt={'LOGIN'} />
-            </Fragment>
-            :
+            {WalletExist?
             <MenuText onClick={() => handleWalletModal()}>
                 {isDesktop? 
                 <Icon src={ICON_SETTING} alt={'Wallet'} />
@@ -45,6 +45,11 @@ const ConnectWallet = () => {
                 <MenuText onClick={() => handleWalletModal()}>WALLET</MenuText>
                 }
             </MenuText>
+            :
+            <Fragment>
+                <MenuText onClick={() => handleWalletConnectModal()}>LOGIN</MenuText>
+                <Icon src={ICON_LOGIN} alt={'LOGIN'} />
+            </Fragment>
             }
         </Wrapper>
     )
