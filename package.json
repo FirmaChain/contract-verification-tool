@@ -1,5 +1,5 @@
 {
-  "name": "contract-verification-app",
+  "name": "contract-verification-tool",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
