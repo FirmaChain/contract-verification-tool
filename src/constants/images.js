@@ -24,4 +24,3 @@ export const ICON_SETTING = "/images/ic_setting_24px.svg";
 export const ICON_LOGIN = "/images/ic-login-24-px.png";
 export const ICON_CLOSE_MODAL = "/images/ic-close-12-px.png";
 export const ICON_TOOLTIP = "/images/ic-tootip-bl-16-px.png";
-

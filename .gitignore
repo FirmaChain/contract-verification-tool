@@ -22,3 +22,7 @@ package-lock.json
 
 src/config.js
 
+configs/.env.local
+configs/.env.mainnet
+configs/.env.testnet
+

@@ -5,7 +5,7 @@
   "dependencies": {
     "@emotion/react": "^11.7.1",
     "@emotion/styled": "^11.6.0",
-    "@firmachain/firma-js": "^0.2.30",
+    "@firmachain/firma-js": "^0.2.50",
     "@mui/base": "^5.0.0-alpha.63",
     "@mui/icons-material": "^5.8.4",
     "@mui/material": "^5.2.7",
@@ -21,6 +21,7 @@
     "react-app-env": "^1.2.3",
     "react-device-detect": "^2.1.2",
     "react-dom": "^17.0.2",
+    "react-google-recaptcha": "^2.1.0",
     "react-redux": "^7.2.6",
     "react-router": "^6.2.1",
     "react-router-dom": "^6.2.1",
@@ -34,8 +35,8 @@
   },
   "scripts": {
     "dev": "react-app-env --env-file=configs/.env.local start",
-    "testnet": "react-app-env --env-file=configs/.env.testnet build",
-    "mainnet": "react-app-env --env-file=configs/.env.mainnet build"
+    "testnet": "GENERATE_SOURCEMAP=false react-app-env --env-file=configs/.env.testnet build",
+    "mainnet": "GENERATE_SOURCEMAP=false react-app-env --env-file=configs/.env.mainnet build"
   },
   "eslintConfig": {
     "extends": [
