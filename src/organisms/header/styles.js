@@ -6,7 +6,7 @@ export const HeaderBox = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
-`
+`;
 
 export const Wrapper = styled.div`
     width: 100%;
@@ -15,7 +15,7 @@ export const Wrapper = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-`
+`;
 
 export const AddressText = styled.div`
     height: 24px;
@@ -36,7 +36,7 @@ export const AddressText = styled.div`
     &:hover {
         color: #1989b2;
     }
-`
+`;
 
 export const MenuText = styled.div`
     height: 24px;
@@ -52,14 +52,15 @@ export const MenuText = styled.div`
     letter-spacing: -0.16px;
     text-align: center;
     color: #b5b5be;
+    cursor: pointer;
 
     &:hover {
         color: #fff;
         > div {
-            background-image: url('${ICON_OPEN_IN_HOVER}');
+            background-image: url("${ICON_OPEN_IN_HOVER}");
         }
     }
-`
+`;
 
 export const DescText = styled.div`
     min-width: 70px;
@@ -77,14 +78,14 @@ export const DescText = styled.div`
     text-align: center;
     padding: 5px 0;
     color: #b5b5be;
-`
+`;
 
 export const OpenIcon = styled.div`
     width: 24px;
     height: 24px;
-    background-image: url('${ICON_OPEN_IN_NEW}');
+    background-image: url("${ICON_OPEN_IN_NEW}");
     background-size: 24px;
-`
+`;
 
 export const WrapperM = styled.div`
     width: calc(100% - 40px);
@@ -93,15 +94,15 @@ export const WrapperM = styled.div`
     justify-content: space-between;
     padding: 10px 20px;
     background-color: #1b1b23;
-    transition: all .3s ease-in-out;
+    transition: all 0.3s ease-in-out;
     opacity: 1;
-`
+`;
 
 export const MenuButton = styled.img`
     width: 24px;
     height: 24px;
     object-fit: contain;
-`
+`;
 
 export const MenuContainer = styled.div`
     width: 100%;
@@ -116,18 +117,21 @@ export const MenuContainer = styled.div`
 
     opacity: 1;
     background-color: #1b1b23;
-    transition: all .3s ease-in-out;
+    transition: all 0.3s ease-in-out;
 
-    ${props => props.open?`
+    ${(props) =>
+        props.open
+            ? `
         max-height: 1000px;
         padding: 10px 20px 20px;
-    `:`
+    `
+            : `
         max-height: 0;
         > div {
             overflow: hidden;
         }
     `}
-`
+`;
 
 export const SettingButton = styled.div`
     display: flex;
@@ -153,20 +157,23 @@ export const InfoContainer = styled.div`
     align-items: center;
     justify-content: center;
     background-color: #27273180;
-    ${(props) => props.isDesktop?`
+    ${(props) =>
+        props.isDesktop
+            ? `
         height: 38px;
         > div {
             justify-content: flex-end;
             gap: 20px;
         }
-    `:`
+    `
+            : `
         height: 28px;
         > div {
             justify-content: center;
             flex-direction: column-reverse;
         }
     `}
-`
+`;
 
 export const InfoBox = styled.div`
     width: 100%;
@@ -174,8 +181,7 @@ export const InfoBox = styled.div`
     padding: 0 20px;
     display: flex;
     align-items: center;
-    
-`
+`;
 
 export const WalletAddress = styled.div`
     color: rgb(80, 181, 255);
@@ -184,7 +190,7 @@ export const WalletAddress = styled.div`
     font-size: 12px;
     text-decoration: underline;
     cursor: pointer;
-`
+`;
 
 export const ChainInfoWrap = styled.div`
     display: flex;
@@ -196,9 +202,12 @@ export const ChainInfoWrap = styled.div`
     cursor: pointer;
     position: relative;
 
-    ${props => props.isDesktop?`
+    ${(props) =>
+        props.isDesktop
+            ? `
         padding: 4px 12px 5px;
-    `:`
+    `
+            : `
         padding: 2px 10px 2px;
         > div:nth-child(2) {
             font-size: 9px;
@@ -206,18 +215,18 @@ export const ChainInfoWrap = styled.div`
     `}
 
     &:hover {
-        >div:nth-child(3) {
+        > div:nth-child(3) {
             display: block;
         }
     }
-`
+`;
 
 export const ChainInfoDot = styled.div`
     width: 6px;
     height: 6px;
     background-color: #3ccf9e;
     border-radius: 6px;
-`
+`;
 
 export const ChainInfo = styled.div`
     color: #3ccf9e;
@@ -229,7 +238,7 @@ export const ChainInfo = styled.div`
     line-height: normal;
     letter-spacing: -0.17px;
     font-size: 11px;
-`
+`;
 
 export const NetworkContainer = styled.div`
     width: 100%;
@@ -239,7 +248,7 @@ export const NetworkContainer = styled.div`
     top: 0px;
     display: none;
     z-index: 10;
-`
+`;
 
 export const NetworkBox = styled.div`
     width: 100%;
@@ -247,7 +256,7 @@ export const NetworkBox = styled.div`
     border-radius: 4px;
     box-shadow: 0 0 3px 0 #00000030;
     background-color: #333538;
-`
+`;
 
 export const NetworkItem = styled.div`
     padding: 12px 0 11px;
@@ -267,4 +276,4 @@ export const NetworkItem = styled.div`
         color: #fff;
         background-color: #606369;
     }
-`
+`;
