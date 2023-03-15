@@ -36,7 +36,11 @@
   "scripts": {
     "dev": "react-app-env --env-file=configs/.env.local start",
     "testnet": "GENERATE_SOURCEMAP=false react-app-env --env-file=configs/.env.testnet build",
-    "mainnet": "GENERATE_SOURCEMAP=false react-app-env --env-file=configs/.env.mainnet build"
+    "mainnet": "GENERATE_SOURCEMAP=false react-app-env --env-file=configs/.env.mainnet build",
+    "deploy-testnet": "aws s3 sync ./build s3://deploy-ecosystem/testnet/verify-tool --profile=firmachain-deploy --delete",
+    "invalidate-testnet": "aws cloudfront create-invalidation --profile=firmachain-deploy --distribution-id E2UUAL0XYSVCXP --paths '/*'",
+    "deploy-mainnet": "aws s3 sync ./build s3://deploy-ecosystem/mainnet/verify-tool --profile=firmachain-deploy --delete",
+    "invalidate-mainnet": "aws cloudfront create-invalidation --profile=firmachain-deploy --distribution-id E12CRKX8WKDZ2A --paths '/*'"
   },
   "eslintConfig": {
     "extends": [
