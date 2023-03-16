@@ -26,3 +26,4 @@ configs/.env.local
 configs/.env.mainnet
 configs/.env.testnet
 
+/.vscode
