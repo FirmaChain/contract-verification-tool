@@ -15,7 +15,7 @@ export const DimProgressContainer = styled.div`
     flex-direction: column;
     gap: 50px;
     z-index: 999999;
-`
+`;
 
 export const BodyContainer = styled.div`
     width: 100%;
@@ -23,52 +23,60 @@ export const BodyContainer = styled.div`
     min-height: 100%;
     position: relative;
     background-color: #1b1b23;
-    background-image: url('${IMG_BACKGROUND}');
+    background-image: url("${IMG_BACKGROUND}");
     background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: ${(props) => (props.isDesktop ? `initial` : `center`)};
     overflow: overlay;
     display: flex;
     align-items: center;
     justify-content: center;
-`
+`;
 
 export const LogoTitle = styled.img`
-    ${(props) => props.isDesktop?`
-        width: 110px;
+    ${(props) =>
+        props.isDesktop
+            ? `
+        width: 140px;
         height: 32.1px;
-    `:`
-        width: 80px;
+    `
+            : `
+        width: 110px;
         height: 23.5px;
     `}
     object-fit: contain;
     cursor: pointer;
-`
+`;
 
 export const Container = styled.div`
     width: 100%;
-    height: ${props => props.height};
+    height: ${(props) => props.height};
     display: flex;
-    justify-content: ${props =>  props.justifycontent || 'center'};
-    align-items: ${props => props.alignitems || 'center'};
-    padding: ${props => props.padding};
-`
+    justify-content: ${(props) => props.justifycontent || "center"};
+    align-items: ${(props) => props.alignitems || "center"};
+    padding: ${(props) => props.padding};
+`;
 
 export const Box = styled.div`
     width: 100%;
-    height: ${props => props.height};
+    height: ${(props) => props.height};
     max-width: 1528px;
     display: flex;
-    justify-content: ${props =>  props.justifycontent || 'center'};
-    align-items: ${props => props.alignitems || 'center'};
-    flex-direction: ${props => props.direction || 'row'};
-    gap: ${props => props.gap};
-`
+    justify-content: ${(props) => props.justifycontent || "center"};
+    align-items: ${(props) => props.alignitems || "center"};
+    flex-direction: ${(props) => props.direction || "row"};
+    gap: ${(props) => props.gap};
+`;
 
 export const TitleText = styled.div`
-    ${props => props.isDesktop? `
+    ${(props) =>
+        props.isDesktop
+            ? `
         font-size: 46px;
         height: 63px;
         line-height: normal;
-    ` : `
+    `
+            : `
         word-break: keep-all;
         font-size: 25px;
         line-height: 1;
@@ -80,12 +88,15 @@ export const TitleText = styled.div`
     letter-spacing: normal;
     text-align: center;
     color: #fff;
-`
+`;
 
 export const DescText = styled.div`
-    ${props => props.isDesktop? `
+    ${(props) =>
+        props.isDesktop
+            ? `
         font-size: 22px;
-    `:`
+    `
+            : `
         word-break: keep-all;
         font-size: 14px;
     `}
@@ -96,16 +107,20 @@ export const DescText = styled.div`
     letter-spacing: -0.24px;
     text-align: center;
     color: #9090a2;
-`
+`;
 
 export const StyledLink = styled(Link)`
     vertical-align: middle;
     color: inherit;
-    &:focus, &:hover, &:visited, &:link, &:active {
+    &:focus,
+    &:hover,
+    &:visited,
+    &:link,
+    &:active {
         text-decoration: none;
         color: inherit;
     }
-`
+`;
 
 export const InputBox = styled.div`
     width: 100%;
@@ -114,14 +129,14 @@ export const InputBox = styled.div`
     justify-content: flex-start;
     flex-direction: column;
     padding: 20px 0 0;
-`
+`;
 
 export const InputTitle = styled.div`
     font-family: Lato;
     font-weight: 600;
     font-size: 18px;
     color: #dddddd;
-`
+`;
 
 export const InputFileWrapper = styled(Paper)`
     display: flex;
@@ -132,7 +147,7 @@ export const InputFileWrapper = styled(Paper)`
     background-color: rgba(52, 54, 62, 0.75) !important;
     border: 1px solid #555 !important;
     box-shadow: none !important;
-`
+`;
 
 export const AttatchTextFiled = styled(InputBase)`
     font-family: Lato !important;
@@ -140,7 +155,7 @@ export const AttatchTextFiled = styled(InputBase)`
     width: 100%;
     padding: 0 10px;
     color: rgba(255, 255, 255, 0.75) !important;
-`
+`;
 
 export const SelectWrapper = styled.div`
     width: 100%;
@@ -165,7 +180,6 @@ export const SelectWrapper = styled.div`
     }
 `;
 
-
 export const TextWrapper = styled.div`
     width: 100%;
     height: auto;
@@ -180,7 +194,7 @@ export const TextBox = styled.input`
     font-family: Lato;
     background: transparent;
     width: calc(100% - 20px);
-    font-size: .8rem;
+    font-size: 0.8rem;
     font-weight: 400;
     background-color: rgba(52, 54, 62, 0.75);
     border: 1px solid rgba(52, 54, 62, 0.75);
@@ -196,7 +210,7 @@ export const TextAreaBox = styled.textarea`
     width: calc(100% - 20px);
     height: 60px;
     min-height: 60px;
-    font-size: .8rem;
+    font-size: 0.8rem;
     font-weight: 400;
     background-color: rgba(52, 54, 62, 0.75);
     border: 1px solid rgba(52, 54, 62, 0.75);
