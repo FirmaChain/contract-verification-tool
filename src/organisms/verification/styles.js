@@ -5,14 +5,17 @@ export const Container = styled.div`
     align-items: center;
     justify-content: center;
     flex-direction: column;
-    ${props => props.isDesktop?`
+    ${(props) =>
+        props.isDesktop
+            ? `
         gap: 20px;
         > div:nth-child(1) {
             width: 904px;
             padding: 60px 60px 70px;
             margin: 60px 0 0;
         }
-    `:`
+    `
+            : `
         max-width: 300px;
         gap: 30px;
         > div:nth-child(1) {
@@ -21,19 +24,22 @@ export const Container = styled.div`
             margin: 30px 0 0;
         }
     `}
-`
+`;
 
 export const ButtonBox = styled.div`
-    ${props => props.isDesktop?`
+    ${(props) =>
+        props.isDesktop
+            ? `
         flex-direction: row;
-    `:`
+    `
+            : `
         flex-direction: column;
     `}
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 20px;
-`
+`;
 
 export const ResultBox = styled.div`
     opacity: 0.95;
@@ -46,26 +52,32 @@ export const ResultBox = styled.div`
     border-radius: 8px;
     box-shadow: 0 20px 40px 0 rgba(0, 0, 0, 0.1);
     background-color: #24272e;
-`
+`;
 
 export const ResultImg = styled.img`
-    ${props => props.isDesktop?`
+    ${(props) =>
+        props.isDesktop
+            ? `
         width: 120px;
         height: 120px;
         margin-bottom: 10px;
-    `:`
+    `
+            : `
         width: 80px;
         height: 80px;
         margin-bottom: 10px;
     `}
     object-fit: contain;
-`
+`;
 
 export const Title = styled.div`
-    ${props => props.isDesktop?`
+    ${(props) =>
+        props.isDesktop
+            ? `
         font-size: 32px;
         margin-bottom: 20px;
-    `:`
+    `
+            : `
         font-size: 22px;
         margin-bottom: 10px;
     `}
@@ -77,13 +89,16 @@ export const Title = styled.div`
     letter-spacing: normal;
     text-align: center;
     color: #fff;
-`
+`;
 
 export const NotVerifiedText = styled.div`
-    ${props => props.isDesktop?`
+    ${(props) =>
+        props.isDesktop
+            ? `
         font-size: 16px;
         margin-bottom: 20px;
-    `:`
+    `
+            : `
         font-size: 12px;
         margin-bottom: 10px;
     `}
@@ -96,7 +111,7 @@ export const NotVerifiedText = styled.div`
     text-align: center;
     color: #ffc542;
     margin-top: -4px;
-`
+`;
 
 export const FIleInfoBox = styled.div`
     display: flex;
@@ -104,11 +119,11 @@ export const FIleInfoBox = styled.div`
     justify-content: center;
     flex-direction: column;
     gap: 8px;
-`
+`;
 
 export const FileInfoText = styled.div`
     font-family: Lato;
-    font-size: ${props => props.fontsize};
+    font-size: ${(props) => props.fontsize};
     font-weight: bold;
     font-stretch: normal;
     font-style: normal;
@@ -116,18 +131,21 @@ export const FileInfoText = styled.div`
     letter-spacing: -0.2px;
     text-align: left;
     color: #ababc1;
-`
+`;
 
 export const ContractInfoContainer = styled.div`
     width: 100%;
-`
+`;
 
 export const ContractInfoBox = styled.div`
-    ${props => props.isDesktop?`
+    ${(props) =>
+        props.isDesktop
+            ? `
         width: 787px;
         padding: 40px;
         margin-top: 50px;
-    `:`
+    `
+            : `
         padding: 10px;
         margin-top: 25px;
 
@@ -141,21 +159,22 @@ export const ContractInfoBox = styled.div`
     border-radius: 8px;
     background-color: #1b1b23;
     overflow: overlay;
-    
+
     display: flex;
     flex-direction: column;
     gap: 4px;
-`
+`;
 
 export const ContractInfoContentWrapper = styled.div`
     display: flex;
     align-items: flex-start;
     justify-content: center;
     gap: 40px;
-`
+`;
 
 export const ContractInfoTitle = styled.div`
     width: 100px;
+    min-width: 100px;
     font-family: Lato;
     font-weight: normal;
     font-stretch: normal;
@@ -165,12 +184,15 @@ export const ContractInfoTitle = styled.div`
     text-align: left;
     color: #b5b5be;
 
-    ${props => props.isDesktop?`
+    ${(props) =>
+        props.isDesktop
+            ? `
         font-size: 16px;
-    `:`
+    `
+            : `
         font-size: 12px;
     `}
-`
+`;
 
 export const ContractInfoDesc = styled.div`
     flex: 1;
@@ -185,14 +207,17 @@ export const ContractInfoDesc = styled.div`
     color: #fff;
     word-break: break-all;
 
-    ${props => props.isDesktop?`
+    ${(props) =>
+        props.isDesktop
+            ? `
         font-size: 16px;
         line-height: 2.25;
-    `:`
+    `
+            : `
         font-size: 12px;
         line-height: 1.2;
     `}
-`
+`;
 
 export const Links = styled.div`
     display: flex;
@@ -200,7 +225,7 @@ export const Links = styled.div`
     justify-content: center;
     flex-direction: column;
     flex: 1;
-`
+`;
 
 export const LinkWrapper = styled.div`
     align-items: center;
@@ -208,12 +233,15 @@ export const LinkWrapper = styled.div`
     flex: 1;
     position: relative;
 
-    ${props => props.isEmptyHash?`
+    ${(props) =>
+        props.isEmptyHash
+            ? `
         display: none;
-    `:`
+    `
+            : `
         display: flex;
     `}
-`
+`;
 
 export const ContractInfoLink = styled(ContractInfoDesc)`
     font-family: Lato;
@@ -223,20 +251,26 @@ export const ContractInfoLink = styled(ContractInfoDesc)`
     letter-spacing: -0.16px;
     float: left;
 
-    ${props => props.clickable?`
+    ${(props) =>
+        props.clickable
+            ? `
         color: #24c4ff;
         cursor: pointer;
-    `:`
+    `
+            : `
         color: #fff;
     `}
-    ${props => props.isDesktop?`
+    ${(props) =>
+        props.isDesktop
+            ? `
         font-size: 16px;
         line-height: 2.25;
-    `:`
+    `
+            : `
         font-size: 12px;
         line-height: 1.2;
     `}
-`
+`;
 
 export const CopyIcon = styled.img`
     width: 16px;
@@ -244,15 +278,15 @@ export const CopyIcon = styled.img`
     object-fit: contain;
     cursor: pointer;
     margin: 0 4px;
-`
+`;
 
 export const CopyMessage = styled.div`
     width: 68px;
     height: 28px;
-    display: ${props => props.visible? `flex`:`none`};
+    display: ${(props) => (props.visible ? `flex` : `none`)};
     align-items: center;
     justify-content: center;
-    background-color: #7447ED;
+    background-color: #7447ed;
     border-radius: 4px;
 
     font-family: Lato;
@@ -268,14 +302,17 @@ export const CopyMessage = styled.div`
     position: absolute;
     top: -30px;
     right: -20px;
-`
+`;
 
 export const FileHashBox = styled.div`
-    ${props => props.isDesktop?`
+    ${(props) =>
+        props.isDesktop
+            ? `
         > div {
             font-size: 16px;
         }
-    `:`
+    `
+            : `
         > div {
             font-size: 12px;
         }
@@ -288,7 +325,7 @@ export const FileHashBox = styled.div`
     align-items: center;
     justify-content: center;
     margin: 10px 0 20px;
-`
+`;
 
 export const FileHash = styled.div`
     overflow: hidden;
@@ -302,4 +339,4 @@ export const FileHash = styled.div`
     letter-spacing: -0.16px;
     text-align: left;
     color: #7c7c8e;
-`
+`;
