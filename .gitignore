@@ -20,8 +20,8 @@ yarn-error.log*
 yarn.lock
 package-lock.json
 
-src/config.js
-
+# config
+src/config.*
 configs/.env.local
 configs/.env.mainnet
 configs/.env.testnet

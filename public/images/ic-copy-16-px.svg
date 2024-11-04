@@ -4,14 +4,14 @@
             .cls-3{fill:none;stroke:#b5b5be}
         </style>
     </defs>
-    <g id="그룹_20603" data-name="그룹 20603" transform="translate(-488 -322.301)">
-        <g id="사각형_7634" data-name="사각형 7634">
-            <path id="패스_2140" data-name="패스 2140" d="M0 0h8v10H0z" transform="translate(491 326.801)" style="fill:none"/>
-            <path id="패스_2141" data-name="패스 2141" class="cls-3" d="M.5.5h7v9h-7z" transform="translate(491 326.801)"/>
+    <g id="group_20603" data-name="group 20603" transform="translate(-488 -322.301)">
+        <g id="rectangle_7634" data-name="rectangle 7634">
+            <path id="path_2140" data-name="path 2140" d="M0 0h8v10H0z" transform="translate(491 326.801)" style="fill:none"/>
+            <path id="path_2141" data-name="path 2141" class="cls-3" d="M.5.5h7v9h-7z" transform="translate(491 326.801)"/>
         </g>
-        <g id="그룹_20603-2" data-name="그룹 20603" transform="translate(0 .801)">
-            <path id="패스_2135" data-name="패스 2135" class="cls-3" d="M-7283.486-22019.066h8" transform="translate(7776.486 22343.066)"/>
-            <path id="패스_2136" data-name="패스 2136" class="cls-3" d="M0 0h10" transform="rotate(90 88.75 412.25)"/>
+        <g id="group_20603-2" data-name="group 20603" transform="translate(0 .801)">
+            <path id="path_2135" data-name="path 2135" class="cls-3" d="M-7283.486-22019.066h8" transform="translate(7776.486 22343.066)"/>
+            <path id="path_2136" data-name="path 2136" class="cls-3" d="M0 0h10" transform="rotate(90 88.75 412.25)"/>
         </g>
     </g>
 </svg>

@@ -1,63 +1,68 @@
 {
-  "name": "contract-verification-tool",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@emotion/react": "^11.7.1",
-    "@emotion/styled": "^11.6.0",
-    "@firmachain/firma-js": "^0.2.50",
-    "@mui/base": "^5.0.0-alpha.63",
-    "@mui/icons-material": "^5.8.4",
-    "@mui/material": "^5.2.7",
-    "@mui/styled-engine-sc": "^5.1.0",
-    "@testing-library/jest-dom": "^5.16.1",
-    "@testing-library/react": "^12.1.2",
-    "@testing-library/user-event": "^13.5.0",
-    "axios": "^1.6.5",
-    "copy-to-clipboard": "^3.3.1",
-    "moment": "^2.29.1",
-    "notistack": "^2.0.5",
-    "react": "^17.0.2",
-    "react-app-env": "^1.2.3",
-    "react-device-detect": "^2.1.2",
-    "react-dom": "^17.0.2",
-    "react-google-recaptcha": "^2.1.0",
-    "react-redux": "^7.2.6",
-    "react-router": "^6.2.1",
-    "react-router-dom": "^6.2.1",
-    "react-scripts": "^4.0.3",
-    "react-transition-group": "^4.4.2",
-    "redux-devtools-extension": "^2.13.9",
-    "redux-persist": "^6.0.0",
-    "redux-thunk": "^2.4.1",
-    "styled-components": "^5.3.3",
-    "web-vitals": "^2.1.2"
-  },
-  "scripts": {
-    "dev": "react-app-env --env-file=configs/.env.local start",
-    "testnet": "GENERATE_SOURCEMAP=false react-app-env --env-file=configs/.env.testnet build",
-    "mainnet": "GENERATE_SOURCEMAP=false react-app-env --env-file=configs/.env.mainnet build",
-    "deploy-testnet": "aws s3 sync ./build s3://deploy-ecosystem/testnet/verify-tool --profile=firmachain-deploy --delete",
-    "invalidate-testnet": "aws cloudfront create-invalidation --profile=firmachain-deploy --distribution-id E2UUAL0XYSVCXP --paths '/*'",
-    "deploy-mainnet": "aws s3 sync ./build s3://deploy-ecosystem/mainnet/verify-tool --profile=firmachain-deploy --delete",
-    "invalidate-mainnet": "aws cloudfront create-invalidation --profile=firmachain-deploy --distribution-id E12CRKX8WKDZ2A --paths '/*'"
-  },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+    "name": "contract-verification-tool",
+    "version": "0.1.0",
+    "private": true,
+    "dependencies": {
+        "@firmachain/firma-js": "^0.2.62",
+        "@mui/icons-material": "^5.8.4",
+        "@mui/material": "^5.2.7",
+        "@mui/styled-engine-sc": "^5.1.0",
+        "axios": "^1.7.7",
+        "browserify-fs": "^1.0.0",
+        "crypto-browserify": "^3.12.1",
+        "date-fns": "^4.1.0",
+        "env-cmd": "^10.1.0",
+        "notistack": "^2.0.5",
+        "path-browserify": "^1.0.1",
+        "prettier": "^3.3.3",
+        "process": "^0.11.10",
+        "react": "^18.3.1",
+        "react-device-detect": "^2.1.2",
+        "react-dom": "^18.3.1",
+        "react-router": "^6.2.1",
+        "react-router-dom": "^6.2.1",
+        "react-scripts": "^5.0.1",
+        "react-transition-group": "^4.4.5",
+        "stream-browserify": "^3.0.0",
+        "styled-components": "^5.3.3",
+        "util": "^0.12.5",
+        "vm-browserify": "^1.1.2",
+        "web-vitals": "^2.1.2",
+        "zustand": "^5.0.1"
+    },
+    "scripts": {
+        "dev": "env-cmd -f configs/.env.local craco start",
+        "testnet": "GENERATE_SOURCEMAP=false env-cmd -f configs/.env.testnet craco build",
+        "mainnet": "GENERATE_SOURCEMAP=false env-cmd -f configs/.env.mainnet craco build",
+        "deploy-testnet": "aws s3 sync ./build s3://deploy-ecosystem/testnet/verify-tool --profile=firmachain-deploy --delete",
+        "invalidate-testnet": "aws cloudfront create-invalidation --profile=firmachain-deploy --distribution-id E2UUAL0XYSVCXP --paths '/*'",
+        "deploy-mainnet": "aws s3 sync ./build s3://deploy-ecosystem/mainnet/verify-tool --profile=firmachain-deploy --delete",
+        "invalidate-mainnet": "aws cloudfront create-invalidation --profile=firmachain-deploy --distribution-id E12CRKX8WKDZ2A --paths '/*'",
+        "format": "prettier --write \"src/**/*.{ts,tsx}\""
+    },
+    "eslintConfig": {
+        "extends": [
+            "react-app",
+            "react-app/jest"
+        ]
+    },
+    "browserslist": {
+        "production": [
+            ">0.2%",
+            "not dead",
+            "not op_mini all"
+        ],
+        "development": [
+            "last 1 chrome version",
+            "last 1 firefox version",
+            "last 1 safari version"
+        ]
+    },
+    "devDependencies": {
+        "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+        "@craco/craco": "^7.1.0",
+        "@types/react-dom": "^18.3.1",
+        "@types/styled-components": "^5.1.34",
+        "typescript": "^4.9.5"
+    }
 }
