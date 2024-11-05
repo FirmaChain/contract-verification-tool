@@ -7,7 +7,7 @@ export const DimProgressContainer = styled.div`
     width: 100vw;
     height: 100vh;
     background-color: #1b1b2380;
-    position: absolute;
+    position: fixed;
     top: 0;
     display: flex;
     align-items: center;

@@ -1,31 +1,36 @@
 import { FirmaConfig, FirmaSDK, FirmaUtil } from '@firmachain/firma-js';
 import { Wallet } from '@types';
 import { FAUCET_MNEMONIC } from 'constants/texts';
-import { useFirmaSDKContext } from 'context/firmaSDKContext';
-// import { FilesActions } from 'redux/actions';
 import useFile from 'store/useFile';
 import usePreference from 'store/usePreference';
 import useWallet from 'store/useWallet';
 
 const useFirmaUtil = () => {
-    const { firmaSDK } = useFirmaSDKContext();
     const { hashPrefix } = usePreference();
-    const { wallet, handleChainNetwork, handleBalance } = useWallet();
+    const { handleChainNetwork } = useWallet();
     const { handleOriginalContract } = useFile();
 
     const setChainConfig = (network: string) => {
         handleChainNetwork(network);
     };
 
+    const getSDK = () => {
+        const chainNetwork = useWallet.getState().chainNetwork;
+
+        const isMainnet = chainNetwork === 'MAINNET';
+
+        return new FirmaSDK(isMainnet ? FirmaConfig.MainNetConfig : FirmaConfig.TestNetConfig);
+    };
+
     const getBalance = async (address: string) => {
-        const balance = await firmaSDK.Bank.getBalance(address);
+        const balance = await getSDK().Bank.getBalance(address);
 
         return FirmaUtil.getFCTStringFromUFCT(Number(balance));
     };
 
     const getRecoverWalletFromPrivateKey = async (privateKey: string) => {
         try {
-            let wallet = await firmaSDK.Wallet.fromPrivateKey(privateKey);
+            let wallet = await getSDK().Wallet.fromPrivateKey(privateKey);
             return wallet;
         } catch (error) {
             console.log('error : ' + error);
@@ -33,26 +38,9 @@ const useFirmaUtil = () => {
         }
     };
 
-    //! Not used for now
-    // const getIpfsURL = async (privateKey: string, ipfsHash: string) => {
-    //     try {
-    //         const wallet = await getRecoverWalletFromPrivateKey(privateKey);
-    //         const decryptHash = wallet.decryptData(ipfsHash);
-
-    //         if (decryptHash === '' || decryptHash === undefined) return '';
-
-    //         const url = firmaSDK.Ipfs.getURLFromHash(decryptHash);
-
-    //         return url;
-    //     } catch (error) {
-    //         console.log(error);
-    //         throw error;
-    //     }
-    // };
-
     const getRecoverWalletFromMnemonic = async (mnemonic: string) => {
         try {
-            let wallet = await firmaSDK.Wallet.fromMnemonic(mnemonic);
+            let wallet = await getSDK().Wallet.fromMnemonic(mnemonic);
             return wallet;
         } catch (error) {
             console.log('error : ' + error);
@@ -62,7 +50,7 @@ const useFirmaUtil = () => {
 
     const getNewWallet = async () => {
         try {
-            let wallet = await firmaSDK.Wallet.newWallet();
+            let wallet = await getSDK().Wallet.newWallet();
             return wallet;
         } catch (error) {
             console.log('error : ' + error);
@@ -78,16 +66,13 @@ const useFirmaUtil = () => {
                 contractFileHash = prefix + FirmaUtil.getFileHashFromBuffer(file);
             }
 
-            const contract = await firmaSDK.Contract.getContractFile(contractFileHash);
-
-            // FilesActions.setOriginalContract(true);
+            const contract = await getSDK().Contract.getContractFile(contractFileHash);
 
             handleOriginalContract(true);
 
             return contract;
         } catch (error) {
             console.log(error);
-            // FilesActions.setOriginalContract(false);
 
             handleOriginalContract(false);
 
@@ -121,22 +106,24 @@ const useFirmaUtil = () => {
 
             const ownerList = [_address];
 
-            const ipfsHash = await firmaSDK.Ipfs.addBuffer(fileBuffer);
+            const ipfsHash = await getSDK().Ipfs.addBuffer(fileBuffer);
+
             const encryptHash = _wallet.encryptData(ipfsHash);
             const jsonData = { storage: 'ipfs', encryptIpfsHash: [encryptHash] };
             const metaDataJsonString = JSON.stringify(jsonData);
             const timeStamp = Math.round(+new Date() / 1000);
 
-            const gasEstimation = await firmaSDK.Contract.getGasEstimationCreateContractFile(
+            const gasEstimation = await getSDK().Contract.getGasEstimationCreateContractFile(
                 _wallet,
                 _fileHash,
                 timeStamp,
                 ownerList,
                 metaDataJsonString
             );
+
             const txMisc = { gas: gasEstimation, fee: Math.ceil(gasEstimation * 0.1) };
 
-            const txResult = await firmaSDK.Contract.createContractFile(
+            const txResult = await getSDK().Contract.createContractFile(
                 _wallet,
                 _fileHash,
                 timeStamp,
@@ -155,7 +142,8 @@ const useFirmaUtil = () => {
     const verifyGetContractFile = async (fileBuffer: Uint8Array) => {
         try {
             const fileHash = await verifyGetFileHashFromBuffer(fileBuffer);
-            const contractFile = await firmaSDK.Contract.getContractFile(fileHash);
+
+            const contractFile = await getSDK().Contract.getContractFile(fileHash);
 
             return contractFile;
         } catch (error) {
@@ -180,7 +168,7 @@ const useFirmaUtil = () => {
             const timeStamp = Math.round(+new Date() / 1000);
             const jsonString = JSON.stringify(_jsonData);
 
-            const gasEstimation = await firmaSDK.Contract.getGasEstimationAddContractLog(
+            const gasEstimation = await getSDK().Contract.getGasEstimationAddContractLog(
                 _wallet,
                 _fileHash,
                 timeStamp,
@@ -190,7 +178,7 @@ const useFirmaUtil = () => {
             );
             const txMisc = { gas: gasEstimation, fee: Math.ceil(gasEstimation * 0.1) };
 
-            const txResult = await firmaSDK.Contract.addContractLog(
+            const txResult = await getSDK().Contract.addContractLog(
                 _wallet,
                 _fileHash,
                 timeStamp,
@@ -210,7 +198,7 @@ const useFirmaUtil = () => {
     const verifyGetContractListFromHash = async (fileBuffer: Uint8Array) => {
         try {
             let _fileHash = await verifyGetFileHashFromBuffer(fileBuffer);
-            const contractList = await firmaSDK.Contract.getContractListFromHash(_fileHash);
+            const contractList = await getSDK().Contract.getContractListFromHash(_fileHash);
             return contractList;
         } catch (error) {
             console.log(error);
@@ -221,10 +209,16 @@ const useFirmaUtil = () => {
     const verifyGetContractLog = async (fileBuffer: Uint8Array) => {
         try {
             const contractList = await verifyGetContractListFromHash(fileBuffer);
-            const logId = contractList[contractList.length - 1].toString();
-            const singleContractLog = await firmaSDK.Contract.getContractLog(logId);
+            console.log(contractList);
 
-            return singleContractLog;
+            if (contractList.length > 0) {
+                const logId = contractList[contractList.length - 1].toString();
+                const singleContractLog = await getSDK().Contract.getContractLog(logId);
+
+                return singleContractLog;
+            } else {
+                return [];
+            }
         } catch (error) {
             console.log(error);
             throw error;
@@ -236,7 +230,7 @@ const useFirmaUtil = () => {
             let _address = wallet.address;
             let _fileHash = await verifyGetFileHashFromBuffer(fileBuffer);
 
-            const isOwner = await firmaSDK.Contract.isContractOwner(_fileHash, _address);
+            const isOwner = await getSDK().Contract.isContractOwner(_fileHash, _address);
             return isOwner;
         } catch (error) {
             console.log(error);
@@ -250,7 +244,7 @@ const useFirmaUtil = () => {
             let memo = 'faucet';
 
             let faucetWallet = await getRecoverWalletFromMnemonic(FAUCET_MNEMONIC);
-            let send = await firmaSDK.Bank.send(faucetWallet, address, Number(FCTAmount), { memo: memo });
+            let send = await getSDK().Bank.send(faucetWallet, address, Number(FCTAmount), { memo: memo });
 
             return send;
         } catch (error) {
@@ -260,7 +254,7 @@ const useFirmaUtil = () => {
     };
 
     const getDefaultFee_uFCT = () => {
-        const config = firmaSDK.Config; //  getChainConfig();
+        const config = getSDK().Config; //  getChainConfig();
         // const fee = FirmaUtil.getFCTStringFromUFCT(config.defaultFee);
         return config.defaultFee;
     };
@@ -270,7 +264,7 @@ const useFirmaUtil = () => {
     };
 
     const getCurrentNetworkID = () => {
-        return firmaSDK.Config.chainID;
+        return getSDK().Config.chainID;
     };
 
     const getUTokenStrFromTokenStr = (numberString: string): string => {
@@ -347,3 +341,20 @@ const useFirmaUtil = () => {
 };
 
 export default useFirmaUtil;
+
+//! Not used for now
+// const getIpfsURL = async (privateKey: string, ipfsHash: string) => {
+//     try {
+//         const wallet = await getRecoverWalletFromPrivateKey(privateKey);
+//         const decryptHash = wallet.decryptData(ipfsHash);
+
+//         if (decryptHash === '' || decryptHash === undefined) return '';
+
+//         const url = firmaSDK.Ipfs.getURLFromHash(decryptHash);
+
+//         return url;
+//     } catch (error) {
+//         console.log(error);
+//         throw error;
+//     }
+// };

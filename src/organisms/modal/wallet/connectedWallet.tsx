@@ -26,7 +26,7 @@ const ConnectedWallet = () => {
     };
 
     const handleFaucet = async () => {
-        if (chainNetwork === 'MAINNET') {
+        if (chainNetwork !== 'TESTNET') {
             enqueueSnackbar('Mainnet does not support faucet.', {
                 variant: 'warning',
                 autoHideDuration: 3000
@@ -65,10 +65,10 @@ const ConnectedWallet = () => {
     const handleDisconnectWallet = () => {
         clearStore();
 
-        handleModalWallet({
-            isVisible: false,
-            type: NEW_WALLET
-        });
+        // handleModalWallet({
+        //     isVisible: false,
+        //     type: NEW_WALLET
+        // });
     };
 
     const onCopyData = (data: string, content?: string) => {

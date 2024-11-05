@@ -12,14 +12,29 @@ import SideBar from 'organisms/sidebar';
 import DimProgress from 'components/progress/dimProgress';
 import useModal from 'store/useModal';
 import './routes.css';
+import { useEffect } from 'react';
+import useWallet from 'store/useWallet';
+import useFirmaUtil from 'hook/useFirmaUtils';
 
 const PagesRoutes = () => {
     const { loadingProgress } = useModal();
+    const { wallet, handleBalance, chainNetwork } = useWallet();
+    const { getBalance } = useFirmaUtil();
+
     const PageMain = <MainPage />;
     const PageUpload = <UploadPage />;
     const PageVerification = <VerificationPage />;
 
     const location = useLocation();
+
+    useEffect(() => {
+        if (wallet.address && chainNetwork === 'TESTNET') {
+            getBalance(wallet.address).then((res) => handleBalance(res));
+        } else {
+            // when network is mainnet
+            handleBalance('');
+        }
+    }, [wallet.address, chainNetwork]);
 
     return (
         <Body>
@@ -35,7 +50,7 @@ const PagesRoutes = () => {
                         </Routes>
                     </CSSTransition>
                 </TransitionGroup>
-                {<SideBar />}
+                <SideBar />
             </Common>
             {loadingProgress.loading && <DimProgress />}
             {isDesktop && <Footer />}

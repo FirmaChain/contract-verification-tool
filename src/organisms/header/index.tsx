@@ -44,7 +44,7 @@ const Header = () => {
         <Container
             height={'auto'}
             justifycontent={'center'}
-            style={{ width: '100%', position: 'fixed', top: 0, zIndex: 998, opacity: 0.9, backgroundColor: '#1b1b23' }}
+            style={{ width: '100%', position: 'fixed', top: 0, left: 0, zIndex: 998, opacity: 0.9, backgroundColor: '#1b1b23' }}
         >
             {isDesktop ? (
                 <HeaderBox>

@@ -28,6 +28,7 @@ import usePreference from 'store/usePreference';
 import useFirmaUtil from 'hook/useFirmaUtils';
 import useFile from 'store/useFile';
 import useProcess from 'store/useProcess';
+import { useSnackbar } from 'notistack';
 
 export default function UploadBox({ handleErrorMsg }: { handleErrorMsg: (v: string) => void }) {
     const { hashPrefix, handleHashPrefix } = usePreference();
@@ -35,6 +36,7 @@ export default function UploadBox({ handleErrorMsg }: { handleErrorMsg: (v: stri
     const { verifyStep, setVerifyStep } = useProcess();
 
     const { getVirifyResult } = useFirmaUtil();
+    const { enqueueSnackbar } = useSnackbar();
 
     const dragRef = useRef<HTMLDivElement>(null);
     const hiddenFileInput = useRef<HTMLInputElement>(null);
@@ -98,17 +100,19 @@ export default function UploadBox({ handleErrorMsg }: { handleErrorMsg: (v: stri
                 }
             }
 
-            //? idk why error handling code has been removed
-            // if (uploadedFile.type !== 'application/pdf') {
-            //     console.error('This is a file type that is not supported.');
-            //     ProcessActions.setVerifyStep(-1);
-            //     return;
-            // }
-            // if (uploadedFile.size / 1024 / 1024 > 20) {
-            //     console.error('Upload is not possible if the file size is more than 20MB.');
-            //     ProcessActions.setVerifyStep(-1);
-            //     return;
-            // }
+            if (uploadedFile.type !== 'application/pdf') {
+                console.error('This is a file type that is not supported.');
+                enqueueSnackbar('This is a file type that is not supported.', { variant: 'error', autoHideDuration: 3000 });
+
+                return;
+            }
+
+            if (uploadedFile.size / 1024 / 1024 > 20) {
+                console.error('Upload is not possible if the file size is more than 20MB.');
+                enqueueSnackbar('Upload is not possible if the file size is more than 20MB.', { variant: 'error', autoHideDuration: 3000 });
+
+                return;
+            }
 
             const reader = new FileReader();
             reader.readAsArrayBuffer(uploadedFile);
@@ -128,7 +132,7 @@ export default function UploadBox({ handleErrorMsg }: { handleErrorMsg: (v: stri
                 handleErrorMsg('Upload failed. Please select it again.');
             };
 
-            setVerifyStep(1);
+            // setVerifyStep(1);
 
             if (hiddenFileInput.current) {
                 hiddenFileInput.current.value = '';
@@ -146,6 +150,8 @@ export default function UploadBox({ handleErrorMsg }: { handleErrorMsg: (v: stri
                 size: file.size,
                 ...result
             });
+
+            setVerifyStep(1);
         } catch (error) {
             throw error;
         }

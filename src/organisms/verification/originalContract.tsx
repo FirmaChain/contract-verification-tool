@@ -55,7 +55,7 @@ export default function OriginalContract({ data }: any) {
                 <LinkDescription title={'CREATOR'} hash={data.creator} />
                 {transactionHash !== '' && <LinkDescription title={'TX HASH'} hash={transactionHash} clickable={true} />}
                 <Description title={'FILE HASH'} desc={fileHash} />
-                <Description title={'META DATA'} desc={data.metaDataJsonString} />
+                <Description title={'META DATA'} desc={data.metaDataJsonString} isMetadata />
                 <LinkDescription title={'OWNER LIST'} hash={data.ownerList} />
                 <Description title={'TIME STAMP'} desc={handleTimestamp(data.timeStamp)} />
             </ContractInfoBox>

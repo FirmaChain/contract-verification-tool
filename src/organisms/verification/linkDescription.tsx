@@ -62,7 +62,12 @@ export default function LinkDescription({ title, hash, clickable = false }: Link
                 {hashList.map((hash, index) => {
                     return (
                         <LinkWrapper key={index} isEmptyHash={hash === ''}>
-                            <ContractInfoLink isDesktop={isDesktop} clickable={clickable} onClick={() => handleUrl(hash)}>
+                            <ContractInfoLink
+                                // className="clamp-single-line"
+                                isDesktop={isDesktop}
+                                clickable={clickable}
+                                onClick={() => handleUrl(hash)}
+                            >
                                 {hash}
                             </ContractInfoLink>
                             <Copy value={hash} />

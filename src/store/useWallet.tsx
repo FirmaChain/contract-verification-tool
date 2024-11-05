@@ -56,7 +56,7 @@ const useWallet = create<FormProps>()(
 
             clearStore: () =>
                 set((state) => {
-                    state.chainNetwork = '';
+                    // state.chainNetwork = '';
                     state.wallet = {
                         mnemonic: '',
                         privateKey: '',
@@ -69,7 +69,12 @@ const useWallet = create<FormProps>()(
         })),
         {
             name: 'verification-wallet',
-            partialize: (state) => Object.fromEntries(Object.entries(state).filter(([key]) => !['balance'].includes(key)))
+            partialize: (state) => Object.fromEntries(Object.entries(state).filter(([key]) => !['balance'].includes(key))),
+            onRehydrateStorage: (state) => {
+                if (!['TESTNET', 'MAINNET'].includes(state.chainNetwork)) {
+                    state.chainNetwork = 'TESTNET';
+                }
+            }
         }
     )
 );
