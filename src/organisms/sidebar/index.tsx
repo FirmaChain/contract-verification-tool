@@ -1,4 +1,4 @@
-import { Fragment, useCallback, useEffect, useMemo, useState } from 'react';
+import React, { Fragment, useCallback, useEffect, useMemo, useState } from 'react';
 import { Drawer } from '@mui/material';
 import {
     SidebarContainer,
@@ -24,8 +24,10 @@ import useWallet from 'store/useWallet';
 import useFirmaUtil from 'hook/useFirmaUtils';
 import useModal from 'store/useModal';
 import { FirmaUtil } from '@firmachain/firma-js';
+import JsonViewer from 'components/jsonViewer/jsonViewer';
 
 const SideBar = () => {
+    // const firmaSDK = new FirmaSDK(FirmaConfig.TestNetConfig);
     const { enqueueSnackbar } = useSnackbar();
     const { wallet, balance, chainNetwork } = useWallet();
     const { handleModalSwitchNetwork, handleModalLoadingProgress } = useModal();
@@ -48,8 +50,9 @@ const SideBar = () => {
         fileName: '',
         fileSize: ''
     });
+
     const [fileHash, setFileHash] = useState('');
-    const [isHashKeyChanged, setIsHashKeyChanged] = useState(false);
+    // const [isHashKeyChanged, setIsHashKeyChanged] = useState(false);
     const [isActiveInputText, setIsActiveInputText] = useState(false);
     const [inputNotiData, setInputNotiData] = useState({
         title: '',
@@ -57,43 +60,18 @@ const SideBar = () => {
     });
     const [textValue, setTextValue] = useState('');
     const [queryType, setQueryType] = useState(0);
-    const [queryResult, setQueryResult] = useState('');
+    const [queryResult, setQueryResult] = useState<string | object>('');
 
     const fileExist = useMemo(() => {
         if (file.file === null) return false;
         return true;
     }, [file]);
 
-    const walletRequired = useMemo(() => {
-        return [1, 3, 6].includes(queryType);
-    }, [queryType]);
-
-    const isBalanceRequired = useMemo(() => {
-        if ([1, 3].includes(queryType)) return true;
-        else return false;
-    }, [queryType]);
-
-    // const defaultFee = FirmaUtil.getFCTStringFromUFCT(getDefaultFee_uFCT())
-
-    const enableButton = useMemo(() => {
-        if (!fileExist) return false;
-
-        if (walletRequired) {
-            if (wallet.address === '') return false;
-        }
-
-        if (isBalanceRequired) {
-            if (Number(balance) === 0) return false;
-        }
-
-        return true;
-    }, [fileExist, isBalanceRequired, walletRequired, wallet.address]);
-
-    const toggleDrawer = () => {
-        if (chainNetwork === 'MAINNET') {
+    const toggleDrawer = (openValue: boolean) => {
+        if (chainNetwork !== 'TESTNET') {
             handleModalSwitchNetwork(true);
         } else {
-            setOpen(!isOpen);
+            setOpen(openValue);
             handleQueryType(0);
             setTextValue('');
             setFileHash('');
@@ -111,7 +89,7 @@ const SideBar = () => {
         handleInputNotiData(type);
     };
 
-    const handleFile = useCallback(async (fileData: FileData_) => {
+    const handleFile = async (fileData: FileData_) => {
         try {
             setFile(() => fileData);
             if (fileData.file !== null) {
@@ -119,24 +97,25 @@ const SideBar = () => {
 
                 const result = await verifyGetFileHashFromBuffer(parsed);
                 setFileHash(result);
-                handleChangeHashKey(false);
+                // handleChangeHashKey(false);
             }
         } catch (error) {
             console.log(error);
         }
-    }, []);
-
-    const handleChangeHashKey = (change: boolean) => {
-        setIsHashKeyChanged(change);
     };
+
+    // const handleChangeHashKey = (change: boolean) => {
+    //     setIsHashKeyChanged(change);
+    // };
 
     const handleTextValue = useCallback((value: string) => {
         setTextValue(value);
     }, []);
 
-    const handleQueryResult = (result: any) => {
+    const handleQueryResult = (result: string | object) => {
         //? Could not handle all types
-        setQueryResult(JSON.stringify(result, null, 4));
+        setQueryResult(result);
+        // setQueryResult(JSON.stringify(result, null, 4));
     };
 
     const handleRefreshBalance = (refresh: boolean) => {
@@ -175,6 +154,7 @@ const SideBar = () => {
         if (file.file) {
             try {
                 const parsed = file.file as any;
+
                 const result = await verifyGetContractFile(parsed);
                 handleQueryResult(result);
             } catch (error) {
@@ -234,10 +214,10 @@ const SideBar = () => {
     };
 
     useEffect(() => {
-        if (file.file !== null && isHashKeyChanged) {
+        if (file.file !== null) {
             handleFile(file);
         }
-    }, [file, isHashKeyChanged]);
+    }, [file]);
 
     const queryList = [
         { name: 'GetFileHash', action: getFileHash },
@@ -278,62 +258,67 @@ const SideBar = () => {
     };
 
     const onClickButtonInQuery = useCallback(async () => {
+        setQueryResult('');
+
+        const balance = useWallet.getState().balance;
+        const defaultFee = FirmaUtil.getFCTStringFromUFCT(getDefaultFee_uFCT());
+
+        if ((queryType === 1 || queryType === 3) && Number(balance) < Number(defaultFee)) {
+            enqueueSnackbar('Insufficient funds. Please check your account balance.', {
+                variant: 'error',
+                autoHideDuration: 5000
+            });
+            return;
+        }
+
+        handleModalLoadingProgress({
+            loading: true,
+            message: `${queryList[queryType].name} is in progress.`
+        });
+
+        await wait(500);
+
         try {
             if (fileExist) {
-                if ([1, 3].includes(queryType))
-                    // if tx type is 1,3, -> wallet connection + balance
-
-                    handleModalLoadingProgress({
-                        loading: true,
-                        message: `${queryList[queryType].name} is in progress.`
-                    });
                 await queryList[queryType].action();
                 handleRefreshBalance(true);
-                wait(500).then(() => {
-                    handleModalLoadingProgress({
-                        loading: false,
-                        message: ''
-                    });
-                });
+                await wait(500);
             }
         } catch (error) {
             console.log(error);
             wait(500).then(() => {
-                handleModalLoadingProgress({
-                    loading: false,
-                    message: ''
-                });
                 enqueueSnackbar(String(error), {
                     variant: 'error',
                     autoHideDuration: 3000
                 });
             });
+        } finally {
+            handleModalLoadingProgress({
+                loading: false,
+                message: ''
+            });
         }
     }, [fileExist, queryList]);
 
-    const defaultFee = FirmaUtil.getFCTStringFromUFCT(getDefaultFee_uFCT());
     useEffect(() => {
+        const balance = useWallet.getState().balance;
+        const defaultFee = FirmaUtil.getFCTStringFromUFCT(getDefaultFee_uFCT());
+
         if ([1, 3, 6].includes(queryType)) {
-            if ((queryType === 1 || queryType === 3) && Number(balance) < Number(defaultFee)) {
+            console.log(Number(balance), Number(defaultFee));
+
+            if (wallet.address === '') {
                 enqueueSnackbar('Wallet connection is required to use this feature.', {
                     variant: 'warning',
                     autoHideDuration: 5000
                 });
-            } else {
-                // queryType === 6
-                if (wallet.address === '') {
-                    enqueueSnackbar('Wallet connection is required to use this feature.', {
-                        variant: 'warning',
-                        autoHideDuration: 5000
-                    });
-                }
             }
         }
     }, [queryType]);
 
     return (
         <Fragment>
-            <QueryButton isOpen={isOpen} isDesktop={isDesktop} onClick={toggleDrawer}>
+            <QueryButton isOpen={isOpen} isDesktop={isDesktop} onClick={() => toggleDrawer(!isOpen)}>
                 API
             </QueryButton>
             <Drawer
@@ -343,7 +328,7 @@ const SideBar = () => {
                 ModalProps={{
                     //? There might be error like "Unknown event handler ~~" but it is not error. IT WORKS FINE.
                     //? https://stackoverflow.com/questions/53945281/warning-unknown-event-handler-property-onheaderclick-it-will-be-ignored
-                    onBackdropClick: toggleDrawer
+                    onBackdropClick: () => toggleDrawer(false)
                 }}
                 PaperProps={{
                     sx: {
@@ -362,7 +347,7 @@ const SideBar = () => {
                             <InputSelect optionList={queryList} value={queryType} setValue={handleQueryType} />
                             <InputFile setFileData={handleFile} />
                             {queryType > 0 && fileHash !== '' && (
-                                <FileHashInfo fileHash={fileHash} handleChangeHashKey={handleChangeHashKey} />
+                                <FileHashInfo fileHash={fileHash} /*handleChangeHashKey={handleChangeHashKey}*/ />
                             )}
                             {isActiveInputText && (
                                 <InputTextarea
@@ -375,9 +360,9 @@ const SideBar = () => {
                             {isActiveBalance && <BalanceInfo refresh={refreshBalance} handleRefreshBalance={handleRefreshBalance} />}
                         </InputWrap>
                         <GeneralButton
-                            active={enableButton}
+                            active={fileExist}
                             onClick={() => {
-                                if (enableButton) onClickButtonInQuery();
+                                if (fileExist) onClickButtonInQuery();
                             }}
                         >
                             Run
@@ -387,9 +372,13 @@ const SideBar = () => {
                         <BottomContent>
                             <InputWrapRight>
                                 <Label>Result</Label>
-                                <ResultContainer>
-                                    <RawLog>{queryResult}</RawLog>
-                                </ResultContainer>
+                                {typeof queryResult === 'object' ? (
+                                    <JsonViewer data={queryResult} maxHeight="100%" />
+                                ) : (
+                                    <ResultContainer>
+                                        <RawLog>{queryResult}</RawLog>
+                                    </ResultContainer>
+                                )}
                             </InputWrapRight>
                         </BottomContent>
                     )}
@@ -399,4 +388,4 @@ const SideBar = () => {
     );
 };
 
-export default SideBar;
+export default React.memo(SideBar);

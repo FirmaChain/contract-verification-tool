@@ -8,10 +8,10 @@ import usePreference from 'store/usePreference';
 
 interface FileHashInfo_ {
     fileHash: string;
-    handleChangeHashKey: (v: boolean) => void;
+    // handleChangeHashKey: (v: boolean) => void;
 }
 
-const FileHashInfo = ({ fileHash, handleChangeHashKey }: FileHashInfo_) => {
+const FileHashInfo = ({ fileHash /*handleChangeHashKey*/ }: FileHashInfo_) => {
     const { enqueueSnackbar } = useSnackbar();
     const [hashKey, setHashKey] = useState('');
     const [editable, setEditable] = useState(false);
@@ -37,7 +37,7 @@ const FileHashInfo = ({ fileHash, handleChangeHashKey }: FileHashInfo_) => {
 
     const confirmChangeHashKey = () => {
         handleHashPrefix(hashKey);
-        handleChangeHashKey(true);
+        // handleChangeHashKey(true);
         handleEditable(false);
     };
 

@@ -15,10 +15,9 @@ const BalanceInfo = ({ refresh, handleRefreshBalance }: BalanceInfo_) => {
     const { enqueueSnackbar } = useSnackbar();
     const { getBalance, getDefaultFee_uFCT } = useFirmaUtil();
 
-    const { wallet } = useWallet();
+    const { wallet, balance, handleBalance } = useWallet();
 
     const [defaultFee, setDefaultFee] = useState('0');
-    const [balance, setBalance] = useState('0');
 
     const handleDefaultFee = useCallback(() => {
         let feeInUFCT = getDefaultFee_uFCT();
@@ -32,7 +31,7 @@ const BalanceInfo = ({ refresh, handleRefreshBalance }: BalanceInfo_) => {
                 let _address = wallet.address;
                 let _balance = await getBalance(_address);
 
-                setBalance(_balance);
+                handleBalance(_balance);
                 handleRefreshBalance(false);
             } catch (error) {
                 console.log(error);
@@ -43,12 +42,6 @@ const BalanceInfo = ({ refresh, handleRefreshBalance }: BalanceInfo_) => {
                 });
             }
         }
-        //  else {
-        //     enqueueSnackbar('Wallet connection is required to use this feature.', {
-        //         variant: 'warning',
-        //         autoHideDuration: 5000
-        //     });
-        // }
     }, [wallet, enqueueSnackbar]);
 
     useEffect(() => {
