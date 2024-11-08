@@ -86,19 +86,15 @@ export const SmallButton = styled.div`
 `;
 
 export const QueryButton = styled.div<{ isOpen?: boolean; isDesktop?: boolean }>`
-    position: fixed;
+    position: absolute;
     cursor: pointer;
     border-radius: 0 10px 10px 0;
     z-index: ${(props) => (props.isOpen ? '1201' : '1')};
     background: ${(props) => (props.isOpen ? 'rgb(42, 44, 51);' : '#3252d3;')};
-    transition-property: all;
-    transition-duration: 270ms;
-    transition-timing-function: ease-in-out;
     font-family: Lato;
     font-size: 16px;
     font-weight: 550;
     writing-mode: vertical-lr;
-    transform: rotate(180deg);
     color: White;
     text-align: center;
     line-height: 36px;
@@ -110,14 +106,23 @@ export const QueryButton = styled.div<{ isOpen?: boolean; isDesktop?: boolean }>
         height: 90px;
         line-height: 36px;
         top: 110px;
-        right: ${props.isOpen ? `640px` : `0`};
     `
             : `
         width: 30px;
         height: 70px;
         line-height: 26px;
         top: 80px;
-        right: ${props.isOpen ? `calc(100% - 40px)` : `0`};
+    `}
+
+    ${(props) =>
+        props.isOpen
+            ? `
+        left: 0;
+        transform: rotate(180deg) translateX(40px);
+    `
+            : `
+        right: 0;
+        transform: rotate(180deg);
     `}
 `;
 

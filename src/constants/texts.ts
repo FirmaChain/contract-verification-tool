@@ -1,8 +1,3 @@
-export const FIRMA_VERIFY_URL = process.env.REACT_APP_FIRMA_VERIFY_HOST || '';
-export const STATION_URL = process.env.REACT_APP_STATION_HOST || '';
-export const CHAIN_SERVER = process.env.REACT_APP_CHAIN_SERVER || '';
-export const FAUCET_MNEMONIC = process.env.REACT_APP_FAUCET_MNEMONIC || '';
-
 export const MAIN_TITLE = 'FIRMACHAIN VERIFICATION SERVICE';
 export const MAIN_DESC = 'Verification FIRMACHAIN by matching the hash value of the contract on mainnet with files.';
 

@@ -27,9 +27,8 @@ import { FirmaUtil } from '@firmachain/firma-js';
 import JsonViewer from 'components/jsonViewer/jsonViewer';
 
 const SideBar = () => {
-    // const firmaSDK = new FirmaSDK(FirmaConfig.TestNetConfig);
     const { enqueueSnackbar } = useSnackbar();
-    const { wallet, balance, chainNetwork } = useWallet();
+    const { wallet, chainNetwork } = useWallet();
     const { handleModalSwitchNetwork, handleModalLoadingProgress } = useModal();
     const {
         verifyCreateContractFile,
@@ -318,11 +317,10 @@ const SideBar = () => {
 
     return (
         <Fragment>
-            <QueryButton isOpen={isOpen} isDesktop={isDesktop} onClick={() => toggleDrawer(!isOpen)}>
+            <QueryButton isOpen={false} isDesktop={isDesktop} onClick={() => toggleDrawer(!isOpen)}>
                 API
             </QueryButton>
             <Drawer
-                transitionDuration={300}
                 anchor="right"
                 open={isOpen}
                 ModalProps={{
@@ -336,10 +334,15 @@ const SideBar = () => {
                         height: 'calc(100% - 40px)',
                         padding: '20px',
                         backgroundColor: 'rgb(42, 44, 51)',
-                        zIndex: '900'
+                        zIndex: '900',
+                        transition: 'transform 300ms linear alter !important',
+                        overflow: 'visible'
                     }
                 }}
             >
+                <QueryButton isOpen={true} isDesktop={isDesktop} onClick={() => toggleDrawer(!isOpen)}>
+                    API
+                </QueryButton>
                 <SidebarContainer>
                     <TopContent>
                         <InputWrap>

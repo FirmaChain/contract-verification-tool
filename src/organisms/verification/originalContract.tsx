@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
 import { isDesktop } from 'react-device-detect';
 import { ContractInfoBox, ContractInfoContainer } from './styles';
-import { CHAIN_SERVER } from 'constants/texts';
 import axios from 'axios';
 import Description from './description';
 import LinkDescription from './linkDescription';
 import { format, fromUnixTime } from 'date-fns';
+import config from 'config';
 
 export default function OriginalContract({ data }: any) {
     const [transactionHash, setTransactionHash] = useState('');
@@ -29,7 +29,7 @@ export default function OriginalContract({ data }: any) {
     useEffect(() => {
         if (fileHash !== '' && contractHash !== '') {
             axios
-                .get(CHAIN_SERVER + '/getTxHash', {
+                .get(config.chainServerUrl + '/getTxHash', {
                     params: {
                         contractHash: contractHash,
                         fileHash: fileHash

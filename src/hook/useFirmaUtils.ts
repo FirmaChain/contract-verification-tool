@@ -1,6 +1,6 @@
 import { FirmaConfig, FirmaSDK, FirmaUtil } from '@firmachain/firma-js';
 import { Wallet } from '@types';
-import { FAUCET_MNEMONIC } from 'constants/texts';
+import config from 'config';
 import useFile from 'store/useFile';
 import usePreference from 'store/usePreference';
 import useWallet from 'store/useWallet';
@@ -243,7 +243,7 @@ const useFirmaUtil = () => {
             let FCTAmount = 1;
             let memo = 'faucet';
 
-            let faucetWallet = await getRecoverWalletFromMnemonic(FAUCET_MNEMONIC);
+            let faucetWallet = await getRecoverWalletFromMnemonic(config.faucetMnemonic);
             let send = await getSDK().Bank.send(faucetWallet, address, Number(FCTAmount), { memo: memo });
 
             return send;

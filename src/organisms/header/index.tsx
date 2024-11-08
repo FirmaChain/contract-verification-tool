@@ -4,7 +4,6 @@ import { isDesktop } from 'react-device-detect';
 import { EditHashKeyModal, WalletConnectModal, WalletModal } from 'organisms/modal';
 import { Box, Container, LogoTitle } from 'components/styles';
 import { ICON_MENU_MOBILE, IMG_LOGO } from 'constants/images';
-import { FIRMA_VERIFY_URL, STATION_URL } from 'constants/texts';
 import { HeaderBox, MenuButton, MenuContainer, MenuText, OpenIcon, Wrapper, WrapperM } from './styles';
 import ConnectInfoBar from './connectInfoBar';
 import ConnectWallet from './connectWallet';
@@ -23,14 +22,19 @@ const Header = () => {
 
     const [open, setOpen] = useState<boolean>(false);
 
+    const stationUrl = useMemo(() => {
+        if (chainNetwork === 'TESTNET') return config.stationUrl['TESTNET'];
+        else return config.stationUrl['MAINNET'];
+    }, [chainNetwork]);
+
     const explorerUrl = useMemo(() => {
         if (chainNetwork === 'TESTNET') return config.explorerUrl['TESTNET'];
         else return config.explorerUrl['MAINNET'];
     }, [chainNetwork]);
 
     const menus = [
-        { title: 'FIRMA VERIFY', url: FIRMA_VERIFY_URL, newpage: true },
-        { title: 'FIRMA STATION', url: STATION_URL, newpage: true },
+        { title: 'FIRMA VERIFY', url: config.landingUrl, newpage: true },
+        { title: 'FIRMA STATION', url: stationUrl, newpage: true },
         { title: 'BLOCK EXPLORER', url: explorerUrl, newpage: true }
     ];
 
