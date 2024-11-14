@@ -11,15 +11,17 @@ import useFirmaUtil from 'hook/useFirmaUtils';
 import config from '../../config';
 import useFile from 'store/useFile';
 import useProcess from 'store/useProcess';
-
-const demoContract = config.demoContract;
-const demoPrefix = config.demoPrefix;
+import useWallet from 'store/useWallet';
 
 const Main = () => {
     const navigate = useNavigate();
     const { getVirifyResult } = useFirmaUtil();
     const { handleFile, handleMetaJson } = useFile();
     const { setVerifyStep, setDemo } = useProcess();
+    const { chainNetwork } = useWallet();
+
+    const demoContract = config.demoContract[chainNetwork];
+    const demoPrefix = config.demoPrefix[chainNetwork];
 
     useEffect(() => {
         handleFile(null);

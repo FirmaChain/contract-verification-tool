@@ -1,4 +1,4 @@
-import { InputBase, Paper } from '@mui/material';
+import { Paper } from '@mui/material';
 import { IMG_BACKGROUND } from 'constants/images';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
@@ -153,9 +153,11 @@ export const InputFileWrapper = styled(Paper)`
     background-color: rgba(52, 54, 62, 0.75) !important;
     border: 1px solid #555 !important;
     box-shadow: none !important;
+    cursor: pointer;
 `;
 
-export const AttatchTextFiled = styled(InputBase)`
+export const AttatchTextFiled = styled.div`
+    width: 100%;
     font-family: Lato !important;
     font-size: 14px !important;
     width: 100%;

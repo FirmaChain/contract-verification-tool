@@ -20,7 +20,10 @@ const InputSelect = ({ optionList, value, setValue }: InputSelect_) => {
                 margin: 0,
                 backgroundColor: 'rgba(52, 54, 62, 0.75)',
                 border: '1px solid #555',
-                borderRadius: '4px'
+                borderRadius: '4px',
+                '& .MuiSelect-icon': {
+                    fill: '#FFFFFF'
+                }
             }}
             size="small"
         >

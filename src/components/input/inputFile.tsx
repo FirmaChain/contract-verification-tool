@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
+import React, { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
 import { Divider, IconButton } from '@mui/material';
 import { AttatchTextFiled, InputBox, InputFileWrapper, InputTitle } from 'components/styles';
 import { useSnackbar } from 'notistack';
@@ -17,6 +17,8 @@ interface InputFile_ {
 const InputFile = ({ setFileData }: InputFile_) => {
     const { enqueueSnackbar } = useSnackbar();
 
+    const inputRef = useRef<HTMLInputElement>(null);
+
     const [File, setFile] = useState<null | ArrayBufferLike>(null);
     const [FileName, setFileName] = useState<string>('');
     const [FileSize, setFileSize] = useState<string>('');
@@ -30,25 +32,35 @@ const InputFile = ({ setFileData }: InputFile_) => {
 
         if (file === undefined) return;
 
-        // if(file.size / 1024 / 1024 > 20){
-        //     // file limit
-        //     // handleAlertOpen('File size exceeds the allowable limit of 20MB', 3000, 'error');
-        //     event.target.value = null;
-        //     return enqueueSnackbar('File size exceeds the allowable limit of 20MB', {
-        //         variant: 'error',
-        //         autoHideDuration: 3000,
-        //     });
-        // }
-
         reader.readAsArrayBuffer(file);
 
         reader.onload = function () {
             if (file) {
+                if (file.type !== 'application/pdf') {
+                    console.error('This is a file type that is not supported.');
+                    enqueueSnackbar('This is a file type that is not supported.', { variant: 'error', autoHideDuration: 3000 });
+
+                    return;
+                }
+
+                if (file.size / 1024 / 1024 > 20) {
+                    console.error('Upload is not possible if the file size is more than 20MB.');
+                    enqueueSnackbar('Upload is not possible if the file size is more than 20MB.', {
+                        variant: 'error',
+                        autoHideDuration: 3000
+                    });
+
+                    return;
+                }
+
                 setFileSize((file.size / 1024 / 1024).toFixed(2));
                 setFileName(file.name);
                 setFile(reader.result as ArrayBufferLike);
             } else {
-                console.error('ERROR: File not found.');
+                enqueueSnackbar('Failed to read file.', {
+                    variant: 'error',
+                    autoHideDuration: 3000
+                });
             }
         };
 
@@ -78,13 +90,21 @@ const InputFile = ({ setFileData }: InputFile_) => {
     return (
         <InputBox>
             <InputTitle>Attach File</InputTitle>
-            <InputFileWrapper>
-                <AttatchTextFiled value={FileName + (FileName && ` (${FileSize} MB)`)} />
+            <InputFileWrapper onClick={() => inputRef.current?.click()}>
+                <AttatchTextFiled>{FileName + (FileName && ` (${FileSize} MB)`)}</AttatchTextFiled>
                 <Divider orientation="vertical" sx={{ margin: 0, borderColor: '#555' }} />
-                <IconButton component="label" sx={{ color: '#ffffff' }}>
+                <IconButton sx={{ color: '#ffffff' }}>
                     <FileIcon />
-                    <input id={'file_input'} style={{ display: 'none' }} type="file" name="imageFile" onChange={fileChangedHandler} />
                 </IconButton>
+                <input
+                    ref={inputRef}
+                    id={'file_input'}
+                    style={{ display: 'none' }}
+                    type="file"
+                    name="pdfFile"
+                    accept="application/pdf"
+                    onChange={fileChangedHandler}
+                />
             </InputFileWrapper>
         </InputBox>
     );

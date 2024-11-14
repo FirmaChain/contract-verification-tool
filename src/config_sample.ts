@@ -1,7 +1,21 @@
-const config = {
-    demoPrefix: '',
+type Config = {
+    demoPrefix: Record<string, string>;
+    preFix: string;
+    demoContract: Record<string, string>;
+    stationUrl: Record<string, string>;
+    explorerUrl: Record<string, string>;
+    landingUrl: string;
+    chainServerUrl: string;
+    faucetMnemonic: string;
+};
+
+const config: Config = {
+    demoPrefix: { TESTNET: '', MAINNET: '' },
     preFix: '',
-    demoContract: '',
+    demoContract: {
+        MAINNET: '',
+        TESTNET: ''
+    },
     stationUrl: {
         TESTNET: '',
         MAINNET: ''

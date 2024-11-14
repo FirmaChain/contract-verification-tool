@@ -68,9 +68,11 @@ export default function UploadBox({ handleErrorMsg }: { handleErrorMsg: (v: stri
     };
 
     const handleVerifyFileHash = useCallback(() => {
-        handleFileHash(fileHash);
+        if (fileHash.length > 0) {
+            handleFileHash(fileHash);
 
-        setVerifyStep(1);
+            setVerifyStep(1);
+        }
     }, [fileHash]);
 
     const handleClick = () => {
@@ -118,6 +120,23 @@ export default function UploadBox({ handleErrorMsg }: { handleErrorMsg: (v: stri
             reader.readAsArrayBuffer(uploadedFile);
 
             reader.onload = async function () {
+                if (uploadedFile.type !== 'application/pdf') {
+                    console.error('This is a file type that is not supported.');
+                    enqueueSnackbar('This is a file type that is not supported.', { variant: 'error', autoHideDuration: 3000 });
+
+                    return;
+                }
+
+                if (uploadedFile.size / 1024 / 1024 > 20) {
+                    console.error('Upload is not possible if the file size is more than 20MB.');
+                    enqueueSnackbar('Upload is not possible if the file size is more than 20MB.', {
+                        variant: 'error',
+                        autoHideDuration: 3000
+                    });
+
+                    return;
+                }
+
                 const buffer = new Uint8Array(reader.result as ArrayBuffer);
                 const result = {
                     name: uploadedFile.name,
@@ -262,7 +281,13 @@ export default function UploadBox({ handleErrorMsg }: { handleErrorMsg: (v: stri
                             <TooltipText>{PREFIX_TOOLTIP}</TooltipText>
                         </TooltipWrap>
                         <UploadFileWrapper ref={dragRef} enableToUpload={verifyStep === 0} onClick={handleClick}>
-                            <input ref={hiddenFileInput} type="file" onChange={onChangeFiles} style={{ display: 'none' }} />
+                            <input
+                                ref={hiddenFileInput}
+                                type="file"
+                                accept="application/pdf"
+                                onChange={onChangeFiles}
+                                style={{ display: 'none' }}
+                            />
                             <Title isDesktop={isDesktop}>{UPLOAD_TITLE}</Title>
                             <Desc isDesktop={isDesktop}>{UPLOAD_DESC}</Desc>
                             <PdfImg src={IMG_PDF_UPLOAD} alt={UPLOAD_DESC} />

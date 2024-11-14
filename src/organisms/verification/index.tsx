@@ -25,12 +25,14 @@ import useFirmaUtil from 'hook/useFirmaUtils';
 import config from '../../config';
 import useFile from 'store/useFile';
 import useProcess from 'store/useProcess';
+import useWallet from 'store/useWallet';
 
 export default function Verification() {
     const { getVirifyResult } = useFirmaUtil();
 
     const { file, handleFile, handleFileHash, handleMetaJson } = useFile();
     const { demo } = useProcess();
+    const { chainNetwork } = useWallet();
 
     const navigate = useNavigate();
     const match = useMatch('/verification/:id');
@@ -104,7 +106,7 @@ export default function Verification() {
     // }
 
     const handleContractPDF = () => {
-        return window.open(config.demoContract);
+        return window.open(config.demoContract[chainNetwork]);
     };
 
     useEffect(() => {

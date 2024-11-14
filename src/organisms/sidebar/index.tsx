@@ -300,12 +300,7 @@ const SideBar = () => {
     }, [fileExist, queryList]);
 
     useEffect(() => {
-        const balance = useWallet.getState().balance;
-        const defaultFee = FirmaUtil.getFCTStringFromUFCT(getDefaultFee_uFCT());
-
         if ([1, 3, 6].includes(queryType)) {
-            console.log(Number(balance), Number(defaultFee));
-
             if (wallet.address === '') {
                 enqueueSnackbar('Wallet connection is required to use this feature.', {
                     variant: 'warning',

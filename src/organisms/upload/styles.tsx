@@ -363,7 +363,7 @@ export const GeneralButton = styled.div<{ active?: boolean }>`
         background-color:  #316ff5;`
             : `color: #8d8d8d;
         background-color: rgba(52, 54, 62, 0.75);`}
-    cursor: pointer;
+    cursor: ${({ active }) => (active ? 'pointer' : 'not-allowed')};
     font-family: Lato;
     font-size: 18px;
     border-radius: 8px;
