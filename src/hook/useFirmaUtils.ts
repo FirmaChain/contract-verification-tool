@@ -1,5 +1,6 @@
 import { FirmaConfig, FirmaSDK, FirmaUtil } from '@firmachain/firma-js';
 import { Wallet } from '@types';
+import axios from 'axios';
 import config from 'config';
 import useFile from 'store/useFile';
 import usePreference from 'store/usePreference';
@@ -20,6 +21,26 @@ const useFirmaUtil = () => {
         const isMainnet = chainNetwork === 'MAINNET';
 
         return new FirmaSDK(isMainnet ? FirmaConfig.MainNetConfig : FirmaConfig.TestNetConfig);
+    };
+
+    const customAddBuffer = async (buffer: ArrayBuffer): Promise<string> => {
+        try {
+            const FormData = require('form-data');
+            var bodyData = new FormData();
+            bodyData.append('buffer', new Blob([buffer]));
+
+            const response = await axios.request({
+                url: getSDK().Config.ipfsNodeAddress + ':' + getSDK().Config.ipfsNodePort + '/api/v0/add',
+                method: 'POST',
+                headers: { 'Content-Type': 'multipart/form-data' },
+                data: bodyData
+            });
+
+            return response.data.Hash;
+        } catch (error) {
+            FirmaUtil.printLog(error);
+            throw error;
+        }
     };
 
     const getBalance = async (address: string) => {
@@ -106,7 +127,7 @@ const useFirmaUtil = () => {
 
             const ownerList = [_address];
 
-            const ipfsHash = await getSDK().Ipfs.addBuffer(fileBuffer);
+            const ipfsHash = await customAddBuffer(fileBuffer);
 
             const encryptHash = _wallet.encryptData(ipfsHash);
             const jsonData = { storage: 'ipfs', encryptIpfsHash: [encryptHash] };
@@ -209,7 +230,6 @@ const useFirmaUtil = () => {
     const verifyGetContractLog = async (fileBuffer: Uint8Array) => {
         try {
             const contractList = await verifyGetContractListFromHash(fileBuffer);
-            console.log(contractList);
 
             if (contractList.length > 0) {
                 const logId = contractList[contractList.length - 1].toString();

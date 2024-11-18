@@ -331,7 +331,7 @@ const SideBar = () => {
                         backgroundColor: 'rgb(42, 44, 51)',
                         zIndex: '900',
                         transition: 'transform 300ms linear alter !important',
-                        overflow: 'visible'
+                        overflow: 'scroll'
                     }
                 }}
             >
