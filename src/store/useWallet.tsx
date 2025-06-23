@@ -68,12 +68,17 @@ const useWallet = create<FormProps>()(
                 })
         })),
         {
+            version: 2,
             name: 'verification-wallet',
-            partialize: (state) => Object.fromEntries(Object.entries(state).filter(([key]) => !['balance'].includes(key))),
+            //? Note: 'balance' and 'chainNetwork' are intentionally not persisted.
+            //? 'balance' requires refresh on each load.
+            //? For external integrations, 'chainNetwork' is always fixed to mainnet to meet integration requirements.
+            partialize: (state) => Object.fromEntries(Object.entries(state).filter(([key]) => !['balance', 'chainNetwork'].includes(key))),
             onRehydrateStorage: (state) => {
-                if (!['TESTNET', 'MAINNET'].includes(state.chainNetwork)) {
-                    state.chainNetwork = 'TESTNET';
-                }
+                if (state) state.chainNetwork = 'MAINNET';
+            },
+            merge: (persistedState, currentState) => {
+                return { ...currentState, ...(persistedState as any), chainNetwork: 'MAINNET' };
             }
         }
     )
