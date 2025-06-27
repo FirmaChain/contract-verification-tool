@@ -1,10 +1,10 @@
-import { ICON_COPY } from 'constants/images';
+import { ICON_COPY } from '@/constants/images';
 import { useEffect, useMemo, useState } from 'react';
 import { isDesktop } from 'react-device-detect';
 import { ContractInfoContentWrapper, ContractInfoLink, ContractInfoTitle, CopyIcon, CopyMessage, Links, LinkWrapper } from './styles';
-import useWallet from 'store/useWallet';
-import { copyToClipboard } from 'utils/common';
-import { config } from 'constants/common';
+import useWallet from '@/store/useWallet';
+import { copyToClipboard } from '@/utils/common';
+import { config } from '@/constants/common';
 
 interface LinkDescription_ {
     title: string;

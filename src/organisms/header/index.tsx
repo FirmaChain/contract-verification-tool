@@ -1,16 +1,16 @@
 import { useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { isDesktop } from 'react-device-detect';
-import { EditHashKeyModal, WalletConnectModal, WalletModal } from 'organisms/modal';
-import { Box, Container, LogoTitle } from 'components/styles';
-import { ICON_MENU_MOBILE, IMG_LOGO } from 'constants/images';
+import { EditHashKeyModal, WalletConnectModal, WalletModal } from '@/organisms/modal';
+import { Box, Container, LogoTitle } from '@/components/styles';
+import { ICON_MENU_MOBILE, IMG_LOGO } from '@/constants/images';
 import { HeaderBox, MenuButton, MenuContainer, MenuText, OpenIcon, Wrapper, WrapperM } from './styles';
 import ConnectInfoBar from './connectInfoBar';
 import ConnectWallet from './connectWallet';
-import useWallet from 'store/useWallet';
-import SwitchNetworkModal from 'organisms/modal/switchNetworkModal';
-import useModal from 'store/useModal';
-import { config } from 'constants/common';
+import useWallet from '@/store/useWallet';
+import SwitchNetworkModal from '@/organisms/modal/switchNetworkModal';
+import useModal from '@/store/useModal';
+import { config } from '@/constants/common';
 
 const Header = () => {
     const location = useLocation();

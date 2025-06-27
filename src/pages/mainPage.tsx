@@ -1,4 +1,4 @@
-import Main from 'organisms/main';
+import Main from '@/organisms/main';
 
 export default function MainPage() {
     return <Main />;

@@ -1,4 +1,4 @@
-import { ICON_CLOSE_MODAL } from 'constants/images';
+import { ICON_CLOSE_MODAL } from '@/constants/images';
 import styled from 'styled-components';
 
 export const ModalWrapper = styled.div<{ visible?: boolean }>`

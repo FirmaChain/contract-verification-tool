@@ -1,20 +1,20 @@
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
 import { isDesktop } from 'react-device-detect';
-import Body from 'components/layout/body';
-import Header from 'organisms/header';
+import Body from '@/components/layout/body';
+import Header from '@/organisms/header';
 import MainPage from './mainPage';
-import Footer from 'organisms/footer';
+import Footer from '@/organisms/footer';
 import UploadPage from './uploadPage';
-import Common from 'organisms/common';
+import Common from '@/organisms/common';
 import VerificationPage from './verificationPage';
-import SideBar from 'organisms/sidebar';
-import DimProgress from 'components/progress/dimProgress';
-import useModal from 'store/useModal';
+import SideBar from '@/organisms/sidebar';
+import DimProgress from '@/components/progress/dimProgress';
+import useModal from '@/store/useModal';
 import './routes.css';
 import { useEffect } from 'react';
-import useWallet from 'store/useWallet';
-import useFirmaUtil from 'hook/useFirmaUtils';
+import useWallet from '@/store/useWallet';
+import useFirmaUtil from '@/hook/useFirmaUtils';
 
 const PagesRoutes = () => {
     const { loadingProgress } = useModal();

@@ -1,12 +1,12 @@
 import { Fragment, useEffect, useState } from 'react';
-import { ICON_DONE } from 'constants/images';
+import { ICON_DONE } from '@/constants/images';
 import { useNavigate } from 'react-router';
-import { convertFileSize } from 'utils/common';
+import { convertFileSize } from '@/utils/common';
 import { DoneIcon, Filename, Filesize, LoadingTitle, Percentage, ProgressBox } from './styles';
-import Progress from 'components/progress/progress';
+import Progress from '@/components/progress/progress';
 import { isDesktop } from 'react-device-detect';
-import useFile from 'store/useFile';
-import { Texts } from 'constants/fixedString';
+import useFile from '@/store/useFile';
+import { Texts } from '@/constants/fixedString';
 
 export default function LoadingBox() {
     const { file, fileHash } = useFile();

@@ -1,6 +1,6 @@
 import { useCallback } from 'react';
 import { useSnackbar } from 'notistack';
-import { copyToClipboard } from 'utils/common';
+import { copyToClipboard } from '@/utils/common';
 import {
     ChainInfo,
     ChainInfoDot,
@@ -13,9 +13,9 @@ import {
     WalletAddress
 } from './styles';
 import { isDesktop } from 'react-device-detect';
-import useWallet from 'store/useWallet';
-import useFirmaUtil from 'hook/useFirmaUtils';
-import { Types } from 'constants/fixedString';
+import useWallet from '@/store/useWallet';
+import useFirmaUtil from '@/hook/useFirmaUtils';
+import { Types } from '@/constants/fixedString';
 
 const ConnectInfoBar = () => {
     const { enqueueSnackbar } = useSnackbar();

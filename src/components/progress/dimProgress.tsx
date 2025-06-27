@@ -1,6 +1,6 @@
 import { CircularProgress } from '@mui/material';
-import { DimProgressContainer, LoadingMessage } from 'components/styles';
-import useModal from 'store/useModal';
+import { DimProgressContainer, LoadingMessage } from '@/components/styles';
+import useModal from '@/store/useModal';
 
 const DimProgress = () => {
     const { loadingProgress } = useModal();

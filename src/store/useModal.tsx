@@ -1,4 +1,4 @@
-import { Types } from 'constants/fixedString';
+import { Types } from '@/constants/fixedString';
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 

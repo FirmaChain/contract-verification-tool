@@ -3,8 +3,8 @@ import { FirmaUtil } from '@firmachain/firma-js';
 import { useSnackbar } from 'notistack';
 import { TextValue, TextBox, BalanceNotice, TextValueBox, TitleValue } from './styles';
 import { ErrorOutlineOutlined } from '@mui/icons-material';
-import useWallet from 'store/useWallet';
-import useFirmaUtil from 'hook/useFirmaUtils';
+import useWallet from '@/store/useWallet';
+import useFirmaUtil from '@/hook/useFirmaUtils';
 
 interface BalanceInfo_ {
     refresh: boolean;

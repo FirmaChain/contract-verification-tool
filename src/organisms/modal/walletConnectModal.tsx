@@ -3,8 +3,8 @@ import { isDesktop } from 'react-device-detect';
 import { Modal } from '../../components/modal';
 import { ModalTitle, ModalContents, ButtonBox, ConnectType, ConnectTypeButtonBox } from './styles';
 import { Add, Restore, SyncAlt } from '@mui/icons-material';
-import useModal from 'store/useModal';
-import { Types } from 'constants/fixedString';
+import useModal from '@/store/useModal';
+import { Types } from '@/constants/fixedString';
 
 const WalletConnectModal = () => {
     const { walletConnect: connect, handleModalWallet, handleModalWalletConnect } = useModal();

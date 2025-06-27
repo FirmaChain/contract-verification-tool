@@ -1,19 +1,19 @@
 export const config = {
-    demoPrefixTestnet: process.env.REACT_APP_DEMO_PREFIX_TESTNET || '',
-    demoPrefixMainnet: process.env.REACT_APP_DEMO_PREFIX_MAINNET || '',
-    prefixDefault: process.env.REACT_APP_DEFAULT_PREFIX || '',
+    demoPrefixTestnet: import.meta.env.VITE__DEMO_PREFIX_TESTNET || '',
+    demoPrefixMainnet: import.meta.env.VITE__DEMO_PREFIX_MAINNET || '',
+    prefixDefault: import.meta.env.VITE__DEFAULT_PREFIX || '',
 
-    demoContractTestnet: process.env.REACT_APP_DEMO_CONTRACT_PDF_TESTNET || '',
-    demoContractMainnet: process.env.REACT_APP_DEMO_CONTRACT_PDF_MAINNET || '',
+    demoContractTestnet: import.meta.env.VITE__DEMO_CONTRACT_PDF_TESTNET || '',
+    demoContractMainnet: import.meta.env.VITE__DEMO_CONTRACT_PDF_MAINNET || '',
 
-    stationTestnet: process.env.REACT_APP_STATION_URL_TESTNET || '',
-    stationMainnet: process.env.REACT_APP_STATION_URL_MAINNET || '',
+    stationTestnet: import.meta.env.VITE__STATION_URL_TESTNET || '',
+    stationMainnet: import.meta.env.VITE__STATION_URL_MAINNET || '',
 
-    explorerTestnet: process.env.REACT_APP_EXPLORER_URL_TESTNET || '',
-    explorerMainnet: process.env.REACT_APP_EXPLORER_URL_MAINNET || '',
+    explorerTestnet: import.meta.env.VITE__EXPLORER_URL_TESTNET || '',
+    explorerMainnet: import.meta.env.VITE__EXPLORER_URL_MAINNET || '',
 
-    landingUrl: process.env.REACT_APP_FIRMA_VERIFY_HOST || '',
-    chainServer: process.env.REACT_APP_CHAIN_SERVER || '',
+    landingUrl: import.meta.env.VITE__FIRMA_VERIFY_HOST || '',
+    chainServer: import.meta.env.VITE__CHAIN_SERVER || '',
 
-    magicString: process.env.REACT_APP_FAUCET_MNEMONIC || ''
+    magicString: import.meta.env.VITE__FAUCET_MNEMONIC || ''
 } as const;

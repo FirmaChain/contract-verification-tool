@@ -1,5 +1,5 @@
 import { Paper } from '@mui/material';
-import { IMG_BACKGROUND } from 'constants/images';
+import { IMG_BACKGROUND } from '@/constants/images';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 

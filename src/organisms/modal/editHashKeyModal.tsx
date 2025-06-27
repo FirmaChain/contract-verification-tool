@@ -2,8 +2,8 @@ import React, { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { isDesktop } from 'react-device-detect';
 import { Modal } from '../../components/modal';
 import { ModalTitle, ModalContents, ButtonBox, ConnectType, TabItem, InputBox, InputTitle, TextWrapper, TextAreaBox } from './styles';
-import usePreference from 'store/usePreference';
-import useModal from 'store/useModal';
+import usePreference from '@/store/usePreference';
+import useModal from '@/store/useModal';
 
 const EditHashKeyModal = () => {
     const ModalWidth = isDesktop ? '500px' : '100%';

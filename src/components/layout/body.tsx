@@ -1,4 +1,4 @@
-import { BodyContainer } from 'components/styles';
+import { BodyContainer } from '@/components/styles';
 import { isDesktop } from 'react-device-detect';
 
 const Body = (props: React.PropsWithChildren) => {

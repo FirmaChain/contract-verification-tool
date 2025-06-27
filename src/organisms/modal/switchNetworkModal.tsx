@@ -2,8 +2,8 @@ import { isDesktop } from 'react-device-detect';
 import { Modal } from '../../components/modal';
 import { ModalTitle, ModalContents, DisableButton, GeneralButton } from './styles';
 import styled from 'styled-components';
-import useFirmaUtil from 'hook/useFirmaUtils';
-import useModal from 'store/useModal';
+import useFirmaUtil from '@/hook/useFirmaUtils';
+import useModal from '@/store/useModal';
 
 const SubTitle = styled.div`
     margin: 2px 0 10px;

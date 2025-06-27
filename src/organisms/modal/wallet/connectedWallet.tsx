@@ -1,11 +1,11 @@
 import { useEffect, useMemo } from 'react';
-import { copyToClipboard } from 'utils/common';
+import { copyToClipboard } from '@/utils/common';
 import { useSnackbar } from 'notistack';
 import { ButtonWrap, CopyIconImg, DisableButton, GeneralButton, Input, InputWrap, Label, NewWalletWrap, TextBox, TabItem } from '../styles';
-import useWallet from 'store/useWallet';
-import useFirmaUtil from 'hook/useFirmaUtils';
-import useModal from 'store/useModal';
-import { Texts } from 'constants/fixedString';
+import useWallet from '@/store/useWallet';
+import useFirmaUtil from '@/hook/useFirmaUtils';
+import useModal from '@/store/useModal';
+import { Texts } from '@/constants/fixedString';
 
 const ConnectedWallet = () => {
     const { wallet, balance, chainNetwork, handleWallet, handleBalance, clearStore } = useWallet();

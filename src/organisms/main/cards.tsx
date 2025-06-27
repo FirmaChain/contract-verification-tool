@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { IMG_SCAN, IMG_UPLOAD, IMG_VERIFYING } from 'constants/images';
+import { IMG_SCAN, IMG_UPLOAD, IMG_VERIFYING } from '@/constants/images';
 import { CardBox, CardContainer, CardDesc, CardImg } from './styles';
 import { isDesktop } from 'react-device-detect';
 

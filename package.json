@@ -1,39 +1,33 @@
 {
     "name": "contract-verification-tool",
     "version": "0.1.0",
+    "type": "module",
     "private": true,
     "dependencies": {
         "@firmachain/firma-js": "^0.2.62",
         "@mui/icons-material": "^5.8.4",
         "@mui/material": "^5.2.7",
-        "@mui/styled-engine-sc": "^5.1.0",
-        "axios": "^1.7.7",
-        "browserify-fs": "^1.0.0",
-        "crypto-browserify": "^3.12.1",
+        "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest",
+        "axios": "^1.10.0",
         "date-fns": "^4.1.0",
-        "env-cmd": "^10.1.0",
         "notistack": "^2.0.5",
-        "path-browserify": "^1.0.1",
         "prettier": "^3.3.3",
-        "process": "^0.11.10",
         "react": "^18.3.1",
         "react-device-detect": "^2.1.2",
         "react-dom": "^18.3.1",
         "react-router": "^6.2.1",
         "react-router-dom": "^6.2.1",
-        "react-scripts": "^5.0.1",
         "react-transition-group": "^4.4.5",
-        "stream-browserify": "^3.0.0",
         "styled-components": "^5.3.3",
-        "util": "^0.12.5",
-        "vm-browserify": "^1.1.2",
         "web-vitals": "^2.1.2",
         "zustand": "^5.0.1"
     },
     "scripts": {
-        "dev": "env-cmd -f configs/.env.local craco start",
-        "testnet": "GENERATE_SOURCEMAP=false env-cmd -f configs/.env.testnet craco build",
-        "mainnet": "GENERATE_SOURCEMAP=false env-cmd -f configs/.env.mainnet craco build",
+        "dev": "vite dev --mode dev",
+        "testnet": "vite dev --mode testnet",
+        "mainnet": "vite dev --mode mainnet",
+        "build:testnet": "vite build --mode testnet",
+        "build:mainnet": "vite build --mode mainnet",
         "deploy-testnet": "aws s3 sync ./build s3://deploy-ecosystem/testnet/verify-tool --profile=firmachain-deploy --delete",
         "invalidate-testnet": "aws cloudfront create-invalidation --profile=firmachain-deploy --distribution-id E2UUAL0XYSVCXP --paths '/*'",
         "deploy-mainnet": "aws s3 sync ./build s3://deploy-ecosystem/mainnet/verify-tool --profile=firmachain-deploy --delete",
@@ -59,10 +53,18 @@
         ]
     },
     "devDependencies": {
-        "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
-        "@craco/craco": "^7.1.0",
         "@types/react-dom": "^18.3.1",
         "@types/styled-components": "^5.1.34",
-        "typescript": "^4.9.5"
-    }
+        "@vitejs/plugin-react-swc": "^3.10.2",
+        "immer": "^10.1.1",
+        "typescript": "^4.9.5",
+        "vite": "^7.0.0",
+        "vite-plugin-bundle-obfuscator": "^1.7.0",
+        "vite-plugin-node-polyfills": "^0.23.0",
+        "vite-tsconfig-paths": "^5.1.4"
+    },
+    "resolutions": {
+        "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
+    },
+    "packageManager": "yarn@4.9.2"
 }

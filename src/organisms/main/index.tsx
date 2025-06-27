@@ -1,17 +1,17 @@
 import { useEffect } from 'react';
-import { Box, DescText, StyledLink } from 'components/styles';
+import { Box, DescText, StyledLink } from '@/components/styles';
 import { isDesktop } from 'react-device-detect';
 import { ButtonBox } from './styles';
-import RectButton from 'components/button/rectButton';
-import DemoButton from 'components/button/demoButton';
+import RectButton from '@/components/button/rectButton';
+import DemoButton from '@/components/button/demoButton';
 import Cards from './cards';
 import { useNavigate } from 'react-router';
-import useFirmaUtil from 'hook/useFirmaUtils';
-import useFile from 'store/useFile';
-import useProcess from 'store/useProcess';
-import useWallet from 'store/useWallet';
-import { Texts, Types } from 'constants/fixedString';
-import { config } from 'constants/common';
+import useFirmaUtil from '@/hook/useFirmaUtils';
+import useFile from '@/store/useFile';
+import useProcess from '@/store/useProcess';
+import useWallet from '@/store/useWallet';
+import { Texts, Types } from '@/constants/fixedString';
+import { config } from '@/constants/common';
 
 const Main = () => {
     const navigate = useNavigate();

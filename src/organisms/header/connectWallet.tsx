@@ -1,11 +1,11 @@
 import { useMemo } from 'react';
-import { ICON_LOGIN, ICON_SETTING } from 'constants/images';
+import { ICON_LOGIN, ICON_SETTING } from '@/constants/images';
 import { isDesktop } from 'react-device-detect';
 import { MenuText, Icon, Wrapper } from './styles';
-import useWallet from 'store/useWallet';
-import useFile from 'store/useFile';
-import useModal from 'store/useModal';
-import { Types } from 'constants/fixedString';
+import useWallet from '@/store/useWallet';
+import useFile from '@/store/useFile';
+import useModal from '@/store/useModal';
+import { Types } from '@/constants/fixedString';
 
 const ConnectWallet = () => {
     const { wallet, chainNetwork } = useWallet();

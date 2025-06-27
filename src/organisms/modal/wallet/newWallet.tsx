@@ -1,11 +1,11 @@
 import { useCallback, useEffect, useState } from 'react';
-import { copyToClipboard } from 'utils/common';
+import { copyToClipboard } from '@/utils/common';
 import { ButtonWrap, CopyIconImg, GeneralButton, Input, InputWrap, Label, NewWalletWrap, SubTitle, TextBox, TabItem } from '../styles';
 import { useSnackbar } from 'notistack';
-import useWallet from 'store/useWallet';
-import useFirmaUtil from 'hook/useFirmaUtils';
-import useModal from 'store/useModal';
-import { Texts, Types } from 'constants/fixedString';
+import useWallet from '@/store/useWallet';
+import useFirmaUtil from '@/hook/useFirmaUtils';
+import useModal from '@/store/useModal';
+import { Texts, Types } from '@/constants/fixedString';
 
 const NewWallet = () => {
     const { enqueueSnackbar } = useSnackbar();

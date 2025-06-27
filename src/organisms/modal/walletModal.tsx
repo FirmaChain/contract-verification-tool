@@ -5,8 +5,8 @@ import { ModalTitle, ModalContents } from './styles';
 import NewWallet from './wallet/newWallet';
 import ConnectedWallet from './wallet/connectedWallet';
 import RecoverWallet from './wallet/recoverWallet';
-import useModal from 'store/useModal';
-import { Types } from 'constants/fixedString';
+import useModal from '@/store/useModal';
+import { Types } from '@/constants/fixedString';
 
 const WalletModal = () => {
     const { wallet: modalWallet, handleModalWallet } = useModal();

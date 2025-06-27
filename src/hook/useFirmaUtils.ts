@@ -1,11 +1,11 @@
 import { FirmaConfig, FirmaSDK, FirmaUtil } from '@firmachain/firma-js';
 import { Wallet } from '@types';
 import axios from 'axios';
-import { config } from 'constants/common';
-import { Types } from 'constants/fixedString';
-import useFile from 'store/useFile';
-import usePreference from 'store/usePreference';
-import useWallet from 'store/useWallet';
+import { config } from '@/constants/common';
+import { Types } from '@/constants/fixedString';
+import useFile from '@/store/useFile';
+import usePreference from '@/store/usePreference';
+import useWallet from '@/store/useWallet';
 
 const useFirmaUtil = () => {
     const { hashPrefix } = usePreference();

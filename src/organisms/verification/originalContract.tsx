@@ -5,7 +5,7 @@ import axios from 'axios';
 import Description from './description';
 import LinkDescription from './linkDescription';
 import { format, fromUnixTime } from 'date-fns';
-import { config } from 'constants/common';
+import { config } from '@/constants/common';
 
 export default function OriginalContract({ data }: any) {
     const [transactionHash, setTransactionHash] = useState('');

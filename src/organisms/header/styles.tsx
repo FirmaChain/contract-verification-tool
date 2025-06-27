@@ -1,4 +1,4 @@
-import { ICON_OPEN_IN_HOVER, ICON_OPEN_IN_NEW } from 'constants/images';
+import { ICON_OPEN_IN_HOVER, ICON_OPEN_IN_NEW } from '@/constants/images';
 import styled from 'styled-components';
 
 export const HeaderBox = styled.div`

@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { isDesktop } from 'react-device-detect';
-import { Box, Container, TitleText } from 'components/styles';
-import { Texts } from 'constants/fixedString';
+import { Box, Container, TitleText } from '@/components/styles';
+import { Texts } from '@/constants/fixedString';
 
 export default function Common({ children }: { children: ReactNode }) {
     return (

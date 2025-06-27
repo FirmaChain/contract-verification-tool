@@ -1,5 +1,5 @@
 import React, { ChangeEvent } from 'react';
-import { InputBox, InputTitle, TextAreaBox, TextWrapper } from 'components/styles';
+import { InputBox, InputTitle, TextAreaBox, TextWrapper } from '@/components/styles';
 
 interface InputTextarea_ {
     title: string;

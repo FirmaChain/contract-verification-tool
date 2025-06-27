@@ -2,9 +2,9 @@ import { Check, ModeEdit } from '@mui/icons-material';
 import { Divider, IconButton, Stack } from '@mui/material';
 import { useSnackbar } from 'notistack';
 import { ChangeEvent, useEffect, useState } from 'react';
-import { copyToClipboard } from 'utils/common';
+import { copyToClipboard } from '@/utils/common';
 import { CopyIconImg, TextBox, TextInput, TextValue, TextValueBox, TitleValue } from './styles';
-import usePreference from 'store/usePreference';
+import usePreference from '@/store/usePreference';
 
 interface FileHashInfo_ {
     fileHash: string;

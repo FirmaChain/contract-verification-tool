@@ -14,17 +14,17 @@ import {
 } from './styles';
 import { useSnackbar } from 'notistack';
 import { isDesktop } from 'react-device-detect';
-import InputSelect from 'components/input/inputSelect';
-import InputFile, { FileData_ } from 'components/input/inputFile';
-import InputTextarea from 'components/input/inputTextarea';
+import InputSelect from '@/components/input/inputSelect';
+import InputFile, { FileData_ } from '@/components/input/inputFile';
+import InputTextarea from '@/components/input/inputTextarea';
 import BalanceInfo from './balanceInfo';
 import FileHashInfo from './fileHashInfo';
-import { wait } from 'utils/common';
-import useWallet from 'store/useWallet';
-import useFirmaUtil from 'hook/useFirmaUtils';
-import useModal from 'store/useModal';
+import { wait } from '@/utils/common';
+import useWallet from '@/store/useWallet';
+import useFirmaUtil from '@/hook/useFirmaUtils';
+import useModal from '@/store/useModal';
 import { FirmaUtil } from '@firmachain/firma-js';
-import JsonViewer from 'components/jsonViewer/jsonViewer';
+import JsonViewer from '@/components/jsonViewer/jsonViewer';
 
 const SideBar = () => {
     const { enqueueSnackbar } = useSnackbar();

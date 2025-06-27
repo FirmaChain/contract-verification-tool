@@ -1,4 +1,4 @@
-import { config } from 'constants/common';
+import { config } from '@/constants/common';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';

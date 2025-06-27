@@ -1,6 +1,6 @@
 import React, { ChangeEvent, useCallback, useEffect, useRef, useState } from 'react';
 import { Divider, IconButton } from '@mui/material';
-import { AttatchTextFiled, InputBox, InputFileWrapper, InputTitle } from 'components/styles';
+import { AttatchTextFiled, InputBox, InputFileWrapper, InputTitle } from '@/components/styles';
 import { useSnackbar } from 'notistack';
 import FileIcon from '@mui/icons-material/AttachFile';
 

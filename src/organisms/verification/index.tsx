@@ -2,9 +2,9 @@ import { Fragment, useEffect, useMemo, useState } from 'react';
 import { isDesktop } from 'react-device-detect';
 import { useMatch, useNavigate } from 'react-router';
 
-import { convertFileSize } from 'utils/common';
-import { Box, StyledLink } from 'components/styles';
-import { IMG_NOT_VERIFIED, IMG_VERIFIED } from 'constants/images';
+import { convertFileSize } from '@/utils/common';
+import { Box, StyledLink } from '@/components/styles';
+import { IMG_NOT_VERIFIED, IMG_VERIFIED } from '@/constants/images';
 import {
     ResultBox,
     Container,
@@ -18,14 +18,14 @@ import {
     NotVerifiedText
 } from './styles';
 import OriginalContract from './originalContract';
-import RectButton from 'components/button/rectButton';
-import DemoButton from 'components/button/demoButton';
-import useFirmaUtil from 'hook/useFirmaUtils';
-import useFile from 'store/useFile';
-import useProcess from 'store/useProcess';
-import useWallet from 'store/useWallet';
-import { Texts, Types } from 'constants/fixedString';
-import { config } from 'constants/common';
+import RectButton from '@/components/button/rectButton';
+import DemoButton from '@/components/button/demoButton';
+import useFirmaUtil from '@/hook/useFirmaUtils';
+import useFile from '@/store/useFile';
+import useProcess from '@/store/useProcess';
+import useWallet from '@/store/useWallet';
+import { Texts, Types } from '@/constants/fixedString';
+import { config } from '@/constants/common';
 
 export default function Verification() {
     const { getVirifyResult } = useFirmaUtil();

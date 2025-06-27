@@ -1,6 +1,6 @@
 import React, { ChangeEvent, Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import { isDesktop } from 'react-device-detect';
-import { ICON_TOOLTIP, IMG_PDF_UPLOAD } from 'constants/images';
+import { ICON_TOOLTIP, IMG_PDF_UPLOAD } from '@/constants/images';
 import {
     ActiveTabBackground,
     Desc,
@@ -23,12 +23,12 @@ import {
 } from './styles';
 import { Divider, IconButton } from '@mui/material';
 import { Check, ModeEdit } from '@mui/icons-material';
-import usePreference from 'store/usePreference';
-import useFirmaUtil from 'hook/useFirmaUtils';
-import useFile from 'store/useFile';
-import useProcess from 'store/useProcess';
+import usePreference from '@/store/usePreference';
+import useFirmaUtil from '@/hook/useFirmaUtils';
+import useFile from '@/store/useFile';
+import useProcess from '@/store/useProcess';
 import { useSnackbar } from 'notistack';
-import { Texts } from 'constants/fixedString';
+import { Texts } from '@/constants/fixedString';
 
 export default function UploadBox({ handleErrorMsg }: { handleErrorMsg: (v: string) => void }) {
     const { hashPrefix, handleHashPrefix } = usePreference();

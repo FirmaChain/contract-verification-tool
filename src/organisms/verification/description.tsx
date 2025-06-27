@@ -1,6 +1,6 @@
 import { isDesktop } from 'react-device-detect';
 import { ContractInfoContentWrapper, ContractInfoDesc, ContractInfoTitle } from './styles';
-import JsonViewer from 'components/jsonViewer/jsonViewer';
+import JsonViewer from '@/components/jsonViewer/jsonViewer';
 import { useMemo } from 'react';
 
 export default function Description({ title, desc, isMetadata }: { title: string; desc: string; isMetadata?: boolean }) {

@@ -1,4 +1,4 @@
-import { Container } from 'components/styles';
+import { Container } from '@/components/styles';
 import { isDesktop } from 'react-device-detect';
 import { Box, Contact, Text } from './styles';
 

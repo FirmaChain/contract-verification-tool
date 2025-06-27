@@ -2,10 +2,10 @@ import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { ButtonWrap, GeneralButton, Input, InputWrap, Label, NewWalletWrap, SubTitle, TextAreaBox, TabItem } from '../styles';
 import { useSnackbar } from 'notistack';
 import { FirmaWalletService } from '@firmachain/firma-js';
-import useWallet from 'store/useWallet';
-import useFirmaUtil from 'hook/useFirmaUtils';
-import useModal from 'store/useModal';
-import { Texts, Types } from 'constants/fixedString';
+import useWallet from '@/store/useWallet';
+import useFirmaUtil from '@/hook/useFirmaUtils';
+import useModal from '@/store/useModal';
+import { Texts, Types } from '@/constants/fixedString';
 
 const RecoverWallet = () => {
     const { enqueueSnackbar } = useSnackbar();
