@@ -1,7 +1,6 @@
 import React, { ChangeEvent, Fragment, useCallback, useEffect, useRef, useState } from 'react';
 import { isDesktop } from 'react-device-detect';
 import { ICON_TOOLTIP, IMG_PDF_UPLOAD } from 'constants/images';
-import { HASH_TOOLTIP, PREFIX_TOOLTIP, UPLOAD_DESC, UPLOAD_TITLE } from 'constants/texts';
 import {
     ActiveTabBackground,
     Desc,
@@ -29,6 +28,7 @@ import useFirmaUtil from 'hook/useFirmaUtils';
 import useFile from 'store/useFile';
 import useProcess from 'store/useProcess';
 import { useSnackbar } from 'notistack';
+import { Texts } from 'constants/fixedString';
 
 export default function UploadBox({ handleErrorMsg }: { handleErrorMsg: (v: string) => void }) {
     const { hashPrefix, handleHashPrefix } = usePreference();
@@ -278,7 +278,7 @@ export default function UploadBox({ handleErrorMsg }: { handleErrorMsg: (v: stri
                         </PrefixInputBox>
                         <TooltipWrap>
                             <IconTooltip src={ICON_TOOLTIP} alt={'tooltip'} />
-                            <TooltipText>{PREFIX_TOOLTIP}</TooltipText>
+                            <TooltipText>{Texts.PREFIX_TOOLTIP}</TooltipText>
                         </TooltipWrap>
                         <UploadFileWrapper ref={dragRef} enableToUpload={verifyStep === 0} onClick={handleClick}>
                             <input
@@ -288,9 +288,9 @@ export default function UploadBox({ handleErrorMsg }: { handleErrorMsg: (v: stri
                                 onChange={onChangeFiles}
                                 style={{ display: 'none' }}
                             />
-                            <Title isDesktop={isDesktop}>{UPLOAD_TITLE}</Title>
-                            <Desc isDesktop={isDesktop}>{UPLOAD_DESC}</Desc>
-                            <PdfImg src={IMG_PDF_UPLOAD} alt={UPLOAD_DESC} />
+                            <Title isDesktop={isDesktop}>{Texts.UPLOAD_TITLE}</Title>
+                            <Desc isDesktop={isDesktop}>{Texts.UPLOAD_DESC}</Desc>
+                            <PdfImg src={IMG_PDF_UPLOAD} alt={Texts.UPLOAD_DESC} />
                         </UploadFileWrapper>
                     </UploadContentBox>
                 </UploadContainer>
@@ -311,7 +311,7 @@ export default function UploadBox({ handleErrorMsg }: { handleErrorMsg: (v: stri
                             </PrefixInputBox>
                             <TooltipWrap>
                                 <IconTooltip src={ICON_TOOLTIP} alt={'tooltip'} />
-                                <TooltipText>{HASH_TOOLTIP}</TooltipText>
+                                <TooltipText>{Texts.HASH_TOOLTIP}</TooltipText>
                             </TooltipWrap>
                         </UploadContentBox>
                     </UploadContainer>

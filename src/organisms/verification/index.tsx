@@ -19,13 +19,13 @@ import {
 } from './styles';
 import OriginalContract from './originalContract';
 import RectButton from 'components/button/rectButton';
-import { NOT_VERIFIED_NOTICE } from 'constants/texts';
 import DemoButton from 'components/button/demoButton';
 import useFirmaUtil from 'hook/useFirmaUtils';
-import config from '../../config';
 import useFile from 'store/useFile';
 import useProcess from 'store/useProcess';
 import useWallet from 'store/useWallet';
+import { Texts, Types } from 'constants/fixedString';
+import { config } from 'constants/common';
 
 export default function Verification() {
     const { getVirifyResult } = useFirmaUtil();
@@ -33,6 +33,8 @@ export default function Verification() {
     const { file, handleFile, handleFileHash, handleMetaJson } = useFile();
     const { demo } = useProcess();
     const { chainNetwork } = useWallet();
+
+    const isTestnet = chainNetwork === Types.TEST_NET;
 
     const navigate = useNavigate();
     const match = useMatch('/verification/:id');
@@ -106,7 +108,7 @@ export default function Verification() {
     // }
 
     const handleContractPDF = () => {
-        return window.open(config.demoContract[chainNetwork]);
+        return window.open(isTestnet ? config.demoContractTestnet : config.demoContractMainnet);
     };
 
     useEffect(() => {
@@ -130,7 +132,7 @@ export default function Verification() {
                             <Title isDesktop={isDesktop}>{resultTitle}</Title>
                             {isError && (
                                 <Fragment>
-                                    <NotVerifiedText isDesktop={isDesktop}>{NOT_VERIFIED_NOTICE}</NotVerifiedText>
+                                    <NotVerifiedText isDesktop={isDesktop}>{Texts.NOT_VERIFIED_NOTICE}</NotVerifiedText>
                                     <FileHashBox isDesktop={isDesktop}>
                                         <FileHash>FILE HASH : </FileHash>
                                         <FileHash style={isDesktop ? {} : { width: '150px' }}>{contractInfo.fileHash}</FileHash>

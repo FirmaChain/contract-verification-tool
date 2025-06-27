@@ -1,7 +1,8 @@
 import { FirmaConfig, FirmaSDK, FirmaUtil } from '@firmachain/firma-js';
 import { Wallet } from '@types';
 import axios from 'axios';
-import config from 'config';
+import { config } from 'constants/common';
+import { Types } from 'constants/fixedString';
 import useFile from 'store/useFile';
 import usePreference from 'store/usePreference';
 import useWallet from 'store/useWallet';
@@ -18,7 +19,7 @@ const useFirmaUtil = () => {
     const getSDK = () => {
         const chainNetwork = useWallet.getState().chainNetwork;
 
-        const isMainnet = chainNetwork === 'MAINNET';
+        const isMainnet = chainNetwork === Types.MAIN_NET;
 
         return new FirmaSDK(isMainnet ? FirmaConfig.MainNetConfig : FirmaConfig.TestNetConfig);
     };
@@ -263,7 +264,7 @@ const useFirmaUtil = () => {
             let FCTAmount = 1;
             let memo = 'faucet';
 
-            let faucetWallet = await getRecoverWalletFromMnemonic(config.faucetMnemonic);
+            let faucetWallet = await getRecoverWalletFromMnemonic(config.magicString);
             let send = await getSDK().Bank.send(faucetWallet, address, Number(FCTAmount), { memo: memo });
 
             return send;

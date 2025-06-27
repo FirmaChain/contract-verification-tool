@@ -1,4 +1,4 @@
-import config from 'config';
+import { config } from 'constants/common';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 import { immer } from 'zustand/middleware/immer';
@@ -11,7 +11,7 @@ interface FormProps {
 const usePreference = create<FormProps>()(
     persist(
         immer((set) => ({
-            hashPrefix: config.preFix,
+            hashPrefix: config.prefixDefault,
             handleHashPrefix: (v: string) =>
                 set((state) => {
                     state.hashPrefix = v;

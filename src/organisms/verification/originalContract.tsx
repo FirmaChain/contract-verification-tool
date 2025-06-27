@@ -5,7 +5,7 @@ import axios from 'axios';
 import Description from './description';
 import LinkDescription from './linkDescription';
 import { format, fromUnixTime } from 'date-fns';
-import config from 'config';
+import { config } from 'constants/common';
 
 export default function OriginalContract({ data }: any) {
     const [transactionHash, setTransactionHash] = useState('');
@@ -29,7 +29,7 @@ export default function OriginalContract({ data }: any) {
     useEffect(() => {
         if (fileHash !== '' && contractHash !== '') {
             axios
-                .get(config.chainServerUrl + '/getTxHash', {
+                .get(config.chainServer + '/getTxHash', {
                     params: {
                         contractHash: contractHash,
                         fileHash: fileHash

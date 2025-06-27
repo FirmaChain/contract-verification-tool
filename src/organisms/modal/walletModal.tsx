@@ -2,11 +2,11 @@ import React from 'react';
 import { isDesktop } from 'react-device-detect';
 import { Modal } from '../../components/modal';
 import { ModalTitle, ModalContents } from './styles';
-import { CONNECTED_WALLET, NEW_WALLET, RECOVER_WALLET_MNEMONIC, RECOVER_WALLET_PRIVATEKEY } from '../../constants/common';
 import NewWallet from './wallet/newWallet';
 import ConnectedWallet from './wallet/connectedWallet';
 import RecoverWallet from './wallet/recoverWallet';
 import useModal from 'store/useModal';
+import { Types } from 'constants/fixedString';
 
 const WalletModal = () => {
     const { wallet: modalWallet, handleModalWallet } = useModal();
@@ -17,7 +17,7 @@ const WalletModal = () => {
     const closeWalletModal = () => {
         handleModalWallet({
             isVisible: false,
-            type: NEW_WALLET
+            type: Types.NEW_WALLET
         });
     };
 
@@ -32,9 +32,11 @@ const WalletModal = () => {
         >
             <ModalTitle>WALLET</ModalTitle>
             <ModalContents>
-                {modalWallet.type === CONNECTED_WALLET && <ConnectedWallet />}
-                {modalWallet.type === NEW_WALLET && <NewWallet />}
-                {(modalWallet.type === RECOVER_WALLET_MNEMONIC || modalWallet.type === RECOVER_WALLET_PRIVATEKEY) && <RecoverWallet />}
+                {modalWallet.type === Types.CONNECTED_WALLET && <ConnectedWallet />}
+                {modalWallet.type === Types.NEW_WALLET && <NewWallet />}
+                {(modalWallet.type === Types.RECOVER_WALLET_MNEMONIC || modalWallet.type === Types.RECOVER_WALLET_PRIVATEKEY) && (
+                    <RecoverWallet />
+                )}
             </ModalContents>
         </Modal>
     );

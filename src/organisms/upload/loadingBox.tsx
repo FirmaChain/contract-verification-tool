@@ -1,5 +1,4 @@
 import { Fragment, useEffect, useState } from 'react';
-import { LOADING_TITLE } from 'constants/texts';
 import { ICON_DONE } from 'constants/images';
 import { useNavigate } from 'react-router';
 import { convertFileSize } from 'utils/common';
@@ -7,6 +6,7 @@ import { DoneIcon, Filename, Filesize, LoadingTitle, Percentage, ProgressBox } f
 import Progress from 'components/progress/progress';
 import { isDesktop } from 'react-device-detect';
 import useFile from 'store/useFile';
+import { Texts } from 'constants/fixedString';
 
 export default function LoadingBox() {
     const { file, fileHash } = useFile();
@@ -56,7 +56,7 @@ export default function LoadingBox() {
 
     return (
         <Fragment>
-            <LoadingTitle isDesktop={isDesktop}>{LOADING_TITLE}</LoadingTitle>
+            <LoadingTitle isDesktop={isDesktop}>{Texts.LOADING_TITLE}</LoadingTitle>
             <ProgressBox>
                 <Progress value={progress} />
                 {progress >= 100 && loading === false ? (

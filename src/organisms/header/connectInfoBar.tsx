@@ -13,9 +13,9 @@ import {
     WalletAddress
 } from './styles';
 import { isDesktop } from 'react-device-detect';
-import { MAIN_NET, TEST_NET } from '../../constants/common';
 import useWallet from 'store/useWallet';
 import useFirmaUtil from 'hook/useFirmaUtils';
+import { Types } from 'constants/fixedString';
 
 const ConnectInfoBar = () => {
     const { enqueueSnackbar } = useSnackbar();
@@ -30,7 +30,7 @@ const ConnectInfoBar = () => {
     const chainId = getCurrentNetworkID();
 
     const handleChangeNetwork = (index: number) => {
-        let network = index === 0 ? MAIN_NET : TEST_NET;
+        let network = index === 0 ? Types.MAIN_NET : Types.TEST_NET;
         if (chainNetwork === network) return;
 
         setChainConfig(network);

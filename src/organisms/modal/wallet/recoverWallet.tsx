@@ -1,12 +1,11 @@
 import { ChangeEvent, useCallback, useEffect, useState } from 'react';
 import { ButtonWrap, GeneralButton, Input, InputWrap, Label, NewWalletWrap, SubTitle, TextAreaBox, TabItem } from '../styles';
 import { useSnackbar } from 'notistack';
-import { CONNECTED_WALLET, RECOVER_WALLET_MNEMONIC, RECOVER_WALLET_PRIVATEKEY } from '../../../constants/common';
-import { WALLET_CONNECT_SUCCESS } from 'constants/texts';
 import { FirmaWalletService } from '@firmachain/firma-js';
 import useWallet from 'store/useWallet';
 import useFirmaUtil from 'hook/useFirmaUtils';
 import useModal from 'store/useModal';
+import { Texts, Types } from 'constants/fixedString';
 
 const RecoverWallet = () => {
     const { enqueueSnackbar } = useSnackbar();
@@ -18,8 +17,8 @@ const RecoverWallet = () => {
     const [recoverValue, setRecoverValue] = useState('');
 
     const handleLabel = useCallback(() => {
-        if (modalWallet.type === RECOVER_WALLET_MNEMONIC) setLabel('Mnemonic');
-        if (modalWallet.type === RECOVER_WALLET_PRIVATEKEY) setLabel('Private Key');
+        if (modalWallet.type === Types.RECOVER_WALLET_MNEMONIC) setLabel('Mnemonic');
+        if (modalWallet.type === Types.RECOVER_WALLET_PRIVATEKEY) setLabel('Private Key');
     }, [modalWallet]);
 
     const onChangeRecoverValue = useCallback((event: ChangeEvent<HTMLTextAreaElement>) => {
@@ -30,10 +29,10 @@ const RecoverWallet = () => {
         async (value: string) => {
             try {
                 let wallet: FirmaWalletService | null = null;
-                if (modalWallet.type === RECOVER_WALLET_MNEMONIC) {
+                if (modalWallet.type === Types.RECOVER_WALLET_MNEMONIC) {
                     wallet = await getRecoverWalletFromMnemonic(value);
                 }
-                if (modalWallet.type === RECOVER_WALLET_PRIVATEKEY) {
+                if (modalWallet.type === Types.RECOVER_WALLET_PRIVATEKEY) {
                     wallet = await getRecoverWalletFromPrivateKey(value);
                 }
                 await handleConnectWallet(wallet);
@@ -59,10 +58,10 @@ const RecoverWallet = () => {
 
         handleModalWallet({
             isVisible: true,
-            type: CONNECTED_WALLET
+            type: Types.CONNECTED_WALLET
         });
 
-        enqueueSnackbar(WALLET_CONNECT_SUCCESS, {
+        enqueueSnackbar(Texts.WALLET_CONNECT_SUCCESS, {
             variant: 'success',
             autoHideDuration: 3000
         });

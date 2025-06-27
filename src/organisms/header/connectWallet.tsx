@@ -1,11 +1,11 @@
 import { useMemo } from 'react';
 import { ICON_LOGIN, ICON_SETTING } from 'constants/images';
 import { isDesktop } from 'react-device-detect';
-import { CONNECTED_WALLET, MAIN_NET } from '../../constants/common';
 import { MenuText, Icon, Wrapper } from './styles';
 import useWallet from 'store/useWallet';
 import useFile from 'store/useFile';
 import useModal from 'store/useModal';
+import { Types } from 'constants/fixedString';
 
 const ConnectWallet = () => {
     const { wallet, chainNetwork } = useWallet();
@@ -18,7 +18,7 @@ const ConnectWallet = () => {
     }, [wallet]);
 
     const handleWalletConnectModal = () => {
-        if (chainNetwork === MAIN_NET) return;
+        if (chainNetwork === Types.MAIN_NET) return;
 
         handleMetaJson(null);
 
@@ -26,11 +26,11 @@ const ConnectWallet = () => {
     };
 
     const handleWalletModal = () => {
-        if (chainNetwork === MAIN_NET) return;
+        if (chainNetwork === Types.MAIN_NET) return;
 
         handleWallet({
             isVisible: true,
-            type: CONNECTED_WALLET
+            type: Types.CONNECTED_WALLET
         });
     };
 
@@ -38,9 +38,9 @@ const ConnectWallet = () => {
         <Wrapper
             style={{
                 width: isDesktop ? 'auto' : '300px',
-                opacity: chainNetwork === MAIN_NET ? 0 : 1,
-                cursor: chainNetwork === MAIN_NET ? 'default' : 'pointer',
-                zIndex: chainNetwork === MAIN_NET ? -999 : 0,
+                opacity: chainNetwork === Types.MAIN_NET ? 0 : 1,
+                cursor: chainNetwork === Types.MAIN_NET ? 'default' : 'pointer',
+                zIndex: chainNetwork === Types.MAIN_NET ? -999 : 0,
                 justifyContent: 'center',
                 gap: isDesktop ? '2px' : '3px'
             }}

@@ -22,8 +22,8 @@ package-lock.json
 
 # config
 src/config.*
-configs/.env.local
-configs/.env.mainnet
-configs/.env.testnet
+
+configs/*
+!configs/.env.sample
 
 /.vscode

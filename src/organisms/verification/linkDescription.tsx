@@ -3,8 +3,8 @@ import { useEffect, useMemo, useState } from 'react';
 import { isDesktop } from 'react-device-detect';
 import { ContractInfoContentWrapper, ContractInfoLink, ContractInfoTitle, CopyIcon, CopyMessage, Links, LinkWrapper } from './styles';
 import useWallet from 'store/useWallet';
-import config from '../../config';
 import { copyToClipboard } from 'utils/common';
+import { config } from 'constants/common';
 
 interface LinkDescription_ {
     title: string;
@@ -18,8 +18,8 @@ export default function LinkDescription({ title, hash, clickable = false }: Link
     const { chainNetwork } = useWallet();
 
     const explorerUrl = useMemo(() => {
-        if (chainNetwork === 'TESTNET') return config.explorerUrl['TESTNET'];
-        else return config.explorerUrl['MAINNET'];
+        if (chainNetwork === 'TESTNET') return config.explorerTestnet;
+        else return config.explorerMainnet;
     }, [chainNetwork]);
 
     const handleUrl = (value: string) => {

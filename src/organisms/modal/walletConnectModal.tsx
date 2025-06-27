@@ -2,9 +2,9 @@ import React from 'react';
 import { isDesktop } from 'react-device-detect';
 import { Modal } from '../../components/modal';
 import { ModalTitle, ModalContents, ButtonBox, ConnectType, ConnectTypeButtonBox } from './styles';
-import { NEW_WALLET, RECOVER_WALLET_MNEMONIC, RECOVER_WALLET_PRIVATEKEY } from '../../constants/common';
 import { Add, Restore, SyncAlt } from '@mui/icons-material';
 import useModal from 'store/useModal';
+import { Types } from 'constants/fixedString';
 
 const WalletConnectModal = () => {
     const { walletConnect: connect, handleModalWallet, handleModalWalletConnect } = useModal();
@@ -37,15 +37,15 @@ const WalletConnectModal = () => {
             <ModalTitle>WALLET</ModalTitle>
             <ModalContents>
                 <ButtonBox>
-                    <ConnectTypeButtonBox onClick={() => handleOpenWalletModal(NEW_WALLET)}>
+                    <ConnectTypeButtonBox onClick={() => handleOpenWalletModal(Types.NEW_WALLET)}>
                         <Add />
                         <ConnectType>{'New\nWallet'}</ConnectType>
                     </ConnectTypeButtonBox>
-                    <ConnectTypeButtonBox onClick={() => handleOpenWalletModal(RECOVER_WALLET_MNEMONIC)}>
+                    <ConnectTypeButtonBox onClick={() => handleOpenWalletModal(Types.RECOVER_WALLET_MNEMONIC)}>
                         <Restore />
                         <ConnectType>{'Recover from\nMnemonic'}</ConnectType>
                     </ConnectTypeButtonBox>
-                    <ConnectTypeButtonBox onClick={() => handleOpenWalletModal(RECOVER_WALLET_PRIVATEKEY)}>
+                    <ConnectTypeButtonBox onClick={() => handleOpenWalletModal(Types.RECOVER_WALLET_PRIVATEKEY)}>
                         <SyncAlt style={{ height: '23px', transform: 'rotate(90deg)' }} />
                         <ConnectType>{'Import\nPrivate Key'}</ConnectType>
                     </ConnectTypeButtonBox>

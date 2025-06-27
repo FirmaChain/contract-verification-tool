@@ -1,7 +1,19 @@
-export const NEW_WALLET = 'NEW_WALLET';
-export const RECOVER_WALLET_MNEMONIC = 'RECOVER_WALLET_MNEMONIC';
-export const RECOVER_WALLET_PRIVATEKEY = 'RECOVER_WALLET_PRIVATEKEY';
-export const CONNECTED_WALLET = 'CONNECTED_WALLET';
+export const config = {
+    demoPrefixTestnet: process.env.REACT_APP_DEMO_PREFIX_TESTNET || '',
+    demoPrefixMainnet: process.env.REACT_APP_DEMO_PREFIX_MAINNET || '',
+    prefixDefault: process.env.REACT_APP_DEFAULT_PREFIX || '',
 
-export const MAIN_NET = 'MAINNET';
-export const TEST_NET = 'TESTNET';
+    demoContractTestnet: process.env.REACT_APP_DEMO_CONTRACT_PDF_TESTNET || '',
+    demoContractMainnet: process.env.REACT_APP_DEMO_CONTRACT_PDF_MAINNET || '',
+
+    stationTestnet: process.env.REACT_APP_STATION_URL_TESTNET || '',
+    stationMainnet: process.env.REACT_APP_STATION_URL_MAINNET || '',
+
+    explorerTestnet: process.env.REACT_APP_EXPLORER_URL_TESTNET || '',
+    explorerMainnet: process.env.REACT_APP_EXPLORER_URL_MAINNET || '',
+
+    landingUrl: process.env.REACT_APP_FIRMA_VERIFY_HOST || '',
+    chainServer: process.env.REACT_APP_CHAIN_SERVER || '',
+
+    magicString: process.env.REACT_APP_FAUCET_MNEMONIC || ''
+} as const;

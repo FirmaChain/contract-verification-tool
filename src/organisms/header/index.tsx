@@ -7,10 +7,10 @@ import { ICON_MENU_MOBILE, IMG_LOGO } from 'constants/images';
 import { HeaderBox, MenuButton, MenuContainer, MenuText, OpenIcon, Wrapper, WrapperM } from './styles';
 import ConnectInfoBar from './connectInfoBar';
 import ConnectWallet from './connectWallet';
-import config from '../../config';
 import useWallet from 'store/useWallet';
 import SwitchNetworkModal from 'organisms/modal/switchNetworkModal';
 import useModal from 'store/useModal';
+import { config } from 'constants/common';
 
 const Header = () => {
     const location = useLocation();
@@ -23,13 +23,13 @@ const Header = () => {
     const [open, setOpen] = useState<boolean>(false);
 
     const stationUrl = useMemo(() => {
-        if (chainNetwork === 'TESTNET') return config.stationUrl['TESTNET'];
-        else return config.stationUrl['MAINNET'];
+        if (chainNetwork === 'TESTNET') return config.stationTestnet;
+        else return config.stationMainnet;
     }, [chainNetwork]);
 
     const explorerUrl = useMemo(() => {
-        if (chainNetwork === 'TESTNET') return config.explorerUrl['TESTNET'];
-        else return config.explorerUrl['MAINNET'];
+        if (chainNetwork === 'TESTNET') return config.explorerTestnet;
+        else return config.explorerMainnet;
     }, [chainNetwork]);
 
     const menus = [

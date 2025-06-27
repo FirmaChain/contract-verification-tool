@@ -1,12 +1,11 @@
 import { useEffect, useMemo } from 'react';
-import { NEW_WALLET } from '../../../constants/common';
 import { copyToClipboard } from 'utils/common';
 import { useSnackbar } from 'notistack';
 import { ButtonWrap, CopyIconImg, DisableButton, GeneralButton, Input, InputWrap, Label, NewWalletWrap, TextBox, TabItem } from '../styles';
-import { FAUCET_SEND_FCT } from 'constants/texts';
 import useWallet from 'store/useWallet';
 import useFirmaUtil from 'hook/useFirmaUtils';
 import useModal from 'store/useModal';
+import { Texts } from 'constants/fixedString';
 
 const ConnectedWallet = () => {
     const { wallet, balance, chainNetwork, handleWallet, handleBalance, clearStore } = useWallet();
@@ -37,7 +36,7 @@ const ConnectedWallet = () => {
         try {
             handleModalLoadingProgress({
                 loading: true,
-                message: FAUCET_SEND_FCT
+                message: Texts.FAUCET_SEND_FCT
             });
 
             await sendFCTFromFaucet(wallet.address);

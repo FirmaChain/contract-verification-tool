@@ -1,4 +1,4 @@
-import { NEW_WALLET } from '../constants/common';
+import { Types } from 'constants/fixedString';
 import { create } from 'zustand';
 import { immer } from 'zustand/middleware/immer';
 
@@ -40,7 +40,7 @@ const useModal = create<FormProps>()(
         walletConnect: false,
         wallet: {
             isVisible: false,
-            type: NEW_WALLET
+            type: Types.NEW_WALLET
         },
         queueTx: false,
         editHashKey: false,

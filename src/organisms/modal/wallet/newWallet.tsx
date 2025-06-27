@@ -2,11 +2,10 @@ import { useCallback, useEffect, useState } from 'react';
 import { copyToClipboard } from 'utils/common';
 import { ButtonWrap, CopyIconImg, GeneralButton, Input, InputWrap, Label, NewWalletWrap, SubTitle, TextBox, TabItem } from '../styles';
 import { useSnackbar } from 'notistack';
-import { CONNECTED_WALLET } from '../../../constants/common';
-import { WALLET_CONNECT_SUCCESS } from 'constants/texts';
 import useWallet from 'store/useWallet';
 import useFirmaUtil from 'hook/useFirmaUtils';
 import useModal from 'store/useModal';
+import { Texts, Types } from 'constants/fixedString';
 
 const NewWallet = () => {
     const { enqueueSnackbar } = useSnackbar();
@@ -56,7 +55,7 @@ const NewWallet = () => {
             type: type
         });
 
-        enqueueSnackbar(WALLET_CONNECT_SUCCESS, {
+        enqueueSnackbar(Texts.WALLET_CONNECT_SUCCESS, {
             variant: 'success',
             autoHideDuration: 3000
         });
@@ -105,7 +104,7 @@ const NewWallet = () => {
 
                 <ButtonWrap>
                     <GeneralButton onClick={() => handleWalletInfo()}>Generate</GeneralButton>
-                    <GeneralButton onClick={() => handleConnectWallet(CONNECTED_WALLET)}>Connect</GeneralButton>
+                    <GeneralButton onClick={() => handleConnectWallet(Types.CONNECTED_WALLET)}>Connect</GeneralButton>
                 </ButtonWrap>
             </NewWalletWrap>
         </TabItem>

@@ -23,7 +23,7 @@ interface FormProps {
 const useWallet = create<FormProps>()(
     persist(
         immer((set) => ({
-            chainNetwork: 'TESTNET',
+            chainNetwork: 'MAINNET',
             wallet: {
                 mnemonic: '',
                 privateKey: '',

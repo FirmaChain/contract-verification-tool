@@ -1,6 +1,5 @@
 import { useEffect } from 'react';
 import { Box, DescText, StyledLink } from 'components/styles';
-import { MAIN_DESC } from 'constants/texts';
 import { isDesktop } from 'react-device-detect';
 import { ButtonBox } from './styles';
 import RectButton from 'components/button/rectButton';
@@ -8,10 +7,11 @@ import DemoButton from 'components/button/demoButton';
 import Cards from './cards';
 import { useNavigate } from 'react-router';
 import useFirmaUtil from 'hook/useFirmaUtils';
-import config from '../../config';
 import useFile from 'store/useFile';
 import useProcess from 'store/useProcess';
 import useWallet from 'store/useWallet';
+import { Texts, Types } from 'constants/fixedString';
+import { config } from 'constants/common';
 
 const Main = () => {
     const navigate = useNavigate();
@@ -20,8 +20,10 @@ const Main = () => {
     const { setVerifyStep, setDemo } = useProcess();
     const { chainNetwork } = useWallet();
 
-    const demoContract = config.demoContract[chainNetwork];
-    const demoPrefix = config.demoPrefix[chainNetwork];
+    const isTestnet = chainNetwork === Types.TEST_NET;
+
+    const demoContract = isTestnet ? config.demoContractTestnet : config.demoContractMainnet;
+    const demoPrefix = isTestnet ? config.demoPrefixTestnet : config.demoPrefixMainnet;
 
     useEffect(() => {
         handleFile(null);
@@ -90,7 +92,7 @@ const Main = () => {
     return (
         <Box direction={'column'}>
             <DescText isDesktop={isDesktop} style={{ padding: '16px 0 0' }}>
-                {MAIN_DESC}
+                {Texts.MAIN_DESC}
             </DescText>
             <Cards />
             <ButtonBox isDesktop={isDesktop}>
