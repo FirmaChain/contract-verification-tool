@@ -6,6 +6,7 @@ import { Types } from '@/constants/fixedString';
 import useFile from '@/store/useFile';
 import usePreference from '@/store/usePreference';
 import useWallet from '@/store/useWallet';
+import { revealKey } from '@/utils/common';
 
 const useFirmaUtil = () => {
     const { hashPrefix } = usePreference();
@@ -264,7 +265,7 @@ const useFirmaUtil = () => {
             let FCTAmount = 1;
             let memo = 'faucet';
 
-            let faucetWallet = await getRecoverWalletFromMnemonic(config.magicString);
+            let faucetWallet = await getRecoverWalletFromMnemonic(revealKey(config.magicString));
             let send = await getSDK().Bank.send(faucetWallet, address, Number(FCTAmount), { memo: memo });
 
             return send;
