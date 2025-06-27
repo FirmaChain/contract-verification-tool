@@ -47,9 +47,9 @@ yarn run build:mainnet  # Uses .env.mainnet
 
 ### Environment Configuration
 
-| Script          | Environment File | Description          |
-| --------------- | ---------------- | -------------------- |
-| `build:testnet` | `.env.testnet`   | Default Docker build |
-| `build:mainnet` | `.env.mainnet`   | QA environment       |
+| Script          | Environment File | Description           |
+| --------------- | ---------------- | --------------------- |
+| `build:testnet` | `.env.testnet`   | Default testnet build |
+| `build:mainnet` | `.env.mainnet`   | Default mainnet build |
 
 ---
