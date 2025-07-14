@@ -4,7 +4,7 @@
     "type": "module",
     "private": true,
     "dependencies": {
-        "@firmachain/firma-js": "^0.3.1",
+        "@firmachain/firma-js": "0.3.3",
         "@mui/icons-material": "^5.8.4",
         "@mui/material": "^5.2.7",
         "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest",
@@ -39,6 +39,7 @@
         "mainnet": "vite dev --mode mainnet",
         "build:testnet": "vite build --mode testnet",
         "build:mainnet": "vite build --mode mainnet",
+        "start": "vite preview",
         "deploy-testnet": "aws s3 sync ./build s3://deploy-ecosystem/testnet/verify-tool --profile=firmachain-deploy --delete",
         "invalidate-testnet": "aws cloudfront create-invalidation --profile=firmachain-deploy --distribution-id E2UUAL0XYSVCXP --paths '/*'",
         "deploy-mainnet": "aws s3 sync ./build s3://deploy-ecosystem/mainnet/verify-tool --profile=firmachain-deploy --delete",
