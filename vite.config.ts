@@ -53,13 +53,13 @@ export default defineConfig(({ mode }) => {
         },
 
         server: {
-            port: Number(env.VITE_PORT) || 3000,
+            port: Number(env.PORT) || 3000,
             host: true,
             strictPort: false
         },
 
         preview: {
-            port: Number(env.VITE_PORT) || 3000,
+            port: Number(env.PORT) || 3000,
             host: true,
             strictPort: false
         },
