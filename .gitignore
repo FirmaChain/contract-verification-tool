@@ -13,17 +13,11 @@
 
 # misc
 .DS_Store
-
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-yarn.lock
-package-lock.json
-
-src/config.js
-
-configs/.env.local
-configs/.env.mainnet
-configs/.env.testnet
-
 /.vscode
+
+# Env
+.env*
+!.env.sample

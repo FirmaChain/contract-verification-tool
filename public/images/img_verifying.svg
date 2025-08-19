@@ -5,14 +5,14 @@
         </style>
     </defs>
     <g id="img_verifying" transform="translate(19 13.5)">
-        <g id="그룹_20725" data-name="그룹 20725" transform="translate(-4 .5)">
-            <g id="그룹_19161" data-name="그룹 19161">
-                <path id="패스_1836" data-name="패스 1836" class="cls-2" d="m290.089 353.12-1.932-1.1V332.6l9.764-5.586-7.832-4.483-9.7 5.552v28.449l9.7 5.517 24.98-14.242-7.591-4.621z" transform="translate(-249.238 -286.703)"/>
-                <path id="패스_1837" data-name="패스 1837" class="cls-2" d="M40.782 0 0 23.277V69.9l7.763 4.414v-46.52L40.782 8.932l14.871 8.517 1.691-8z"/>
-                <path id="패스_1838" data-name="패스 1838" class="cls-2" d="M140.041 175.836v46.449L165.3 236.7l40.782-23.276V166.87l-7.763 4.483v37.552L165.3 227.768l-17.493-10v-37.415l17.493-10 17.493 9.966 7.763-4.414v-.069L165.3 161.421z" transform="translate(-124.412 -143.419)"/>
+        <g id="group_20725" data-name="group 20725" transform="translate(-4 .5)">
+            <g id="group_19161" data-name="group 19161">
+                <path id="path_1836" data-name="path 1836" class="cls-2" d="m290.089 353.12-1.932-1.1V332.6l9.764-5.586-7.832-4.483-9.7 5.552v28.449l9.7 5.517 24.98-14.242-7.591-4.621z" transform="translate(-249.238 -286.703)"/>
+                <path id="path_1837" data-name="path 1837" class="cls-2" d="M40.782 0 0 23.277V69.9l7.763 4.414v-46.52L40.782 8.932l14.871 8.517 1.691-8z"/>
+                <path id="path_1838" data-name="path 1838" class="cls-2" d="M140.041 175.836v46.449L165.3 236.7l40.782-23.276V166.87l-7.763 4.483v37.552L165.3 227.768l-17.493-10v-37.415l17.493-10 17.493 9.966 7.763-4.414v-.069L165.3 161.421z" transform="translate(-124.412 -143.419)"/>
             </g>
-            <circle id="타원_37" data-name="타원 37" class="cls-2" cx="13" cy="13" r="13" transform="translate(64.68 4.5)"/>
-            <path id="패스_1839" data-name="패스 1839" d="m-6717.981-18860.627 4.634 4.664 9.115-9.164" transform="translate(6789.003 18877.348)" style="fill:none;stroke:#21212f;stroke-width:4px"/>
+            <circle id="ellipse_37" data-name="ellipse 37" class="cls-2" cx="13" cy="13" r="13" transform="translate(64.68 4.5)"/>
+            <path id="path_1839" data-name="path 1839" d="m-6717.981-18860.627 4.634 4.664 9.115-9.164" transform="translate(6789.003 18877.348)" style="fill:none;stroke:#21212f;stroke-width:4px"/>
         </g>
     </g>
 </svg>

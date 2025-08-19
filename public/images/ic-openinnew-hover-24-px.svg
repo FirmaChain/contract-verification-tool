@@ -4,8 +4,8 @@
             .cls-2{fill:none;stroke:#fff;stroke-miterlimit:10;stroke-width:1.5px}
         </style>
     </defs>
-    <g id="그룹_27061" data-name="그룹 27061" transform="rotate(45 717.225 -1685.2)">
-        <path id="패스_2152" data-name="패스 2152" class="cls-2" d="m0 .021 8-.042-.042 8" transform="rotate(-45 721.2 -1699.574)"/>
-        <path id="선_354" data-name="선 354" class="cls-2" d="m-.021 9.979 10-10" transform="rotate(-45 722.19 -1697.185)"/>
+    <g id="group_27061" data-name="group 27061" transform="rotate(45 717.225 -1685.2)">
+        <path id="path_2152" data-name="path 2152" class="cls-2" d="m0 .021 8-.042-.042 8" transform="rotate(-45 721.2 -1699.574)"/>
+        <path id="line_354" data-name="line 354" class="cls-2" d="m-.021 9.979 10-10" transform="rotate(-45 722.19 -1697.185)"/>
     </g>
 </svg>

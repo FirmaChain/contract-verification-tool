@@ -10,5 +10,5 @@
         </linearGradient>
     </defs>
     <path d="m157.369 526.976-30.2-29.666h-37.8v90h68z" transform="translate(-63.369 -482.31)" style="fill:url(#a)"/>
-    <path data-name="합치기 1" d="M9.5 42V20.015H0L19 0l19 20.015h-9.5V42z" transform="translate(41 43)" style="fill:url(#b)"/>
+    <path data-name="merge 1" d="M9.5 42V20.015H0L19 0l19 20.015h-9.5V42z" transform="translate(41 43)" style="fill:url(#b)"/>
 </svg>
