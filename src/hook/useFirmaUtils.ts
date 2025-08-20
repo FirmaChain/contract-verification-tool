@@ -262,11 +262,13 @@ const useFirmaUtil = () => {
 
     const sendFCTFromFaucet = async (address: string) => {
         try {
-            let FCTAmount = 1;
-            let memo = 'faucet';
+            const FCTAmount = 1;
+            const memo = 'faucet';
 
-            let faucetWallet = await getRecoverWalletFromMnemonic(revealKey(config.magicString));
-            let send = await getSDK().Bank.send(faucetWallet, address, Number(FCTAmount), { memo: memo });
+            const faucetWallet = await getRecoverWalletFromMnemonic(revealKey(config.magicString));
+            const send = await getSDK().Bank.send(faucetWallet, address, FCTAmount, {
+                memo: memo
+            });
 
             return send;
         } catch (error) {

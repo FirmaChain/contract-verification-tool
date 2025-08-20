@@ -42,7 +42,7 @@ export default defineConfig(({ mode }) => {
             react(),
             nodePolyfills(),
             tsconfigPaths(),
-            ...(['mainnet', 'testnet'].includes(mode) ? [vitePluginBundleObfuscator(minimizeObfuscatorConfig)] : [])
+            ...(env.NODE_ENV === 'production' ? [vitePluginBundleObfuscator(minimizeObfuscatorConfig)] : [])
         ],
 
         resolve: {
@@ -53,8 +53,15 @@ export default defineConfig(({ mode }) => {
         },
 
         server: {
-            port: 3000,
-            host: true
+            port: Number(env.PORT) || 3000,
+            host: true,
+            strictPort: false
+        },
+
+        preview: {
+            port: Number(env.PORT) || 3000,
+            host: true,
+            strictPort: false
         },
 
         build: {
