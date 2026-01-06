@@ -27,9 +27,13 @@ const JsonViewer = ({ data, maxHeight, maxWidth }: JsonView) => {
                 );
             }
 
+            const stringifiedValue = typeof value === 'bigint' 
+                ? value.toString() 
+                : JSON.stringify(value, (key, val) => typeof val === 'bigint' ? val.toString() : val);
+
             return (
                 <div key={key} style={padding}>
-                    <Key>"{key}"</Key>: <Value>{JSON.stringify(value)}</Value>
+                    <Key>"{key}"</Key>: <Value>{stringifiedValue}</Value>
                 </div>
             );
         });

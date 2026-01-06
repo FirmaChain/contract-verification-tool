@@ -1,6 +1,7 @@
 import { FirmaConfig, FirmaSDK, FirmaUtil } from '@firmachain/firma-js';
 import { Wallet } from '@types';
 import axios from 'axios';
+import FormData from 'form-data';
 import { config } from '@/constants/common';
 import { Types } from '@/constants/fixedString';
 import useFile from '@/store/useFile';
@@ -27,7 +28,6 @@ const useFirmaUtil = () => {
 
     const customAddBuffer = async (buffer: ArrayBuffer): Promise<string> => {
         try {
-            const FormData = require('form-data');
             var bodyData = new FormData();
             bodyData.append('buffer', new Blob([buffer]));
 
@@ -129,10 +129,10 @@ const useFirmaUtil = () => {
 
             const ownerList = [_address];
 
-            const ipfsHash = await customAddBuffer(fileBuffer);
+            const ipfsHash = await customAddBuffer(fileBuffer.buffer as ArrayBuffer);
 
             const encryptHash = _wallet.encryptData(ipfsHash);
-            const jsonData = { storage: 'ipfs', encryptIpfsHash: [encryptHash] };
+            const jsonData = { encryptIpfsHash: [encryptHash] };
             const metaDataJsonString = JSON.stringify(jsonData);
             const timeStamp = Math.round(+new Date() / 1000);
 
@@ -144,7 +144,8 @@ const useFirmaUtil = () => {
                 metaDataJsonString
             );
 
-            const txMisc = { gas: gasEstimation, fee: Math.ceil(gasEstimation * 0.1) };
+            const gasEstimationNumber = typeof gasEstimation === 'bigint' ? Number(gasEstimation) : gasEstimation;
+            const txMisc = { gas: gasEstimationNumber, fee: Math.ceil(gasEstimationNumber * 0.1) };
 
             const txResult = await getSDK().Contract.createContractFile(
                 _wallet,
@@ -189,7 +190,9 @@ const useFirmaUtil = () => {
             }
 
             const timeStamp = Math.round(+new Date() / 1000);
-            const jsonString = JSON.stringify(_jsonData);
+            const jsonString = typeof _jsonData === 'string' ? _jsonData : JSON.stringify(_jsonData, (key, value) =>
+                typeof value === 'bigint' ? value.toString() : value
+            );
 
             const gasEstimation = await getSDK().Contract.getGasEstimationAddContractLog(
                 _wallet,
@@ -199,7 +202,8 @@ const useFirmaUtil = () => {
                 _address,
                 jsonString
             );
-            const txMisc = { gas: gasEstimation, fee: Math.ceil(gasEstimation * 0.1) };
+            const gasEstimationNumber = typeof gasEstimation === 'bigint' ? Number(gasEstimation) : gasEstimation;
+            const txMisc = { gas: gasEstimationNumber, fee: Math.ceil(gasEstimationNumber * 0.1) };
 
             const txResult = await getSDK().Contract.addContractLog(
                 _wallet,
