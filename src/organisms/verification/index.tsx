@@ -19,22 +19,14 @@ import {
 } from './styles';
 import OriginalContract from './originalContract';
 import RectButton from '@/components/button/rectButton';
-import DemoButton from '@/components/button/demoButton';
 import useFirmaUtil from '@/hook/useFirmaUtils';
 import useFile from '@/store/useFile';
-import useProcess from '@/store/useProcess';
-import useWallet from '@/store/useWallet';
-import { Texts, Types } from '@/constants/fixedString';
-import { config } from '@/constants/common';
+import { Texts } from '@/constants/fixedString';
 
 export default function Verification() {
     const { getVirifyResult } = useFirmaUtil();
 
     const { file, handleFile, handleFileHash, handleMetaJson } = useFile();
-    const { demo } = useProcess();
-    const { chainNetwork } = useWallet();
-
-    const isTestnet = chainNetwork === Types.TEST_NET;
 
     const navigate = useNavigate();
     const match = useMatch('/verification/:id');
@@ -107,10 +99,6 @@ export default function Verification() {
     //     }
     // }
 
-    const handleContractPDF = () => {
-        return window.open(isTestnet ? config.demoContractTestnet : config.demoContractMainnet);
-    };
-
     useEffect(() => {
         if (file === null) {
             if (FileHashFromParam === '') {
@@ -152,12 +140,11 @@ export default function Verification() {
                     )}
                 </ResultBox>
                 <ButtonBox isDesktop={isDesktop}>
-                    {demo.status && <RectButton small title="OPEN CONTRACT" onClickEvent={handleContractPDF} />}
                     {/* {(process.demo.status || isError === false) &&
                         <RectButton backgroundColor={'#3252d3'} backgroundColorHover={'#0062ff'} small title="OPEN CERTIFICATE" onClickEvent={handleCertificatePDF} /> 
                     } */}
                     <StyledLink to="/">
-                        <DemoButton small title="HOME" />
+                        <RectButton small title="HOME" />
                     </StyledLink>
                 </ButtonBox>
             </Container>
