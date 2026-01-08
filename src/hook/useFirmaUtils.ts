@@ -57,7 +57,7 @@ const useFirmaUtil = () => {
             return wallet;
         } catch (error) {
             console.log('error : ' + error);
-            throw error;
+            throw 'Error: Invalid private key format';
         }
     };
 
