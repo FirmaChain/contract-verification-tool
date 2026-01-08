@@ -64,7 +64,7 @@ const useWallet = create<FormProps>()(
                     };
                     state.privateKey = '';
                     state.address = '';
-                    state.balance = '';
+                    state.balance = '0';
                 })
         })),
         {

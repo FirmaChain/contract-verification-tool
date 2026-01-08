@@ -5,7 +5,7 @@ import { ButtonWrap, CopyIconImg, DisableButton, GeneralButton, Input, InputWrap
 import useWallet from '@/store/useWallet';
 import useFirmaUtil from '@/hook/useFirmaUtils';
 import useModal from '@/store/useModal';
-import { Texts } from '@/constants/fixedString';
+import { Texts, Types } from '@/constants/fixedString';
 
 const ConnectedWallet = () => {
     const { wallet, balance, chainNetwork, handleWallet, handleBalance, clearStore } = useWallet();
@@ -63,11 +63,10 @@ const ConnectedWallet = () => {
 
     const handleDisconnectWallet = () => {
         clearStore();
-
-        // handleModalWallet({
-        //     isVisible: false,
-        //     type: NEW_WALLET
-        // });
+        handleModalWallet({
+            isVisible: false,
+            type: Types.NEW_WALLET
+        });
     };
 
     const onCopyData = (data: string, content?: string) => {
