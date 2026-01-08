@@ -1,6 +1,6 @@
 {
     "name": "contract-verification-tool",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "type": "module",
     "private": true,
     "dependencies": {
@@ -8,7 +8,7 @@
         "@mui/icons-material": "^5.8.4",
         "@mui/material": "^5.2.7",
         "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest",
-        "axios": "^1.10.0",
+        "axios": "^1.12.0",
         "date-fns": "^4.1.0",
         "immer": "^10.1.1",
         "notistack": "^2.0.5",
@@ -18,7 +18,7 @@
         "react-router": "^6.2.1",
         "react-router-dom": "^6.2.1",
         "react-transition-group": "^4.4.5",
-        "styled-components": "^5.3.3",
+        "styled-components": "^5.3.11",
         "zustand": "^5.0.1"
     },
     "devDependencies": {
@@ -27,7 +27,7 @@
         "@vitejs/plugin-react-swc": "^3.10.2",
         "prettier": "^3.3.3",
         "typescript": "^4.9.5",
-        "vite": "^7.0.4",
+        "vite": "^7.0.8",
         "vite-plugin-bundle-obfuscator": "^1.7.0",
         "vite-plugin-node-polyfills": "^0.24.0",
         "vite-tsconfig-paths": "^5.1.4",
@@ -65,7 +65,8 @@
         ]
     },
     "resolutions": {
-        "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest"
+        "@mui/styled-engine": "npm:@mui/styled-engine-sc@latest",
+        "styled-components": "^5.3.11"
     },
     "packageManager": "yarn@4.9.2"
 }

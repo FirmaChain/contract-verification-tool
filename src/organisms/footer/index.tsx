@@ -15,8 +15,8 @@ export default function Footer() {
             }}
         >
             <Box isDesktop={isDesktop}>
-                <Text>Copyrightⓒ 2023 FirmaChain Pte. Ltd.</Text>
-                <Contact href="mailto:contact@firmachain.org">contact@firmachain.org</Contact>
+                <Text>Copyrightⓒ 2026 FirmaChain Pte. Ltd.</Text>
+                <Contact href="mailto:info@firmachain.org">info@firmachain.org</Contact>
             </Box>
         </Container>
     );

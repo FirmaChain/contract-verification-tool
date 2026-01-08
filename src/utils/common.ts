@@ -45,13 +45,43 @@ export const copyToClipboard = async (text: string): Promise<void | string> => {
 
 export function revealKey(obfuscated: string): string {
     try {
+        // Check if input is empty or invalid
+        if (!obfuscated || obfuscated.length === 0) {
+            return '';
+        }
+
+        // Restore obfuscated string
         const restoredBase64 = Array.from(obfuscated)
-            .map((char) => String.fromCharCode(char.charCodeAt(0) >> 1))
+            .map((char) => {
+                const charCode = char.charCodeAt(0);
+                // Restore using bit shift (reverse of << 1 in obfuscateKey)
+                const restoredCharCode = charCode >> 1;
+                // Verify that restored charCode is within valid ASCII range
+                if (restoredCharCode < 0 || restoredCharCode > 127) {
+                    throw new Error('Invalid character code after restoration');
+                }
+                return String.fromCharCode(restoredCharCode);
+            })
             .join('');
-        return atob(restoredBase64);
+
+        // Verify that restored string is valid base64
+        if (!restoredBase64 || restoredBase64.length === 0) {
+            throw new Error('Restored base64 string is empty');
+        }
+
+        // Attempt base64 decoding
+        try {
+            return atob(restoredBase64);
+        } catch (base64Error) {
+            // If base64 decoding fails, input might already be a restored string
+            // In this case, return the original string as-is
+            console.warn('Failed to decode as base64. Input might already be a plain mnemonic:', base64Error);
+            return obfuscated;
+        }
     } catch (error) {
         console.error('The key is broken or something bad happend.', error);
-        return '';
+        // On error, return original string (might already be a restored string)
+        return obfuscated;
     }
 }
 

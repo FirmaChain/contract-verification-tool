@@ -12,21 +12,14 @@ export default function Upload() {
     const { handleFile } = useFile();
     const [errorMsg, setErrorMsg] = useState('');
 
-    const { metaJson } = useFile();
-    const { demo, verifyStep, setVerifyStep } = useProcess();
+    const { verifyStep, setVerifyStep } = useProcess();
 
     const handleErrorMsg = (msg: string) => {
         setErrorMsg(msg);
     };
 
     useEffect(() => {
-        if (!demo) {
-            setVerifyStep(0);
-        } else {
-            if (metaJson) {
-                setVerifyStep(0);
-            }
-        }
+        setVerifyStep(0);
     }, []);
 
     useEffect(() => {

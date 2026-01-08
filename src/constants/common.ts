@@ -1,10 +1,5 @@
 export const config = {
-    demoPrefixTestnet: import.meta.env.VITE_DEMO_PREFIX_TESTNET || '',
-    demoPrefixMainnet: import.meta.env.VITE_DEMO_PREFIX_MAINNET || '',
     prefixDefault: import.meta.env.VITE_DEFAULT_PREFIX || '',
-
-    demoContractTestnet: import.meta.env.VITE_DEMO_CONTRACT_PDF_TESTNET || '',
-    demoContractMainnet: import.meta.env.VITE_DEMO_CONTRACT_PDF_MAINNET || '',
 
     stationTestnet: import.meta.env.VITE_STATION_URL_TESTNET || '',
     stationMainnet: import.meta.env.VITE_STATION_URL_MAINNET || '',
