@@ -6,9 +6,16 @@ import Description from './description';
 import LinkDescription from './linkDescription';
 import { format, fromUnixTime } from 'date-fns';
 import { config } from '@/constants/common';
+import useWallet from '@/store/useWallet';
 
 export default function OriginalContract({ data }: any) {
+    const { chainNetwork } = useWallet();
     const [transactionHash, setTransactionHash] = useState('');
+
+    const chainServer = useMemo(() => {
+        if (chainNetwork === 'TESTNET') return config.chainServerDev;
+        return config.chainServerLive;
+    }, [chainNetwork]);
 
     const handleTimestamp = (value: number) => {
         return format(fromUnixTime(value), 'yyyy-MM-dd HH:mm:ss');
@@ -29,7 +36,7 @@ export default function OriginalContract({ data }: any) {
     useEffect(() => {
         if (fileHash !== '' && contractHash !== '') {
             axios
-                .get(config.chainServer + '/getTxHash', {
+                .get(chainServer + '/getTxHash', {
                     params: {
                         contractHash: contractHash,
                         fileHash: fileHash
@@ -47,7 +54,7 @@ export default function OriginalContract({ data }: any) {
                     console.log(error);
                 });
         }
-    }, [fileHash, contractHash]);
+    }, [fileHash, contractHash, chainServer]);
 
     return (
         <ContractInfoContainer>

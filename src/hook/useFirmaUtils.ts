@@ -1,7 +1,5 @@
 import { FirmaConfig, FirmaSDK, FirmaUtil } from '@firmachain/firma-js';
 import { Wallet } from '@types';
-import axios from 'axios';
-import FormData from 'form-data';
 import { config } from '@/constants/common';
 import { Types } from '@/constants/fixedString';
 import useFile from '@/store/useFile';
@@ -24,25 +22,6 @@ const useFirmaUtil = () => {
         const isMainnet = chainNetwork === Types.MAIN_NET;
 
         return new FirmaSDK(isMainnet ? FirmaConfig.MainNetConfig : FirmaConfig.TestNetConfig);
-    };
-
-    const customAddBuffer = async (buffer: ArrayBuffer): Promise<string> => {
-        try {
-            var bodyData = new FormData();
-            bodyData.append('buffer', new Blob([buffer]));
-
-            const response = await axios.request({
-                url: getSDK().Config.ipfsNodeAddress + ':' + getSDK().Config.ipfsNodePort + '/api/v0/add',
-                method: 'POST',
-                headers: { 'Content-Type': 'multipart/form-data' },
-                data: bodyData
-            });
-
-            return response.data.Hash;
-        } catch (error) {
-            FirmaUtil.printLog(error);
-            throw error;
-        }
     };
 
     const getBalance = async (address: string) => {
@@ -129,11 +108,7 @@ const useFirmaUtil = () => {
 
             const ownerList = [_address];
 
-            const ipfsHash = await customAddBuffer(fileBuffer.buffer as ArrayBuffer);
-
-            const encryptHash = _wallet.encryptData(ipfsHash);
-            const jsonData = { encryptIpfsHash: [encryptHash] };
-            const metaDataJsonString = JSON.stringify(jsonData);
+            const metaDataJsonString = JSON.stringify({ fileHash: _fileHash });
             const timeStamp = Math.round(+new Date() / 1000);
 
             const gasEstimation = await getSDK().Contract.getGasEstimationCreateContractFile(
@@ -347,7 +322,6 @@ const useFirmaUtil = () => {
     return {
         setChainConfig,
         getBalance,
-        // getIpfsURL,
         getNewWallet,
         getVirifyResult,
         verifyCreateContractFile,
@@ -369,20 +343,3 @@ const useFirmaUtil = () => {
 };
 
 export default useFirmaUtil;
-
-//! Not used for now
-// const getIpfsURL = async (privateKey: string, ipfsHash: string) => {
-//     try {
-//         const wallet = await getRecoverWalletFromPrivateKey(privateKey);
-//         const decryptHash = wallet.decryptData(ipfsHash);
-
-//         if (decryptHash === '' || decryptHash === undefined) return '';
-
-//         const url = firmaSDK.Ipfs.getURLFromHash(decryptHash);
-
-//         return url;
-//     } catch (error) {
-//         console.log(error);
-//         throw error;
-//     }
-// };

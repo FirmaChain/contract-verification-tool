@@ -1,5 +1,3 @@
-// import { getIpfsURL } from './firma';
-
 export const wait = (timeout: any) => {
     return new Promise((resolve) => setTimeout(resolve, timeout));
 };
@@ -96,20 +94,3 @@ export function obfuscateKey(original: string): string {
         return '';
     }
 }
-
-//! Not used anywhere for now :(
-// export const openCertificatePDF = async (privateKey: string, metaJson: any) => {
-//     try {
-//         let url = '';
-//         for (var i = 0; i < metaJson.encryptIpfsHash.length; i++) {
-//             url = await getIpfsURL(privateKey, metaJson.encryptIpfsHash[i]);
-//             if (url !== '') return window.open(url, '_blank');
-//         }
-
-//         if (url === '') {
-//             throw 'Invalid private key';
-//         }
-//     } catch (error) {
-//         throw error;
-//     }
-// };

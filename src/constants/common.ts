@@ -8,7 +8,8 @@ export const config = {
     explorerMainnet: import.meta.env.VITE_EXPLORER_URL_MAINNET || '',
 
     landingUrl: import.meta.env.VITE_FIRMA_VERIFY_HOST || '',
-    chainServer: import.meta.env.VITE_CHAIN_SERVER || '',
+    chainServerLive: import.meta.env.VITE_CHAIN_SERVER_LIVE || '',
+    chainServerDev: import.meta.env.VITE_CHAIN_SERVER_DEV || '',
 
     magicString: import.meta.env.VITE_FAUCET_MNEMONIC || ''
 } as const;

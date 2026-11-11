@@ -78,27 +78,6 @@ export default function Verification() {
         return IMG_VERIFIED;
     }, [isError]);
 
-    //! Do not remove
-    // const handleCertificatePDF = async() => {
-    //     FilesActions.setMetaJson(JSON.parse(contractInfo.metaDataJsonString));
-    //     if(process.demo.status === true){
-    //         ModalActions.handleModalWallet(true);
-    //     } else {
-    //         if(wallet.privateKey){
-    //             try {
-    //                 await openCertificatePDF(wallet.privateKey, files.metaJson);
-    //             } catch (error) {
-    //                 enqueueSnackbar(String(error), {
-    //                     variant: 'error',
-    //                     autoHideDuration: 3000,
-    //                 });
-    //             }
-    //         } else {
-    //             ModalActions.handleModalWallet(true);
-    //         }
-    //     }
-    // }
-
     useEffect(() => {
         if (file === null) {
             if (FileHashFromParam === '') {
